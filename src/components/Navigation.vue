@@ -8,8 +8,8 @@
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav>
-        <b-nav-item href="#/Album">Artist</b-nav-item>
-        <b-nav-item href="#/Artist">Album</b-nav-item>
+        <b-nav-item href="#/Album">Album</b-nav-item>
+        <b-nav-item href="#/Artist">Artist</b-nav-item>
         <b-nav-item href="#/">Reading List</b-nav-item>
       </b-navbar-nav>
 
