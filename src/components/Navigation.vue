@@ -10,7 +10,7 @@
       <b-navbar-nav>
         <b-nav-item href="#/Album">Album</b-nav-item>
         <b-nav-item href="#/Artist">Artist</b-nav-item>
-        <b-nav-item href="#/">Reading List</b-nav-item>
+        <b-nav-item href="#/">Playlists</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
@@ -24,6 +24,7 @@
             <em>Welcome user1</em>
           </template>
           <b-dropdown-item href="#/">Profile</b-dropdown-item>
+          <b-dropdown-item href="#/">Settings</b-dropdown-item>
           <b-dropdown-item href="#/">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
