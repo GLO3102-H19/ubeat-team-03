@@ -1,14 +1,21 @@
 <template>
     <div class="mainDiv">
-      <ul class="list-inline">
-        <li class="list-inline-item"><h3>Nickelback</h3></li>
-        <li class="list-inline-item"><b-button size="sm" class="itunesBtn" onclick="window.location.href='https://itunes.apple.com/ca/artist/nickelback/5280361'"><font-awesome-icon :icon="[ 'fab','itunes']" size="3x"/></b-button></li>
-      </ul>
+
+      <b-container fluid class="headerDiv">
+        <b-row>
+          <b-col cols="1"></b-col>
+          <b-col cols="3.5" ><img class="image" src="https://cps-static.rovicorp.com/3/JPG_400/MI0003/458/MI0003458556.jpg?partner=allrovi.com" alt="Nickelback"></b-col>
+            <b-col cols="6"><ul class="list-unstyled">
+              <li><h3>Nickelback</h3></li>
+              <li>Rock</li>
+            </ul></b-col>
+          <b-col cols="1" class="itunesBtn"><b-button size="sm" onclick="window.location.href='https://itunes.apple.com/ca/artist/nickelback/5280361'"><font-awesome-icon :icon="[ 'fab','itunes']" size="3x"/></b-button></b-col>
+        </b-row>
+      </b-container>
 
       <ul class="list-unstyled">
-        
-        <li><p>Genre : Rock/Pop</p></li>
-        <li>Album :<ul>
+
+        <li><ul class="list-unstyled">
           <li><p>Feed the Machine</p></li>
           <li><p>No Fixed Address</p></li>
           <li><p>Here and Now</p></li>
@@ -28,7 +35,18 @@
 <style>
 
   .mainDiv{
-    margin: 10px;
+    margin: auto;
+    padding: auto;
+  }
+
+  .headerDiv{
+    background-color: #ff7f1c;
+    border-bottom-width: 50px;
+    border-bottom-color: blue;
+  }
+
+  .image{
+    border-radius: 100px;
   }
 
   .itunesBtn{
@@ -36,6 +54,5 @@
     border-color: white;
     padding: 2px;
     margin: 0;
-
   }
 </style>
