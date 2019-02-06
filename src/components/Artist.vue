@@ -4,7 +4,9 @@
         <li class="list-inline-item"><h3>Nickelback</h3></li>
         <li class="list-inline-item"><b-button size="sm" class="itunesBtn" onclick="window.location.href='https://itunes.apple.com/ca/artist/nickelback/5280361'"><font-awesome-icon :icon="[ 'fab','itunes']" size="3x"/></b-button></li>
       </ul>
+
       <ul class="list-unstyled">
+        
         <li><p>Genre : Rock/Pop</p></li>
         <li>Album :<ul>
           <li><p>Feed the Machine</p></li>
@@ -17,7 +19,9 @@
           <li><p>The State</p></li>
           <li><p>Curb</p></li>
         </ul></li>
+
       </ul>
+
     </div>
 </template>
 
