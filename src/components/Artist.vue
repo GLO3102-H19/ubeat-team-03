@@ -2,7 +2,7 @@
     <div class="mainDiv">
       <ul class="list-inline">
         <li class="list-inline-item"><h3>Nickelback</h3></li>
-        <li class="list-inline-item"><b-button size="sm" class="itunesBtn" onclick="window.location.href='https://www.apple.com/ca/itunes/link/'"><font-awesome-icon :icon="[ 'fab','itunes']" size="3x"/></b-button></li>
+        <li class="list-inline-item"><b-button size="sm" class="itunesBtn" onclick="window.location.href='https://itunes.apple.com/ca/artist/nickelback/5280361'"><font-awesome-icon :icon="[ 'fab','itunes']" size="3x"/></b-button></li>
       </ul>
       <ul class="list-unstyled">
         <li><p>Genre : Rock/Pop</p></li>
