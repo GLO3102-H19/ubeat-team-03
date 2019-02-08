@@ -6,16 +6,19 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faItunes } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Meta from 'vue-meta';
 import BootstrapVue from 'bootstrap-vue';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+
 
 library.add(faSearch);
 library.add(faItunes);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(BootstrapVue);
+Vue.use(Meta);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
