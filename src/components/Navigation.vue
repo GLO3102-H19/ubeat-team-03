@@ -23,9 +23,9 @@
           <template slot="button-content">
             <em>Welcome user1</em>
           </template>
-          <b-dropdown-item href="#/">Profile</b-dropdown-item>
-          <b-dropdown-item href="#/">Settings</b-dropdown-item>
-          <b-dropdown-item href="#/">Signout</b-dropdown-item>
+          <b-dropdown-item href="#/"><font-awesome-icon icon="user"/> Profile</b-dropdown-item>
+          <b-dropdown-item href="#/"><font-awesome-icon icon="wrench"/> Settings</b-dropdown-item>
+          <b-dropdown-item href="#/"><font-awesome-icon icon="sign-out-alt"/> Signout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
