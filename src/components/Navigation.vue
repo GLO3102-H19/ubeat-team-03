@@ -10,14 +10,14 @@
       <b-navbar-nav>
         <b-nav-item href="#/Album">Album</b-nav-item>
         <b-nav-item href="#/Artist">Artist</b-nav-item>
-        <b-nav-item href="#/">Playlists</b-nav-item>
+        <b-nav-item href="#">Playlists</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
 
         <b-nav-form>
           <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit"><font-awesome-icon icon="search"/></b-button>
+          <b-button size="sm" class="my-2 my-sm-0"><font-awesome-icon icon="search"/></b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <template slot="button-content">
@@ -34,4 +34,47 @@
 </template>
 
 <style>
+  .bg-primary:hover {
+    background-color: #0079f1 !important;
+  }
+
+  .navbar {
+    font-family: Montserrat, sans-serif;
+    font-size: 12px !important;
+    letter-spacing: 1px;
+    border-radius: 0px;
+    border-bottom: 4px solid #1d6aec;
+    border-right: 1px solid #1d6aec;
+  }
+  .dropdown-item{
+    color: black !important;
+  }
+
+  .dropdown-item:hover{
+    color: black !important;
+    background-color: #f5f5f5 !important;
+  }
+
+  .navbar li a, .navbar .navbar-brand {
+    color: #FFFFFF;
+  }
+
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    background-color: #007ff7;
+  }
+
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #007ff7;
+  }
+
+  .btn-secondary{
+    background-color: lightgreen;
+    border-color: lightgreen;
+  }
+
+  .btn-secondary:hover{
+    background-color: #9bfc9b;
+    border-color: #9bfc9b;
+  }
 </style>

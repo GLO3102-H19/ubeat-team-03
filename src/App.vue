@@ -12,13 +12,6 @@ export default {
   name: 'app',
   components: {
     'nav-menu': Navigation
-  },
-  metaInfo: {
-    title: '',
-    titleTemplate: '%s | Ubeat',
-    meta: [
-      { name: 'viewport', content: 'width=device-width' }
-    ]
   }
 };
 </script>
