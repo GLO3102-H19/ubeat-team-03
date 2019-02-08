@@ -4,12 +4,12 @@
       <b-container fluid class="headerDiv">
         <b-row>
           <b-col cols="1"></b-col>
-          <b-col cols="3.5" ><b-img center src="https://cps-static.rovicorp.com/3/JPG_400/MI0003/458/MI0003458556.jpg?partner=allrovi.com" rounded="circle" width="400" height="350"/></b-col>
+          <b-col cols="3.5" ><b-img center src="https://cps-static.rovicorp.com/3/JPG_400/MI0003/458/MI0003458556.jpg?partner=allrovi.com" id="artistPic" rounded="circle" width="400" height="350"/></b-col>
             <b-col cols="6"><ul class="list-unstyled">
               <li><h1>Nickelback</h1></li>
               <li>Rock</li>
             </ul></b-col>
-          <b-col cols="1" class="itunesBtn"><b-button size="sm" onclick="window.location.href='https://itunes.apple.com/ca/artist/nickelback/5280361'"><font-awesome-icon :icon="[ 'fab','itunes']" size="3x"/></b-button></b-col>
+          <b-col cols="1" class="itunesBtn"><b-button size="md" href="https://itunes.apple.com/ca/artist/nickelback/5280361"><b-img src="Apple_Music_Icon_blk.svg"></b-img></b-button></b-col>
         </b-row>
       </b-container>
 
@@ -63,29 +63,29 @@
 <style>
 
   .mainDiv{
-    margin: auto;
+    margin-top: 20px;
     padding: auto;
   }
 
   .headerDiv{
-    background-color: #ff7f1c;
+    background-color: lightskyblue;
     border-radius: 100px;
   }
 
   .middleDiv{
-    margin-top: 80px;
-  }
-
-  .albumSectionTitle{
-    color: white;
-  }
-
-  .bottomDiv{
     margin-top: 50px;
   }
 
+  .albumSectionTitle{
+    color: black;
+  }
+
+  .bottomDiv{
+    margin-top: 30px;
+  }
+
   .albumLine{
-    background-color: #2c2b2b;
+    background-color: lightskyblue;
     display: flex;
   }
 
@@ -94,7 +94,7 @@
   }
 
   .albumInfos{
-    color: white;
+    color: black;
   }
 
   .itunesBtn{
@@ -105,4 +105,40 @@
 
     align-self: flex-end;
   }
+
+  /*Tablet size*/
+  @media screen and (min-width: 579px) and (max-width: 1024px) {
+
+    #artistPic {
+      width: 350px;
+      height: 305px;
+    }
+
+    .albumImg{
+      margin-right: 20px;
+      width: 125px;
+      height: 125px;
+    }
+
+    .albumInfos{
+      
+    }
+  }
+
+  /*Phone size*/
+  @media screen and (max-width: 578px) {
+
+    #artistPic {
+      width: 300px;
+      height: 260px;
+    }
+
+    .albumImg{
+      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+    }
+
+  }
+
 </style>
