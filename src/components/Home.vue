@@ -17,38 +17,45 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-card class="text-center">&copy; Ubeats 2019</b-card>
+    <b-card class="footer text-center">&copy; Ubeat 2019</b-card>
   </div>
 </template>
 <style>
 .row-1 {
-    font-size: large;
-    font-weight: bold;
-    color: red;
-  background-color: black;
-  height: 500px;
+  font-size: large;
+  font-weight: bold;
+  color: lightcyan;
+  background-color: lightskyblue;
+  height: 100vh;
 }
 .row-2 {
-    font-size: large;
-    font-weight: bold;
-  background-color: red;
-  height: 500px;
+  font-size: large;
+  font-weight: bold;
+  background-color: lightgreen;
+  height: 100vh;
 }
 .left-content {
-    height: 175px;
+  height: 35%;
 }
 .right-content {
-    height: 150px;
+  height: 33%;
 }
 .signup-button {
-    width: 50%;
+  width: 50%;
 }
 .login-button {
-    width: 50%;
+  width: 50%;
 }
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 @media (max-width: 600px) {
   .row-1 {
-      display: none;
+    display: none;
   }
   .signup-button {
     width: 100%;
@@ -56,6 +63,12 @@
 
   .login-button {
     width: 100%;
+  }
+}
+
+@media (max-height: 450px) {
+  .footer {
+    position: relative;
   }
 }
 </style>
