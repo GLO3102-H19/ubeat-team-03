@@ -57,7 +57,12 @@
   bottom: 0;
 }
 
-@media (max-width: 600px) {
+/* Small devices (Portrait phones, 576px and up) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .footer {
+    position: relative;
+  }
+
   .row-1 {
     display: none;
   }
@@ -70,9 +75,11 @@
   }
 }
 
-@media (max-height: 450px) {
-  .footer {
-    position: relative;
-  }
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media only screen and (min-device-width: 1281px) {
 }
 </style>

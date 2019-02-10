@@ -226,8 +226,42 @@ audio {
   color: black;
 }
 
-/*Tablet size*/
-@media screen and (min-width: 579px) and (max-width: 767.5px) {
+/* Small devices (Portrait phones, 576px and up) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  #artistPic {
+    width: 300px;
+    height: 260px;
+  }
+
+  #artistLabelNGenre {
+    text-align: center;
+  }
+
+  #middleDiv {
+    margin-top: 25px;
+  }
+
+  #bottomDiv {
+    margin-top: 10px;
+  }
+
+  .albumImg {
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .someInfos {
+    font-size: 12px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   #artistPic {
     width: 350px;
     height: 305px;
@@ -260,37 +294,7 @@ audio {
   }
 }
 
-/*Phone size*/
-@media screen and (max-width: 579px) {
-  #artistPic {
-    width: 300px;
-    height: 260px;
-  }
-
-  #artistLabelNGenre {
-    text-align: center;
-  }
-
-  #middleDiv {
-    margin-top: 25px;
-  }
-
-  #bottomDiv {
-    margin-top: 10px;
-  }
-
-  .albumImg {
-    margin-right: 10px;
-    width: 100px;
-    height: 100px;
-  }
-
-  .someInfos {
-    font-size: 12px;
-  }
-
-  h4 {
-    font-size: 16px;
-  }
+/* Large devices (desktops, 992px and up) */
+@media only screen and (min-device-width: 1281px) {
 }
 </style>

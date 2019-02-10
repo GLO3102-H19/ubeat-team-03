@@ -274,8 +274,8 @@ audio {
   text-align: center;
 }
 
-/* Mobile and Tablet Styles */
-@media only screen and (max-width: 767px) {
+/* Small devices (Portrait phones, 576px and up) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
   .titleDiv {
     margin: 20px;
     text-align: center;
@@ -325,8 +325,59 @@ audio {
   }
 }
 
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .titleDiv {
+    margin: 20px;
+    text-align: center;
+  }
+
+  .albumInfoDiv h1 {
+    font-size: 35px;
+  }
+
+  .songAlbumTable {
+    margin: auto;
+  }
+
+  .topDiv {
+    margin: 20px;
+    display: block;
+    position: relative;
+    text-align: center;
+    height: auto;
+  }
+
+  .albumDiv {
+    display: block;
+    left: 50%;
+    margin: auto;
+  }
+
+  .albumInfoDiv {
+    margin: 20px;
+    height: 250px;
+    position: relative;
+  }
+
+  .iTunesLink {
+    position: absolute;
+    bottom: 0;
+    margin-left: -90px;
+  }
+
+  .bottomDiv {
+    margin: 20px;
+    margin-bottom: 60px;
+  }
+
+  .songAlbumTable td:nth-child(1) {
+    width: 140px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media only screen and (min-device-width: 1281px) {
   .songAlbumTable tr:hover {
     background-color: whitesmoke;
   }
