@@ -150,14 +150,7 @@
 
   .albumCoverDiv {
     position: relative;
-  }
-
-  .albumCoverDiv:hover .cover {
-    opacity: 0.5;
-  }
-
-  .albumCoverDiv:hover .middlePlayButton {
-    display: block;
+    cursor: pointer;
   }
 
   .albumInfoDiv {
@@ -189,8 +182,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -40px;
-    margin-top: -50%;
+    margin: -40px;
   }
 
   .playButton {
@@ -201,6 +193,10 @@
     border: none;
     background: white;
     text-align: center;
+  }
+
+  .songAlbumTable td {
+    cursor: pointer;
   }
 
   .songAlbumTable td:nth-child(1) {
@@ -289,6 +285,14 @@
 
     .songAlbumTable tr:hover .songNumber {
       display: none;
+    }
+
+    .albumCoverDiv:hover .cover {
+      opacity: 0.5;
+    }
+
+    .albumCoverDiv:hover .middlePlayButton {
+      display: block;
     }
   }
 
