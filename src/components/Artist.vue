@@ -6,14 +6,14 @@
           <b-col md="6" id="artistPicCol"><b-img center src="https://cps-static.rovicorp.com/3/JPG_400/MI0003/458/MI0003458556.jpg?partner=allrovi.com" id="artistPic" rounded="circle" width="400" height="350"/></b-col>
             <b-col md="5" id="artistLabelNGenre"><ul class="list-unstyled">
               <li><p id="artistLabel">Nickelback</p></li>
-              <li>Rock</li>
+              <li id="artistGenre">Rock</li>
             </ul></b-col>
-          <b-col md="1" class="itunesBtn"><b-button size="md" href="https://itunes.apple.com/ca/artist/nickelback/5280361"><b-img src="Apple_Music_Icon_blk.svg"></b-img></b-button></b-col>
         </b-row>
       </b-container>
 
       <b-container id="middleDiv">
         <h4 class="albumSectionTitle">Albums</h4>
+        <a href="https://geo.itunes.apple.com/us/artist/nickelback/5280361?mt=1&app=music&ls=1" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/embed/v1/app-icon.svg?hex=000000) no-repeat;width:40px;height:40px;"></a>
       </b-container>
 
       <b-container id="bottomDiv">
@@ -77,7 +77,12 @@
   }
 
   #artistLabel{
-    font-size: 45px;
+    font-size: 50px;
+    font-family: Helvetica,sans-serif;
+  }
+
+  #artistGenre{
+    font-size: 25px;
     font-family: Helvetica,sans-serif;
   }
 
@@ -87,6 +92,9 @@
 
   #middleDiv{
     margin-top: 50px;
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .albumSectionTitle{
@@ -108,15 +116,6 @@
 
   .albumInfos{
     color: black;
-  }
-
-  .itunesBtn{
-    background-color: darkgray;
-    border-color: white;
-    padding: 2px;
-    margin: 0;
-
-    align-self: flex-end;
   }
 
   /*Tablet size*/
@@ -155,7 +154,7 @@
   }
 
   /*Phone size*/
-  @media screen and (max-width: 578px) {
+  @media screen and (max-width: 579px) {
 
     #artistPic {
       width: 300px;
