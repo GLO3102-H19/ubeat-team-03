@@ -1,13 +1,13 @@
 <template>
   <div class="mainDiv">
-    <div class="bottomDiv">
+    <div class="titleDiv">
       <h1>Album</h1>
     </div>
 
     <div class="topDiv">
       <div class="albumDiv">
         <div class="albumCoverDiv">
-          <img class="cover" alt="Feed The Machine" src="http://directory.oboxeditions.com/sites/prod_directory/files/event/nickelback-feed-the-machine-44-city-north-american-tour-24278.jpg">
+          <img class="cover" alt="Feed the Machine" src="http://directory.oboxeditions.com/sites/prod_directory/files/event/nickelback-feed-the-machine-44-city-north-american-tour-24278.jpg">
           <div class="middlePlayButton">
             <i class="fas fa-play-circle fa-5x"></i>
           </div>
@@ -15,21 +15,22 @@
       </div>
 
       <div class="albumInfoDiv">
-        <h1> Feed The Machine (2017)</h1>
+        <h1> Feed the Machine</h1>
         <h2 class="bandAlbumInfo"> Nickelback </h2>
-        <h5 class="styleAlbumInfo"> Rock </h5>
+        <h5 class="styleAlbumInfo"> 2017 - Rock </h5>
         <h6 class="songsAlbumInfo"> 11 songs, 43 minutes </h6>
-        <a href="https://geo.itunes.apple.com/ca/album/feed-the-machine/1234838372?mt=1&app=music&ls=1" target="_blank"
-           style="display:inline-block;position:absolute;bottom:5px;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/embed/v1/app-icon.svg?hex=000000) no-repeat;width:40px;height:40px;"></a>
-      </div>
+        <div class="iTunesLink"><a href="https://geo.itunes.apple.com/ca/album/feed-the-machine/1234838372?mt=1&app=music&ls=1" target="_blank"
+              style="display:inline-block;overflow:hidden;width:180px;height:40px;"></a>
+        </div>
+        </div>
     </div>
 
     <div class="bottomDiv">
-      <table class="songAlbumTable" style="width:75%">
+      <table class="songAlbumTable">
         <tr>
-          <th width="40">#</th>
-          <th width="500">Title</th>
-          <th width="65">Length</th>
+          <th>#</th>
+          <th>Title</th>
+          <th>Length</th>
         </tr>
         <tr>
           <td class="tableCenter">
@@ -127,20 +128,24 @@
 
 <style>
 
+  .titleDiv {
+    margin-top: 20px;
+    margin-left: 40px;
+  }
+
   .topDiv {
     height: 300px;
-    margin: 40px;
+    margin: 20px 40px;
     display: flex;
   }
 
   .bottomDiv {
     margin-top: 20px;
-    margin-left: 55px;
+    margin-left: 40px;
   }
 
   .albumDiv {
     align-content: space-between;
-    margin-left: 15px;
   }
 
   .albumCoverDiv {
@@ -161,6 +166,16 @@
     position: relative;
   }
 
+  .iTunesLink {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 180px;
+    background:url(https://linkmaker.itunes.apple.com/en-us/lockup.svg?releaseDate=2017-06-16&kind=album&bubble=apple_music&style=mono-black) no-repeat;
+    background-size: cover;
+  }
+
   .bandAlbumInfo {
     margin-top: 15px;
   }
@@ -175,17 +190,11 @@
     top: 50%;
     left: 50%;
     margin-left: -40px;
-    margin-top: -40px;
+    margin-top: -50%;
   }
 
   .playButton {
     display: none;
-  }
-
-  .songAlbumTable tr {
-    border: 2px solid white;
-    background: #e8e8e8;
-    height: 60px;
   }
 
   .songAlbumTable th {
@@ -194,24 +203,93 @@
     text-align: center;
   }
 
+  .songAlbumTable td:nth-child(1) {
+    width: 60px;
+  }
+
   .songAlbumTable th:nth-child(2) {
     text-align: left;
+    width: 800px;
   }
 
-  .songAlbumTable tr:hover {
-    background-color: whitesmoke;
+  .songAlbumTable th:nth-child(3) {
+    width: 80px;
   }
 
-  .songAlbumTable tr:hover .playButton {
-    display: block;
-  }
-
-  .songAlbumTable tr:hover .songNumber {
-    display: none;
+  .songAlbumTable tr {
+    border: 2px solid white;
+    background: #e8e8e8;
+    height: 60px;
   }
 
   .tableCenter {
     text-align: center;
+  }
+
+  /* Mobile and Tablet Styles */
+  @media only screen and (max-width: 767px) {
+    .titleDiv {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .albumInfoDiv h1 {
+      font-size: 35px;
+    }
+
+    .songAlbumTable {
+      margin: auto;
+    }
+
+    .topDiv {
+      margin: 20px;
+      display: block;
+      position: relative;
+      text-align: center;
+      height: auto;
+    }
+
+    .albumDiv {
+      display: block;
+      left: 50%;
+      margin: auto;
+    }
+
+    .albumInfoDiv {
+      margin: 20px;
+      height: 250px;
+      position: relative;
+    }
+
+    .iTunesLink {
+      position: absolute;
+      bottom: 0;
+      margin-left: -90px;
+    }
+
+    .bottomDiv {
+      margin: 20px;
+    }
+
+    .songAlbumTable td:nth-child(1) {
+      width: 140px;
+    }
+
+  }
+
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    .songAlbumTable tr:hover {
+      background-color: whitesmoke;
+    }
+
+    .songAlbumTable tr:hover .playButton {
+      display: block;
+    }
+
+    .songAlbumTable tr:hover .songNumber {
+      display: none;
+    }
   }
 
 </style>
