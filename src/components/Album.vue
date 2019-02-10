@@ -153,6 +153,7 @@
 
   .albumCoverDiv:hover .middlePlayButton {
     display: block;
+    cursor: pointer;
   }
 
   .albumInfoDiv {
@@ -180,6 +181,7 @@
 
   .playButton {
     display: none;
+    cursor: pointer;
   }
 
   .songAlbumTable tr {
