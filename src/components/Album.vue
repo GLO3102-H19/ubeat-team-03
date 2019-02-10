@@ -1,9 +1,5 @@
 <template>
   <div class="mainDiv">
-    <div class="titleDiv">
-      <h1>Album</h1>
-    </div>
-
     <div class="topDiv">
       <div class="albumDiv">
         <div class="albumCoverDiv">
@@ -178,14 +174,9 @@ audio {
   width: 100%;
 }
 
-.titleDiv {
-  margin-top: 20px;
-  margin-left: 40px;
-}
-
 .topDiv {
   height: 300px;
-  margin: 20px 40px;
+  margin: 70px 40px;
   display: flex;
 }
 
@@ -276,11 +267,6 @@ audio {
 
 /* Small devices (Portrait phones, 576px and up) */
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-  .titleDiv {
-    margin: 20px;
-    text-align: center;
-  }
-
   .albumInfoDiv h1 {
     font-size: 35px;
   }
@@ -290,7 +276,7 @@ audio {
   }
 
   .topDiv {
-    margin: 20px;
+    margin: 70px 20px;
     display: block;
     position: relative;
     text-align: center;
@@ -327,11 +313,6 @@ audio {
 
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .titleDiv {
-    margin: 20px;
-    text-align: center;
-  }
-
   .albumInfoDiv h1 {
     font-size: 35px;
   }
@@ -341,7 +322,7 @@ audio {
   }
 
   .topDiv {
-    margin: 20px;
+    margin: 70px 20px;
     display: block;
     position: relative;
     text-align: center;
