@@ -1,12 +1,10 @@
 <template>
   <b-navbar fixed="top" toggleable="md" type="dark" variant="primary">
-
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
     <b-navbar-brand href="#/">UBEAT</b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
-
       <b-navbar-nav>
         <b-nav-item href="#/Album">Album</b-nav-item>
         <b-nav-item href="#/Artist">Artist</b-nav-item>
@@ -14,67 +12,81 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-
         <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-          <b-button size="sm" class="my-2 my-sm-0"><font-awesome-icon icon="search"/></b-button>
+          <b-form-input
+            size="sm"
+            class="mr-sm-2"
+            type="text"
+            placeholder="Search"
+          />
+          <b-button size="sm" class="my-2 my-sm-0"
+            ><font-awesome-icon icon="search"
+          /></b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <template slot="button-content">
             <em>Welcome user1</em>
           </template>
-          <b-dropdown-item href="#/"><font-awesome-icon icon="user"/> Profile</b-dropdown-item>
-          <b-dropdown-item href="#/"><font-awesome-icon icon="wrench"/> Settings</b-dropdown-item>
-          <b-dropdown-item href="#/"><font-awesome-icon icon="sign-out-alt"/> Signout</b-dropdown-item>
+          <b-dropdown-item href="#/"
+            ><font-awesome-icon icon="user" /> Profile</b-dropdown-item
+          >
+          <b-dropdown-item href="#/"
+            ><font-awesome-icon icon="wrench" /> Settings</b-dropdown-item
+          >
+          <b-dropdown-item href="#/"
+            ><font-awesome-icon icon="sign-out-alt" /> Signout</b-dropdown-item
+          >
         </b-nav-item-dropdown>
       </b-navbar-nav>
-
     </b-collapse>
   </b-navbar>
 </template>
 
 <style>
-  .bg-primary:hover {
-    background-color: #0079f1 !important;
-  }
+.navbar {
+  font-family: Montserrat, sans-serif;
+  font-size: 12px !important;
+  letter-spacing: 1px;
+  border-radius: 0px;
+  border-bottom: 4px solid #1d6aec;
+  border-right: 1px solid #1d6aec;
+}
 
-  .navbar {
-    font-family: Montserrat, sans-serif;
-    font-size: 12px !important;
-    letter-spacing: 1px;
-    border-radius: 0px;
-    border-bottom: 4px solid #1d6aec;
-    border-right: 1px solid #1d6aec;
-  }
-  .dropdown-item{
-    color: black !important;
-  }
+.navbar li a,
+.navbar .navbar-brand {
+  color: #ffffff;
+}
 
-  .dropdown-item:hover{
-    color: black !important;
-    background-color: #f5f5f5 !important;
-  }
+.navbar-nav li a:hover,
+.navbar-nav li.active a {
+  background-color: #007ff7;
+}
 
-  .navbar li a, .navbar .navbar-brand {
-    color: #FFFFFF;
-  }
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: #007ff7;
+}
 
-  .navbar-nav li a:hover, .navbar-nav li.active a {
-    background-color: #007ff7;
-  }
+.dropdown-item {
+  color: black !important;
+}
 
-  .navbar-default .navbar-toggle {
-    border-color: transparent;
-    color: #007ff7;
-  }
+.dropdown-item:hover {
+  color: black !important;
+  background-color: #f5f5f5 !important;
+}
 
-  .btn-secondary{
-    background-color: lightgreen;
-    border-color: lightgreen;
-  }
+.bg-primary:hover {
+  background-color: #0079f1 !important;
+}
 
-  .btn-secondary:hover{
-    background-color: #9bfc9b;
-    border-color: #9bfc9b;
-  }
+.btn-secondary {
+  background-color: lightgreen;
+  border-color: lightgreen;
+}
+
+.btn-secondary:hover {
+  background-color: #9bfc9b;
+  border-color: #9bfc9b;
+}
 </style>
