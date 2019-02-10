@@ -134,7 +134,6 @@
       </audio>
     </b-card>
   </div>
-
 </template>
 
 <style>
@@ -144,8 +143,9 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 10;
   }
-  
+
   audio {
     width: 100%;
   }
@@ -164,6 +164,7 @@
   .bottomDiv {
     margin-top: 20px;
     margin-left: 40px;
+    margin-bottom:60px;
   }
 
   .albumDiv {
@@ -287,6 +288,7 @@
 
     .bottomDiv {
       margin: 20px;
+      margin-bottom:60px;
     }
 
     .songAlbumTable td:nth-child(1) {

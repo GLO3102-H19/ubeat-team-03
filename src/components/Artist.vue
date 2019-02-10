@@ -80,6 +80,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 10;
   }
   audio {
       width: 100%;
@@ -91,7 +92,7 @@
 
   .headerDiv{
     background-color: lightskyblue;
-    padding: 10px 10px 10px 10px;
+    padding: 50px 10px 10px 10px;
     border-radius: 100px;
   }
 
@@ -126,6 +127,7 @@
 
   #bottomDiv{
     margin-top: 30px;
+    margin-bottom: 60px;
   }
 
   .albumLine{
