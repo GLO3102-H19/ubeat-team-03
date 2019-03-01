@@ -8,7 +8,7 @@
       <b-navbar-nav>
         <b-nav-item href="#/Album">Album</b-nav-item>
         <b-nav-item href="#/Artist">Artist</b-nav-item>
-        <b-nav-item href="#">Playlists</b-nav-item>
+        <b-nav-item href="#/Playlists">Playlists</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-menu></nav-menu>
-    <router-view></router-view>
+    <router-view v-bind:email="userEmail" v-bind:id="userId"></router-view>
   </div>
 </template>
 
