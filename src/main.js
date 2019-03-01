@@ -7,6 +7,8 @@ import { faSearch, faSignOutAlt, faUser, faWrench } from '@fortawesome/free-soli
 import { faItunes } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import BootstrapVue from 'bootstrap-vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -19,6 +21,7 @@ library.add(faItunes);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(BootstrapVue);
+Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
