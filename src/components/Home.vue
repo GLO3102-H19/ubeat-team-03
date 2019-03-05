@@ -11,13 +11,13 @@
         <b-col class="row-2">
           <p class="right-content"></p>
           <p>Hear what the world's listening</p>
-          <b-button class="signup-button" href="#" variant="primary"
-            >Sign Up</b-button
-          >
+          <b-button class="signup-button" href="#" variant="primary">
+            Sign Up
+          </b-button>
           <p></p>
-          <b-button class="login-button" href="#" variant="primary"
-            >Log In</b-button
-          >
+          <b-button class="login-button" href="#" variant="primary">
+            Log In
+          </b-button>
         </b-col>
       </b-row>
     </b-container>

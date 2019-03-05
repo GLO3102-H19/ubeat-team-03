@@ -140,34 +140,23 @@
         >
       </b-list-group>
     </b-container>
-    <b-card no-body class="footer text-center">
-      <audio controls>
-        <source src="#" type="audio/mp3" />
-        <source src="#" type="audio/ogg" />
-        <p>
-          Your browser doesn't support HTML5 audio. Here is a
-          <a href="#">link to the audio</a> instead.
-        </p>
-      </audio>
-    </b-card>
+    <Player/>
   </div>
 </template>
+
+<script>
+  import Player from './Player';
+
+  export default {
+    components: { Player }
+  };
+</script>
 
 <style>
 .mainDiv {
   margin: 10px;
 }
 
-.footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-}
-audio {
-  width: 100%;
-}
 .mainDiv {
   margin-top: 20px;
   padding: auto;
