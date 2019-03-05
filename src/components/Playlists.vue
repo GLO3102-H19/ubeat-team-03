@@ -81,8 +81,10 @@
           this.playlists = [];
 
           for (let i = 0; i < this.posts.length; i += 1) {
-            if (this.posts[i].owner.id === this.id) {
-              this.playlists.push(this.posts[i]);
+            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
+              if (this.posts[i].owner.id === this.id) {
+                this.playlists.push(this.posts[i]);
+              }
             }
           }
         } catch (e) {
