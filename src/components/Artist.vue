@@ -1,32 +1,8 @@
 <template>
   <div class="mainDiv">
-    <b-container fluid class="headerDiv">
-      <b-row>
-        <b-col md="6" id="artistPicCol"
-          ><b-img
-            center
-            src="https://cps-static.rovicorp.com/3/JPG_400/MI0003/458/MI0003458556.jpg?partner=allrovi.com"
-            id="artistPic"
-            rounded="circle"
-            width="400"
-            height="350"
-        /></b-col>
-        <b-col md="5" id="artistLabelNGenre"
-          ><ul class="list-unstyled">
-            <li><p id="artistLabel">Nickelback</p></li>
-            <li id="artistGenre">Rock</li>
-          </ul></b-col
-        >
-      </b-row>
-    </b-container>
+    <Header></Header>
 
-    <b-container id="middleDiv">
-      <h4 class="albumSectionTitle">Albums</h4>
-      <a
-        href="https://geo.itunes.apple.com/us/artist/nickelback/5280361?mt=1&app=music&ls=1"
-        style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/embed/v1/app-icon.svg?hex=000000) no-repeat;width:40px;height:40px;"
-      ></a>
-    </b-container>
+    <AlbumHeader></AlbumHeader>
 
     <b-container id="bottomDiv">
       <b-list-group>
@@ -146,9 +122,23 @@
 
 <script>
   import Player from './Player';
+  import Header from './ArtistHeader';
+  import AlbumHeader from './AlbumHeader';
+  import AlbumItem from './AlbumItem';
 
   export default {
-    components: { Player }
+    components: { Player, Header, AlbumHeader, AlbumItem },
+    props: ['email', 'id'],
+    data: () => ({
+      name: '',
+      artistLinkUrl: '',
+      artistId: '',
+      primaryGenreName: '',
+      primaryGenreId: '',
+      errors: []
+    }),
+    methods: {
+    },
   };
 </script>
 
@@ -160,41 +150,6 @@
 .mainDiv {
   margin-top: 20px;
   padding: auto;
-}
-
-.headerDiv {
-  background-color: lightskyblue;
-  padding: 50px 10px 10px 10px;
-  border-radius: 100px;
-}
-
-#artistLabelNGenre {
-  padding: 10px 0 0 0;
-}
-
-#artistLabel {
-  font-size: 50px;
-  font-family: Helvetica, sans-serif;
-}
-
-#artistGenre {
-  font-size: 25px;
-  font-family: Helvetica, sans-serif;
-}
-
-#artistPicCol {
-  padding: 10px 0 10px 0;
-}
-
-#middleDiv {
-  margin-top: 50px;
-  padding: 0 20px 0 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.albumSectionTitle {
-  color: black;
 }
 
 #bottomDiv {
