@@ -72,7 +72,7 @@
           this.errors.push(e);
         }
       },
-      async Update() {
+      async loadTracks() {
         try {
           const response = await axios.get(
             'http://ubeat.herokuapp.com/unsecure/playlists'
@@ -93,7 +93,7 @@
       }
     },
     created() {
-      this.Update();
+      this.loadTracks();
     }
   };
 </script>

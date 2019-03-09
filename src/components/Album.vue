@@ -30,78 +30,109 @@
           <th>Title</th>
           <th>Length</th>
         </tr>
-        <tr v-for="track in trackList">
-          <td class="tableCenter">
+        <tr v-for="track in trackList" >
+          <td class="tableCenter" v-on:click="Play(track)">
             <div class="trackNumber">{{track.trackNumber}}</div>
             <div class="playButton">
-              <i class="far fa-play-circle fa-2x"></i>
+              <i v-bind:class="track.icon"></i>
             </div>
           </td>
-          <td>{{track.trackName}}</td>
-          <td class="tableCenter">{{track.trackTimeMillis}}</td>
+          <td v-on:click="Play(track)">{{track.trackName}}</td>
+          <td class="tableCenter" v-on:click="Play(track)">{{track.trackTimeMillis}}</td>
         </tr>
       </table>
     </div>
-    <Player/>
+    <Player v-bind:source="playingSong.url"/>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
   import Player from './Player';
+  import Track from './Track';
 
   function millisToMinutesAndSeconds(millis) {
     const minutes = Math.floor(millis / 60000);
     const seconds = ((millis % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
-
   export default {
     name: 'album',
     data() {
       return {
-        cover: 'http://directory.oboxeditions.com/sites/prod_directory/files/event/nickelback-feed-the-machine-44-city-north-american-tour-24278.jpg',
         name: 'Feed the Machine',
         artist: 'Nickelback',
-        year: '2017',
-        genre: 'Rock',
-        songCount: '11',
-        time: '43',
-        appleLink: 'https://geo.itunes.apple.com/ca/album/feed-the-machine/1234838372?mt=1&app=music&ls=1',
+        cover: '',
+        year: '',
+        genre: '',
+        songCount: '',
+        time: '',
+        appleLink: '',
         trackList: [],
-        errors: []
+        errors: [],
+        playingSong: { url: '', paused: false }
       };
     },
 
+    components: { Player, Track },
+
     methods: {
-      async Update() {
+      async loadTracks() {
         try {
           const response = await axios.get(
             'http://ubeat.herokuapp.com/unsecure/albums/1234838372/tracks'
           );
-          const tracks = response.data;
-          let trackNumber = {};
-          let trackName = {};
-          let trackTimeMillis = {};
-          for (let i = 0; i < 11; i += 1) {
-            trackNumber = Object.getOwnPropertyDescriptor(tracks.results[i], 'trackNumber');
-            trackName = Object.getOwnPropertyDescriptor(tracks.results[i], 'trackName');
-            trackTimeMillis = Object.getOwnPropertyDescriptor(tracks.results[i], 'trackTimeMillis');
+          const tracks = response.data.results;
+          const coverImg = Object.getOwnPropertyDescriptor(tracks[0], 'artworkUrl100').value;
+          this.cover = `${coverImg.slice(0, -13)}300x300bb.jpg`;
+          this.year = Object.getOwnPropertyDescriptor(tracks[1], 'releaseDate').value.slice(0, 4);
+          this.genre = Object.getOwnPropertyDescriptor(tracks[1], 'primaryGenreName').value;
+          this.songCount = tracks.length;
+          this.appleLink = Object.getOwnPropertyDescriptor(tracks[0], 'collectionViewUrl').value;
+          this.trackList = [];
+          let albumLength = 0;
+          for (let i = 0; i < tracks.length; i += 1) {
+            albumLength += Object.getOwnPropertyDescriptor(tracks[i], 'trackTimeMillis').value;
             this.trackList.push({
-              trackNumber: trackNumber.value,
-              trackName: trackName.value,
-              trackTimeMillis: millisToMinutesAndSeconds(trackTimeMillis.value)
+              trackNumber: Object.getOwnPropertyDescriptor(tracks[i], 'trackNumber').value,
+              trackName: Object.getOwnPropertyDescriptor(tracks[i], 'trackName').value,
+              trackTimeMillis: millisToMinutesAndSeconds(Object.getOwnPropertyDescriptor(tracks[i], 'trackTimeMillis').value),
+              preview: Object.getOwnPropertyDescriptor(tracks[i], 'previewUrl').value,
+              icon: 'far fa-play-circle fa-2x'
             });
           }
+          this.time = millisToMinutesAndSeconds(albumLength).slice(0, -3);
         } catch (e) {
           this.errors.push(e);
+        }
+      },
+      Play(track) {
+        const player = document.getElementById('playerMP3');
+        if (this.playingSong.url === track.preview) {
+          if (this.playingSong.paused === false) {
+            player.pause();
+            track.icon = 'far fa-play-circle fa-2x'; // eslint-disable-line no-param-reassign
+            this.playingSong.paused = true;
+          } else {
+            player.play();
+            track.icon = 'far fa-pause-circle fa-2x'; // eslint-disable-line no-param-reassign
+            this.playingSong.paused = false;
+          }
+        } else {
+          for (let i = 0; i < this.trackList.length; i += 1) {
+            this.trackList[i].icon = 'far fa-play-circle fa-2x';
+          }
+          this.playingSong.url = track.preview;
+          track.icon = 'far fa-pause-circle fa-2x'; // eslint-disable-line no-param-reassign
+          player.load();
+          player.play();
+          this.playingSong.paused = false;
         }
       }
     },
     created() {
-      this.Update();
-    },
-    components: { Player }
+      this.loadTracks();
+    }
   };
 </script>
 
