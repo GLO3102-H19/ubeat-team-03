@@ -32,13 +32,13 @@
         </tr>
         <tr v-for="track in trackList">
           <td class="tableCenter">
-            <div class="songNumber">{{track.number}}</div>
+            <div class="trackNumber">{{track.trackNumber}}</div>
             <div class="playButton">
               <i class="far fa-play-circle fa-2x"></i>
             </div>
           </td>
-          <td>{{track.title}}</td>
-          <td class="tableCenter">{{track.time}}</td>
+          <td>{{track.trackName}}</td>
+          <td class="tableCenter">{{track.trackTimeMillis}}</td>
         </tr>
       </table>
     </div>
@@ -47,7 +47,14 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import Player from './Player';
+
+  function millisToMinutesAndSeconds(millis) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
 
   export default {
     name: 'album',
@@ -61,21 +68,38 @@
         songCount: '11',
         time: '43',
         appleLink: 'https://geo.itunes.apple.com/ca/album/feed-the-machine/1234838372?mt=1&app=music&ls=1',
-        trackList: [
-          { title: 'Feed the Machine',
-            number: '1',
-            time: '5:02'
-          },
-          { title: 'Coin for the Ferryman',
-            number: '2',
-            time: '4:50'
-          },
-          { title: 'Song on Fire',
-            number: '3',
-            time: '3:50'
-          }
-        ]
+        trackList: [],
+        errors: []
       };
+    },
+
+    methods: {
+      async Update() {
+        try {
+          const response = await axios.get(
+            'http://ubeat.herokuapp.com/unsecure/albums/1234838372/tracks'
+          );
+          const tracks = response.data;
+          let trackNumber = {};
+          let trackName = {};
+          let trackTimeMillis = {};
+          for (let i = 0; i < 11; i += 1) {
+            trackNumber = Object.getOwnPropertyDescriptor(tracks.results[i], 'trackNumber');
+            trackName = Object.getOwnPropertyDescriptor(tracks.results[i], 'trackName');
+            trackTimeMillis = Object.getOwnPropertyDescriptor(tracks.results[i], 'trackTimeMillis');
+            this.trackList.push({
+              trackNumber: trackNumber.value,
+              trackName: trackName.value,
+              trackTimeMillis: millisToMinutesAndSeconds(trackTimeMillis.value)
+            });
+          }
+        } catch (e) {
+          this.errors.push(e);
+        }
+      }
+    },
+    created() {
+      this.Update();
     },
     components: { Player }
   };
@@ -275,7 +299,7 @@
       display: block;
     }
 
-    .songAlbumTable tr:hover .songNumber {
+    .songAlbumTable tr:hover .trackNumber {
       display: none;
     }
 
