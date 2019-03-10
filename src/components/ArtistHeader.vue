@@ -21,36 +21,27 @@
 </template>
 
 <script>
-  // import * as api from '@/ArtistAPI'
-  import axios from 'axios';
+  import * as api from '@/ArtistAPI';
 
   export default {
     props: ['email', 'id'],
     data: () => ({
       artistName: '',
-      artistLinkUrl: '',
       // Nickelback par défaut
       artistId: '5280361',
       primaryGenreName: '',
-      primaryGenreId: '',
       errors: [],
-      gets: [],
     }),
     methods: {
-      async updateArtistHeader() {
-        const baseUrl = 'http://ubeat.herokuapp.com/unsecure/artists/';
-        axios.get(baseUrl + this.artistId)
-          .then((response) => {
-            this.artistName = response.data.results[0].artistName;
-            this.primaryGenreName = response.data.results[0].primaryGenreName;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
     },
     created() {
-      this.updateArtistHeader();
+      api.getArtistName(this.artistId).then((res) => {
+        this.artistName = res;
+      });
+
+      api.getArtistGenre(this.artistId).then((res) => {
+        this.primaryGenreName = res;
+      });
     }
   };
 </script>
