@@ -34,8 +34,22 @@
     methods: {
       async updateAlbumList() {
         api.getAlbumList(this.artistId).then((res) => {
+          res.sort(this.compareAlbums);
           this.albumList = res;
         });
+      },
+      compareAlbums(a, b) {
+      // Use toUpperCase() to ignore character casing
+        const genreA = a.releaseDate.substring(0, 4).toUpperCase();
+        const genreB = b.releaseDate.substring(0, 4).toUpperCase();
+
+        let comparison = 0;
+        if (genreA < genreB) {
+          comparison = 1;
+        } else if (genreA > genreB) {
+          comparison = -1;
+        }
+        return comparison;
       },
       loadAlbumPage(collectionId) {
         router.push('Album');
