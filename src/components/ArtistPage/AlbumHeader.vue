@@ -12,7 +12,7 @@
   import * as api from '@/ArtistAPI';
 
   export default {
-    props: ['email', 'id'],
+    // props: ['artistId'],
     data: () => ({
       artistLinkUrl: '',
       // Nickelback par défaut
@@ -20,11 +20,15 @@
       errors: [],
     }),
     methods: {
+      getArtistUrl() {
+        api.getArtistUrl(this.artistId)
+          .then((res) => {
+            this.artistLinkUrl = res;
+          });
+      }
     },
     created() {
-      api.getArtistUrl(this.artistId).then((res) => {
-        this.artistLinkUrl = res;
-      });
+      this.getArtistUrl();
     }
   };
 </script>

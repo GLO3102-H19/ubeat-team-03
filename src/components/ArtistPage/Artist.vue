@@ -11,14 +11,17 @@
 </template>
 
 <script>
-  import Player from './Player';
+  import Player from '../Player';
   import Header from './ArtistHeader';
   import AlbumHeader from './AlbumHeader';
   import AlbumList from './AlbumList';
 
   export default {
     components: { Player, Header, AlbumHeader, AlbumList },
-    props: ['email', 'id'],
+    data: () => ({
+      // Nickelback par défaut
+      artistId: '5280361'
+    }),
   };
 </script>
 

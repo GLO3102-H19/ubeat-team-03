@@ -24,7 +24,7 @@
   import * as api from '@/ArtistAPI';
 
   export default {
-    props: ['email', 'id'],
+    // props: ['artistId'],
     data: () => ({
       artistName: '',
       // Nickelback par défaut
@@ -33,15 +33,21 @@
       errors: [],
     }),
     methods: {
+      getArtistName() {
+        api.getArtistName(this.artistId).then((res) => {
+          this.artistName = res;
+        });
+      },
+      getArtistGenre() {
+        api.getArtistGenre(this.artistId).then((res) => {
+          this.primaryGenreName = res;
+        });
+      }
     },
-    created() {
-      api.getArtistName(this.artistId).then((res) => {
-        this.artistName = res;
-      });
 
-      api.getArtistGenre(this.artistId).then((res) => {
-        this.primaryGenreName = res;
-      });
+    created() {
+      this.getArtistName();
+      this.getArtistGenre();
     }
   };
 </script>

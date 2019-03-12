@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Adresse URL de base pour accéder à un artiste
 const baseURL = 'http://ubeat.herokuapp.com/unsecure/artists/';
+const albumsPath = '/albums';
 
 // Implémentation de la méthode GET
 // Permet d'obtenir le nom de l'artiste'
@@ -24,6 +25,14 @@ export const getArtistGenre = artistId => axios.get(baseURL + artistId)
 // Permet d'obtenir le lien URL de l'artiste'
 export const getArtistUrl = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].artistLinkUrl)
+  .catch((error) => {
+    throw error;
+  });
+
+// Implémentation de la méthode GET
+// Permet d'obtenir le lien URL de l'artiste'
+export const getAlbumList = artistId => axios.get(baseURL + artistId + albumsPath)
+  .then(response => response.data.results)
   .catch((error) => {
     throw error;
   });

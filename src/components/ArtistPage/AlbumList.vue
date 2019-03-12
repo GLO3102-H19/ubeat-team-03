@@ -19,11 +19,11 @@
 
 <script>
   import router from '@/router/index';
-  // import * as api from '@/ArtistAPI'
-  import axios from 'axios';
-  import Album from './Album';
+  import * as api from '@/ArtistAPI';
+  import Album from '../Album';
 
   export default {
+    // props: ['artistId'],
     data: () => ({
       artistId: '5280361',
       albumTitle: '',
@@ -33,14 +33,9 @@
     }),
     methods: {
       async updateAlbumList() {
-        const baseUrl = 'http://ubeat.herokuapp.com/unsecure/artists/';
-        axios.get(`${baseUrl + this.artistId}/albums`)
-          .then((response) => {
-            this.albumList = response.data.results;
-          })
-          .catch((e) => {
-            this.errors.push(`Unable to obtain the album list from this artist, ${e}`);
-          });
+        api.getAlbumList(this.artistId).then((res) => {
+          this.albumList = res;
+        });
       },
       loadAlbumPage(collectionId) {
         router.push('Album');
