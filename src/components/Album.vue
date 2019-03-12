@@ -41,6 +41,21 @@
           <td class="tableCenter" v-on:click="Play(track)">{{track.trackTimeMillis}}</td>
         </tr>
       </table>
+
+      <table class="addAlbumSongTable">
+        <tr>
+          <th>Add in Playlist</th>
+        </tr>
+        <tr v-for="track in trackList">
+          <td class="addSongIntoTracklist" v-on:click="Add(track)">
+            <div class="selectPlayList" v-on:click="AddInPlayList(track)">
+              <b-dropdown id="ddown-dropright" dropright text="Select a PlayList">
+                <b-dropdown-item href="#"> Create a new PlayList</b-dropdown-item>
+              </b-dropdown>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
     <Player v-bind:source="playingSong.url"/>
   </div>
@@ -130,6 +145,11 @@
         }
       }
     },
+    /*
+    Add(track) {
+
+    }
+    */
     created() {
       this.loadTracks();
     }
@@ -146,7 +166,10 @@
   .bottomDiv {
     margin-top: 20px;
     margin-left: 40px;
+    margin-right: 40px;
     margin-bottom: 60px;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .albumDiv {
@@ -195,6 +218,10 @@
     display: none;
   }
 
+  .songAlbumTable {
+    width: 70%;
+  }
+
   .songAlbumTable th {
     border: none;
     background: white;
@@ -223,6 +250,34 @@
     background: #e8e8e8;
     height: 60px;
   }
+
+  .addAlbumSongTable {
+    width: 30%;
+  }
+
+  .addAlbumSongTable th {
+    border: none;
+    background: white;
+    text-align: center;
+  }
+
+  .addAlbumSongTable tr {
+    border: 2px solid white;
+    background: #e8e8e8;
+    height: 60px;
+  }
+
+  .addAlbumSongTable td {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 5px
+  }
+
+  .addSongIntoTracklist {
+    display: flex;
+    justify-content: flex-start;
+  }
+
 
   .tableCenter {
     text-align: center;
