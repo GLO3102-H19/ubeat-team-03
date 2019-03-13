@@ -1,22 +1,9 @@
 <template>
-  <b-container fluid class="headerDiv">
-    <b-row>
-      <b-col md="6" id="artistPicCol"
-      ><b-img
-        center
-        src="https://cps-static.rovicorp.com/3/JPG_400/MI0003/458/MI0003458556.jpg?partner=allrovi.com"
-        id="artistPic"
-        rounded="circle"
-        width="400"
-        height="350"
-      /></b-col>
-      <b-col md="5" id="artistLabelNGenre"
-      ><ul class="list-unstyled">
-        <li><p id="artistLabel">{{ artistName }}</p></li>
-        <li id="artistGenre">{{ primaryGenreName }}</li>
-      </ul></b-col
-      >
-    </b-row>
+  <b-container id="headerDiv">
+    <ul class="list-unstyled" id="artistLabelNGenre">
+      <li><p id="artistLabel">{{ artistName }}</p></li>
+      <li id="artistGenre">{{ primaryGenreName }}</li>
+    </ul>
   </b-container>
 </template>
 
@@ -24,11 +11,9 @@
   import * as api from '@/ArtistAPI';
 
   export default {
-    // props: ['artistId'],
+    props: ['artistId'],
     data: () => ({
       artistName: '',
-      // Nickelback par défaut
-      artistId: '5280361',
       primaryGenreName: '',
       errors: [],
     }),
@@ -53,36 +38,42 @@
 </script>
 
 <style scoped>
-  .headerDiv {
+  #headerDiv {
     background-color: lightskyblue;
-    padding: 50px 10px 10px 10px;
+    margin: 70px auto;
+    padding: 50px;
     border-radius: 100px;
-  }
+    height : 250px;
 
-  #artistLabelNGenre {
-    padding: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
   }
+  #artistLabelNGenre{
+    display: flex;
+    flex-direction: column;
 
+  }
   #artistLabel {
     font-size: 50px;
     font-family: Helvetica, sans-serif;
   }
-
   #artistGenre {
     font-size: 25px;
     font-family: Helvetica, sans-serif;
   }
-
-  #artistPicCol {
-    padding: 10px 0 10px 0;
-  }
-
 </style>
 
-try {
-const response = await axios.get('http://ubeat.herokuapp.com/unsecure/artists/5280361');
-const results = JSON.parse(response);
-console.log(results);
-} catch (e) {
-this.errors.push(e);
+<b-col md="6" id="artistPicCol"
+><b-img
+  center
+  src="https://is2-ssl.mzstatic.com/image/thumb/Purple128/v4/91/5e/d1/915ed1aa-eec9-56ae-83e4-2606242c4cb0/source/512x512bb.jpg"
+  id="artistPic"
+  rounded="circle"
+  width="400"
+  height="350"
+/></b-col>
+#artistPicCol {
+padding: 10px 0 10px 0;
 }
+
+

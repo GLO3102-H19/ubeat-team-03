@@ -12,11 +12,9 @@
   import * as api from '@/ArtistAPI';
 
   export default {
-    // props: ['artistId'],
+    props: ['artistId'],
     data: () => ({
       artistLinkUrl: '',
-      // Nickelback par défaut
-      artistId: '5280361',
       errors: [],
     }),
     methods: {

@@ -1,12 +1,10 @@
 <template>
   <div class="mainDiv">
-    <Header></Header>
+    <Header v-bind:artistId="artistId"></Header>
 
-    <AlbumHeader></AlbumHeader>
+    <AlbumHeader v-bind:artistId="artistId"></AlbumHeader>
 
-    <AlbumList></AlbumList>
-
-    <Player/>
+    <AlbumList v-bind:artistId="artistId"></AlbumList>
   </div>
 </template>
 
@@ -20,7 +18,7 @@
     components: { Player, Header, AlbumHeader, AlbumList },
     data: () => ({
       // Nickelback par défaut
-      artistId: '5280361'
+      artistId: '111051'
     }),
   };
 </script>

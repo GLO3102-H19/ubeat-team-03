@@ -1,11 +1,10 @@
 <template>
   <b-container id="bottomDiv">
     <b-list-group>
-      <b-list-group-item class="albumLine"  v-for="item in albumList" v-bind:key="item.collectionId">
+      <b-list-group-item class="albumLine"  v-for="item in albumList" v-bind:key="item.collectionId" v-on:click=loadAlbumPage()>
         <b-img
         class="albumImg"
         v-bind:src= item.artworkUrl100
-        v-on:click=loadAlbumPage()
         width="150"
         height="150"/>
         <ul class="list-unstyled albumInfos">
@@ -23,9 +22,8 @@
   import Album from '../Album';
 
   export default {
-    // props: ['artistId'],
+    props: ['artistId'],
     data: () => ({
-      artistId: '5280361',
       albumTitle: '',
       albumCoverLink: '',
       albumList: [],
@@ -56,7 +54,6 @@
         Album.loadAlbumPage(collectionId);
       }
     },
-
     created() {
       this.updateAlbumList();
     }
@@ -72,6 +69,10 @@
   .albumLine {
     background-color: lightskyblue;
     display: flex;
+  }
+  .albumLine:hover{
+    cursor: pointer;
+    background-color: #b7e0ff;
   }
 
   .albumInfos {
