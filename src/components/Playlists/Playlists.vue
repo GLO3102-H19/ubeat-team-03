@@ -10,7 +10,7 @@
         <b-col sm="5">
           <div class="playlistsDiv">
             <input v-model="playlistsName" />
-            <button v-on:click="Insert">Add</button>
+            <button v-on:click="insertNewPlaylist">Add</button>
             <ul>
               <PlaylistsUser
                 v-for="item in playlists"
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import * as api from '@/PlaylistAPI';
   import PlaylistsUser from './PlaylistsUser';
   import PlaylistInfo from './PlaylistInfo';
 
@@ -60,6 +60,7 @@
     }),
     name: 'Playlists',
     methods: {
+      /**
       async Insert() {
         try {
           const response = await axios.post(
@@ -72,7 +73,14 @@
           this.errors.push(e);
         }
       },
-      async Update() {
+       */
+      insertNewPlaylist() {
+        api.insertNewPlaylist(this.playlistsName, this.email).then((res) => {
+          this.posts = res;
+          this.playlists.push(this.posts);
+        });
+      }, /**
+           async Update() {
         try {
           const response = await axios.get(
             'http://ubeat.herokuapp.com/unsecure/playlists'
@@ -91,9 +99,24 @@
           this.errors.push(e);
         }
       }
+       */
+      getPlaylists() {
+        api.getPlaylists().then((res) => {
+          this.posts = res;
+          this.playlists = [];
+
+          for (let i = 0; i < this.posts.length; i += 1) {
+            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
+              if (this.posts[i].owner.id === this.id) {
+                this.playlists.push(this.posts[i]);
+              }
+            }
+          }
+        });
+      }
     },
     created() {
-      this.Update();
+      this.getPlaylists();
     }
   };
 </script>

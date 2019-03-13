@@ -1,14 +1,15 @@
 <template>
-  <li v-on:click="ChangeInfoPlaylist"><input v-model="playlistUser.name"><button v-on:click="Modif">Modif</button><button v-on:click="Delete">Delete</button></li>
+  <li v-on:click="ChangeInfoPlaylist"><input v-model="playlistUser.name"><button v-on:click="putPlaylist">Modif</button><button v-on:click="deletePlaylist">Delete</button></li>
 </template>
 
 <script>
-  import axios from 'axios';
+  import * as api from '@/PlaylistAPI';
 
   export default {
     name: 'PlaylistsUser',
     props: ['playlistUser'],
     methods: {
+      /**
       async Modif() {
         try {
           const ownerKey = this.$vnode.key;
@@ -19,6 +20,14 @@
           this.errors.push(e);
         }
       },
+       */
+      putPlaylist() {
+        api.putPlaylist(this.playlistUser.name, this.playlistUser.owner.email, this.$vnode.key)
+          .then((res) => {
+            this.$parent.posts = res;
+          });
+      },
+      /**
       async Delete() {
         try {
           const ownerKey = this.$vnode.key;
@@ -35,6 +44,22 @@
         } catch (e) {
           this.errors.push(e);
         }
+      },
+       */
+      deletePlaylist() {
+        api.deletePlaylist(this.$vnode.key)
+          .then((res) => {
+            let tempPlaylist;
+            this.$parent.posts = res;
+
+            for (let i = 0; i < this.$parent.playlists.length; i += 1) {
+              tempPlaylist = this.$parent.playlists.pop();
+              if (tempPlaylist.id !== this.$vnode.key) {
+                this.$parent.playlists.push(tempPlaylist);
+              }
+            }
+            this.$parent.getPlaylists();
+          });
       },
       async ChangeInfoPlaylist() {
         this.$parent.playListInfo.id = this.$vnode.key;
