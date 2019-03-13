@@ -1,54 +1,74 @@
 <template>
-  <tr>
-    <td class="tableCenter">
-      <div class="songNumber"> {{tracks.trackNumber}} </div>
-      <div class="playButton" v-on:click="Play">
-        <i class="far fa-play-circle fa-2x"></i>
-      </div>
-    </td>
-    <td>{{tracks.trackName}}</td>
-    <td>{{tracks.collectionName}}</td>
-    <td>{{tracks.artistName}}</td>
-    <td class="tableCenter">{{trackLength}}</td>
-  </tr>
+  <b-container fluid class="playlistInfo">
+    <h2>{{info.name}}</h2>
+    <ul>
+      <li>Total Length : {{totalLength}}</li>
+      <li>Songs : {{info.tracks.length}}</li>
+    </ul>
+    <table class="songAlbumTable">
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Album</th>
+        <th>Artist</th>
+        <th>Length</th>
+      </tr>
+      <Track
+        v-for="item in trackList"
+        v-bind:tracks="item"
+        v-bind:key="item.id"
+      >
+      </Track>
+    </table>
+    <Player v-bind:source="srcTest"/>
+    </b-container>
 </template>
 
 <script>
-  import Player from './Player';
+  import Track from './Track';
+  import Player from '../Player';
 
   export default {
-    components: { Player },
-    name: 'Track',
-    props: ['tracks'],
+    components: { Track, Player },
+    name: 'PlaylistInfo',
+    props: ['info', 'srcTrack'],
+    data: () => ({
+      srcTest: '#'
+    }),
     computed: {
-      trackLength() {
-        const time = this.tracks.trackTimeMillis;
+      totalLength() {
+        let total = 0;
+        for (let i = 0; i < this.info.tracks.length; i += 1) {
+          total += this.info.tracks[i].trackTimeMillis;
+        }
+        return this.msToTime(total);
+      },
+      trackList() {
+        return this.info.tracks;
+      }
+    },
+    methods: {
+      msToTime(time) {
         const ms = time % 1000;
         const timeTemp = (time - ms) / 1000;
         const secs = timeTemp % 60;
         const timeTemp2 = (timeTemp - secs) / 60;
         const mins = timeTemp2 % 60;
+        const hrs = (timeTemp2 - mins) / 60;
 
-        return `${mins}:${secs}`;
+        return `${hrs}:${mins}:${secs}.${ms}`;
       }
-    },
-    methods: {
-      async Play() {
-        this.$parent.$data.srcTest = this.tracks.previewUrl;
-        document.getElementById('playerMP3').load();
-        document.getElementById('playerMP3').play();
-      }
-    },
+    }
   };
 </script>
 
 <style scoped>
-  .playButton {
-    display: none;
+  ul {
+    list-style-type: none;
+    padding: 0;
   }
-
-  audio {
-    width: 100%;
+  li {
+    margin: 0 10px;
   }
 
   .playButton {
@@ -94,6 +114,10 @@
       font-size: 35px;
     }
 
+    .songAlbumTable {
+      margin: auto;
+    }
+
     .songAlbumTable td:nth-child(1) {
       width: 140px;
     }
@@ -103,6 +127,10 @@
   @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .albumInfoDiv h1 {
       font-size: 35px;
+    }
+
+    .songAlbumTable {
+      margin: auto;
     }
 
     .songAlbumTable td:nth-child(1) {
