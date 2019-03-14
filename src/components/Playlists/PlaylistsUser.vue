@@ -1,5 +1,18 @@
 <template>
-  <li v-on:click="ChangeInfoPlaylist"><input v-model="playlistUser.name"><b-button class="col-md-2 offset-md-1" size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button><b-button class="col-md-2 offset-md-1" size="sm" variant="danger" v-on:click="deletePlaylist">Delete</b-button></li>
+<div>
+  <li v-on:click="ChangeInfoPlaylist">
+    <div class="form-group row">
+      <div class="col-md-8">
+    <b-form-input size="sm" type="text" v-model="playlistUser.name" />
+    </div>
+    <div>
+    <b-button size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button>
+    </div>
+    <div >
+    <b-button class="offset-1"  size="sm" variant="danger" v-on:click="deletePlaylist">Delete</b-button>
+    </div>
+    </div></li>
+    </div>
 </template>
 
 <script>

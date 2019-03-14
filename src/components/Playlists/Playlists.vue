@@ -9,8 +9,12 @@
       <b-row>
         <b-col sm="5">
           <div class="playlistsDiv">
-            <input v-model="playlistsName" />
-            <b-button class="col-md-2 offset-md-1" size="sm" v-on:click="insertNewPlaylist">Add</b-button>
+            <div class="form-group row">
+              <div class="col-md-8">
+            <b-form-input v-model="playlistsName" />
+            </div>
+            <b-button class="col-md-3" size="sm" v-on:click="insertNewPlaylist">Add</b-button>
+            </div>
             <ul>
               <PlaylistsUser
                 v-for="item in playlists"
