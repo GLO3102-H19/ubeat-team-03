@@ -10,7 +10,7 @@
         <b-col sm="5">
           <div class="playlistsDiv">
             <input v-model="playlistsName" />
-            <button v-on:click="insertNewPlaylist">Add</button>
+            <b-button class="col-md-2 offset-md-1" size="sm" v-on:click="insertNewPlaylist">Add</b-button>
             <ul>
               <PlaylistsUser
                 v-for="item in playlists"

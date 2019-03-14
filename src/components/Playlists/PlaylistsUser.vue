@@ -1,5 +1,5 @@
 <template>
-  <li v-on:click="ChangeInfoPlaylist"><input v-model="playlistUser.name"><button v-on:click="putPlaylist">Modif</button><button v-on:click="deletePlaylist">Delete</button></li>
+  <li v-on:click="ChangeInfoPlaylist"><input v-model="playlistUser.name"><b-button class="col-md-2 offset-md-1" size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button><b-button class="col-md-2 offset-md-1" size="sm" variant="danger" v-on:click="deletePlaylist">Delete</b-button></li>
 </template>
 
 <script>
