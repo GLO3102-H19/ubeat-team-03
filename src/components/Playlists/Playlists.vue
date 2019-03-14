@@ -134,11 +134,13 @@
   .playlistsDiv {
     padding: 10px 10px 10px 10px;
     background-color: lightskyblue;
+    border-radius: 15px;
   }
 
   .playlistDetailsDiv {
     padding: 10px 10px 10px 10px;
     background-color: lightskyblue;
+    border-radius: 15px;
   }
 
   ul {
