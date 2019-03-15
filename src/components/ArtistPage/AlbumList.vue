@@ -19,7 +19,7 @@
 <script>
   import router from '@/router/index';
   import * as api from '@/ArtistAPI';
-  import Album from '../Album';
+  import Album from '../AlbumPage/Album';
 
   export default {
     props: ['artistId'],
