@@ -2,7 +2,7 @@
   <div class="mainDiv">
     <AlbumInfo v-bind:albumId="albumId"></AlbumInfo>
 
-    <AlbumTracks v-bind:albumId="albumId" v-bind:artistId="artistId"></AlbumTracks>
+    <AlbumTracks v-bind:email="email" v-bind:id="id" v-bind:albumId="albumId"></AlbumTracks>
 
     <Player v-bind:source="playingSong.url"/>
   </div>
@@ -16,6 +16,7 @@
 
   export default {
     components: { AlbumInfo, AlbumTracks, Player },
+    props: ['email', 'id'],
     data: () => ({
       albumId: '1234838372',
       artistId: '5280361',

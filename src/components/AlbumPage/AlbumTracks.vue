@@ -25,25 +25,33 @@
       <tr v-for="track in trackList">
         <td class="addSongIntoTracklist" v-on:click="Add(track)">
           <div class="selectPlayList" v-on:click="AddInPlayList(track)">
-            <b-dropdown id="ddown-dropright" dropright text="Select a PlayList">
-              <b-dropdown-item href="#"> Create a new PlayList</b-dropdown-item>
+            <b-dropdown id="ddown-dropleft" dropleft text="Select a PlayList">
+                <b-dropdown-item href="#"> Create a new PlayList</b-dropdown-item>
+                <b-dropdown-item v-for="item in playlists">{{item.name}} </b-dropdown-item>
             </b-dropdown>
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="addInPlayList(track)">Add</button>
           </div>
         </td>
       </tr>
     </table>
+
   </div>
 </template>
 
 <script>
   import * as api from '@/AlbumAPI';
+  import * as apiPlaylist from '@/PlaylistAPI';
+  // import Playlists from '../Playlists/Playlists';
 
   export default {
-    props: ['albumId'],
+    props: ['email', 'id', 'albumId'],
     data: () => ({
       trackList: [],
       albumLength: '',
-      errors: []
+      errors: [],
+      playlists: [],
+      posts: [],
+      id: '0'
     }),
     methods: {
       millisToMinutesAndSeconds(millis) {
@@ -63,9 +71,29 @@
                 trackName: tracks[i].trackName,
                 trackTimeMillis: this.millisToMinutesAndSeconds(tracks[i].trackTimeMillis),
                 preview: tracks[i].previewUrl,
-                icon: 'far fa-play-circle fa-2x'
+                icon: 'far fa-play-circle fa-2x',
+                trackId: tracks[i].trackId
               });
             }
+          });
+      },
+      getPlaylists() {
+        apiPlaylist.getPlaylists().then((res) => {
+          this.posts = res;
+          this.playlists = [];
+          for (let i = 0; i < this.posts.length; i += 1) {
+            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
+              if (this.posts[i].owner.id === this.id) {
+                this.playlists.push(this.posts[i]);
+              }
+            }
+          }
+        });
+      },
+      addSongInPlaylist(trackId, playlistId) {
+        apiPlaylist.insertIntoPlaylist(trackId, playlistId)
+          .then((response) => {
+            response.toString();
           });
       },
       Play(track) {
@@ -94,6 +122,7 @@
     },
     created() {
       this.getAlbumTracks();
+      this.getPlaylists();
     }
   };
 </script>
