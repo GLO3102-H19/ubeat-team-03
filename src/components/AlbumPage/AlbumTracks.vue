@@ -23,12 +23,20 @@
         <th>Add in Playlist</th>
       </tr>
       <tr v-for="track in trackList">
-        <td class="addSongIntoTracklist" v-on:click="Add(track)">
-          <div class="selectPlayList" v-on:click="AddInPlayList(track)">
-            <b-dropdown id="ddown-dropleft" dropleft text="Select a PlayList">
-                <b-dropdown-item href="#"> Create a new PlayList</b-dropdown-item>
-                <b-dropdown-item v-for="item in playlists">{{item.name}} </b-dropdown-item>
+        <td class="addSongIntoTracklist">
+          <div class="selectPlayList">
+            <!--
+            <b-form-select v-model="selected" :options=" items in playlists">{{items.name}}</b-form-select>
+              <options v-on:click="selectedPlaylist(item)" value="Create a new PlayList"></options>
+              <options v-on:click="selectedPlaylist(item)" v-for="items in playlists">{{items.name}}</options>
+            -->
+
+            <!-- À arranger -->
+            <b-dropdown id="ddown-dropleft" dropleft text="Select a PlayList" >
+              <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"> Create a new PlayList</b-dropdown-item>
+              <b-dropdown-item v-for="items in playlists" class="dropdownMenu" v-on:click="selectedPlaylist(items)">{{items.name}} </b-dropdown-item>
             </b-dropdown>
+
             <button type="button" class="btn btn-primary btn-sm" v-on:click="addInPlayList(track)">Add</button>
           </div>
         </td>
@@ -51,7 +59,8 @@
       errors: [],
       playlists: [],
       posts: [],
-      id: '0'
+      id: '0',
+      selectPlaylist: ''
     }),
     methods: {
       millisToMinutesAndSeconds(millis) {
@@ -90,6 +99,11 @@
           }
         });
       },
+      selectedPlaylist(item) {
+        this.selectPlaylist = item.name;
+        document.getElementById('ddown-dropleft').innerText = this.selectPlaylist;
+      },
+      /* Méthode à terminer */
       addSongInPlaylist(trackId, playlistId) {
         apiPlaylist.insertIntoPlaylist(trackId, playlistId)
           .then((response) => {
