@@ -25,20 +25,22 @@
       <tr v-for="track in trackList">
         <td class="addSongIntoTracklist">
           <div class="selectPlayList">
-            <!--
-            <b-form-select v-model="selected" :options=" items in playlists">{{items.name}}</b-form-select>
-              <options v-on:click="selectedPlaylist(item)" value="Create a new PlayList"></options>
-              <options v-on:click="selectedPlaylist(item)" v-for="items in playlists">{{items.name}}</options>
-            -->
-
-            <!-- À arranger -->
-            <b-dropdown id="ddown-dropleft" dropleft text="Select a PlayList" >
+            <b-dropdown id="ddown-dropleft" size="sm" dropleft text="Add in PlayList" >
               <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"> Create a new PlayList</b-dropdown-item>
-              <b-dropdown-item v-for="playlist in playlists" class="dropdownMenu" v-on:click="addSongInPlaylist(track, playlist)">{{playlist.name}} <i v-if="songInPlaylist(track, playlist)" class="fa fa-check" aria-hidden="true"></i></b-dropdown-item>
+              <b-dropdown-item v-for="playlist in playlists" class="dropdownMenu" v-on:click="addSongInPlaylist(track, playlist)">
+                {{playlist.name}}
+                <i v-if="songInPlaylist(track, playlist)" class="fa fa-check" aria-hidden="true"></i>
+              </b-dropdown-item>
             </b-dropdown>
-
-            <button type="button" class="btn btn-primary btn-sm" v-on:click="addInPlayList(track)">Add</button>
           </div>
+          <!-- Conserver pour plus tard peut-être? -->
+          <!--
+          <div class="addDeleteButtons">
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="addInPlayList(track)">Add</button>
+            <button type="button" class="btn btn-danger btn-sm" v-on:click="deleteSongFromPlaylist()">Delete</button>
+          </div>
+          -->
+
         </td>
       </tr>
     </table>
@@ -98,7 +100,6 @@
         });
       },
       songInPlaylist(track, playlist) {
-        debugger;
         for (let i = 0; i < playlist.tracks.length; i += 1) {
           if (track.trackId === playlist.tracks[i].trackId) {
             return true;

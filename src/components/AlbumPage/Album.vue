@@ -145,9 +145,14 @@
 
   .addSongIntoTracklist {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
   }
 
+
+  .selectPlayList {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .tableCenter {
     text-align: center;
