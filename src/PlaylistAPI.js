@@ -16,7 +16,7 @@ export const insertNewPlaylist = (playlistName, email) =>
 // Implémentation de la méthode POST (à modifier)
 // Permet d'ajouter une chanson à une playlist
 export const insertIntoPlaylist = (track, playlistId) =>
-  axios.post(`${baseURL}/${playlistId}/tracks`, track.trackId)
+  axios.post(`${baseURL}/${playlistId}/tracks`, track)
     .then(response => response.data)
     .catch((error) => {
       throw error;
@@ -46,4 +46,3 @@ export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
   .catch((error) => {
     throw error;
   });
-

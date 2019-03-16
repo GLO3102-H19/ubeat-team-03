@@ -34,7 +34,7 @@
             <!-- À arranger -->
             <b-dropdown id="ddown-dropleft" dropleft text="Select a PlayList" >
               <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"> Create a new PlayList</b-dropdown-item>
-              <b-dropdown-item v-for="items in playlists" class="dropdownMenu" v-on:click="selectedPlaylist(items)">{{items.name}} </b-dropdown-item>
+              <b-dropdown-item v-for="playlist in playlists" class="dropdownMenu" v-on:click="addSongInPlaylist(track, playlist)">{{playlist.name}} <i v-if="songInPlaylist(track, playlist)" class="fa fa-check" aria-hidden="true"></i></b-dropdown-item>
             </b-dropdown>
 
             <button type="button" class="btn btn-primary btn-sm" v-on:click="addInPlayList(track)">Add</button>
@@ -59,8 +59,6 @@
       errors: [],
       playlists: [],
       posts: [],
-      id: '0',
-      selectPlaylist: ''
     }),
     methods: {
       millisToMinutesAndSeconds(millis) {
@@ -99,15 +97,21 @@
           }
         });
       },
-      selectedPlaylist(item) {
-        this.selectPlaylist = item.name;
-        document.getElementById('ddown-dropleft').innerText = this.selectPlaylist;
+      songInPlaylist(track, playlist) {
+        debugger;
+        for (let i = 0; i < playlist.tracks.length; i += 1) {
+          if (track.trackId === playlist.tracks[i].trackId) {
+            return true;
+          }
+        }
+        return false;
       },
-      /* Méthode à terminer */
-      addSongInPlaylist(trackId, playlistId) {
-        apiPlaylist.insertIntoPlaylist(trackId, playlistId)
+      addSongInPlaylist(track, playlist) {
+        apiPlaylist.insertIntoPlaylist(track, playlist.id)
           .then((response) => {
             response.toString();
+            this.playlists = [];
+            this.getPlaylists();
           });
       },
       Play(track) {
