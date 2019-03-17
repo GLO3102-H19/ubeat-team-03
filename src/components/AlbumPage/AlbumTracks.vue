@@ -89,22 +89,8 @@
           this.playlists = res;
         });
       },
-      /**
-      getPlaylists() {
-        apiPlaylist.getPlaylists().then((res) => {
-          this.posts = res;
-          this.playlists = [];
-          for (let i = 0; i < this.posts.length; i += 1) {
-            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
-              if (this.posts[i].owner.id === this.id) {
-                this.playlists.push(this.posts[i]);
-              }
-            }
-          }
-        });
-      },
-       */
       songInPlaylist(track, playlist) {
+        debugger;
         for (let i = 0; i < playlist.tracks.length; i += 1) {
           if (track.trackId === playlist.tracks[i].trackId) {
             return true;
@@ -147,6 +133,11 @@
     created() {
       this.getAlbumTracks();
       this.getPlaylists();
+    },
+    mounted() {
+      this.$root.$on('albumIsInPlaylist', () => {
+        this.getPlaylists();
+      });
     }
   };
 </script>

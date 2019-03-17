@@ -24,6 +24,7 @@
           <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
           <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
             {{playlist.name}}
+            <i v-if="albumInPlaylist(playlist)" class="fa fa-check" aria-hidden="true"></i>
           </b-dropdown-item>
         </b-dropdown>
       </div>
@@ -34,7 +35,6 @@
 <script>
   import * as api from '@/AlbumAPI';
   import * as apiPlaylist from '@/PlaylistAPI';
-  import AlbumTracks from './AlbumTracks';
 
   export default {
     props: ['artistId', 'albumId', 'id'],
@@ -103,7 +103,6 @@
             this.time = this.millisToMinutesAndSeconds(albumTime);
           });
       },
-      /* Modif à partir d'ici */
       getAlbumTracks() {
         api.getAlbumTracks(this.albumId)
           .then((response) => {
@@ -127,21 +126,6 @@
           this.playlists = res;
         });
       },
-      /**
-      getPlaylists() {
-        apiPlaylist.getPlaylists().then((res) => {
-          this.posts = res;
-          this.playlists = [];
-          for (let i = 0; i < this.posts.length; i += 1) {
-            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
-              if (this.posts[i].owner.id === this.id) {
-                this.playlists.push(this.posts[i]);
-              }
-            }
-          }
-        });
-      },
-       */
       addAlbumInPlaylist(trackList, playlist) {
         for (let i = 0; i < trackList.length; i += 1) {
           apiPlaylist.insertIntoPlaylist(trackList[i], playlist.id)
@@ -152,14 +136,23 @@
             });
         }
       },
-      albumInPlaylist(albumId, playlist) {
-        const songList = this.getAlbumTracks();
-        for (let i = 0; i < songList.length; i += 1) {
-          if (!(AlbumTracks.songInPlaylist(songList[i], playlist))) {
+      albumInPlaylist(playlist) {
+        debugger;
+        for (let i = 0; i < this.trackList.length; i += 1) {
+          if (!(this.songInPlaylist(this.trackList[i], playlist))) {
             return false;
           }
         }
+        this.$root.$emit('albumIsInPlaylist');
         return true;
+      },
+      songInPlaylist(track, playlist) {
+        for (let i = 0; i < playlist.tracks.length; i += 1) {
+          if (track.trackId === playlist.tracks[i].trackId) {
+            return true;
+          }
+        }
+        return false;
       }
     },
     created() {
