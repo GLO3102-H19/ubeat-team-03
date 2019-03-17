@@ -18,7 +18,7 @@
     components: { Player, Header, AlbumHeader, AlbumList },
     data: () => ({
       // Nickelback par défaut
-      artistId: '111051'
+      artistId: '5280361'
     }),
   };
 </script>

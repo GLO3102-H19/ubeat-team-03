@@ -148,7 +148,7 @@
       display: block;
     }
 
-    .songAlbumTable tr:hover .songNumber {
+    .songAlbumTable tr:hover .trackNumber {
       display: none;
     }
 

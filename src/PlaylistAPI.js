@@ -13,10 +13,31 @@ export const insertNewPlaylist = (playlistName, email) =>
     throw error;
   });
 
+// Implémentation de la méthode POST (à modifier)
+// Permet d'ajouter une chanson à une playlist
+export const insertIntoPlaylist = (track, playlistId) =>
+  axios.post(`${baseURL}/${playlistId}/tracks`, track)
+    .then(response => response.data)
+    .catch((error) => {
+      throw error;
+    });
+
 // Implémentation de la méthode GET
 // Permet d'update la liste des playlists
-export const getPlaylists = () => axios.get(baseURL)
-  .then(response => response.data)
+export const getPlaylists = id => axios.get(baseURL)
+  .then((response) => {
+    const posts = response.data;
+    const playlists = [];
+
+    for (let i = 0; i < posts.length; i += 1) {
+      if (Object.prototype.hasOwnProperty.call(posts[i], 'owner')) {
+        if (posts[i].owner.id === id) {
+          playlists.push(posts[i]);
+        }
+      }
+    }
+    return playlists;
+  })
   .catch((error) => {
     throw error;
   });
@@ -37,4 +58,7 @@ export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
   .catch((error) => {
     throw error;
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> a6d109ee66712e07bd550896a8e2308d5245542b

@@ -1,7 +1,7 @@
 <template>
   <b-container id="bottomDiv">
     <b-list-group>
-      <b-list-group-item class="albumLine"  v-for="item in albumList" v-bind:key="item.collectionId" v-on:click=loadAlbumPage()>
+      <b-list-group-item class="albumLine"  v-for="item in albumList" v-bind:key="item.collectionId" v-on:click="loadAlbumPage(item.collectionId)">
         <b-img
         class="albumImg"
         v-bind:src= item.artworkUrl100
@@ -19,12 +19,13 @@
 <script>
   import router from '@/router/index';
   import * as api from '@/ArtistAPI';
-  import Album from '../Album';
+  import { store } from '@/Store';
 
   export default {
     props: ['artistId'],
     data: () => ({
       albumTitle: '',
+      collectionId: '',
       albumCoverLink: '',
       albumList: [],
       errors: []
@@ -50,8 +51,8 @@
         return comparison;
       },
       loadAlbumPage(collectionId) {
+        store.setAlbumState(collectionId);
         router.push('Album');
-        Album.loadAlbumPage(collectionId);
       }
     },
     created() {

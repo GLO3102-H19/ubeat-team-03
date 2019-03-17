@@ -9,8 +9,12 @@
       <b-row>
         <b-col sm="5">
           <div class="playlistsDiv">
-            <input v-model="playlistsName" />
-            <button v-on:click="insertNewPlaylist">Add</button>
+            <div class="form-group row">
+              <div class="col-md-8">
+            <b-form-input v-model="playlistsName" />
+            </div>
+            <b-button class="col-md-3" size="sm" v-on:click="insertNewPlaylist">Add</b-button>
+            </div>
             <ul>
               <PlaylistsUser
                 v-for="item in playlists"
@@ -99,7 +103,11 @@
           this.errors.push(e);
         }
       }
+<<<<<<< HEAD:src/components/Playlists/Playlists.vue
        */
+=======
+
+>>>>>>> a6d109ee66712e07bd550896a8e2308d5245542b:src/components/Playlists/Playlists.vue
       getPlaylists() {
         api.getPlaylists().then((res) => {
           this.posts = res;
@@ -114,6 +122,15 @@
           }
         });
       }
+<<<<<<< HEAD:src/components/Playlists/Playlists.vue
+=======
+       */
+      getPlaylists() {
+        api.getPlaylists(this.id).then((res) => {
+          this.playlists = res;
+        });
+      }
+>>>>>>> a6d109ee66712e07bd550896a8e2308d5245542b:src/components/Playlists/Playlists.vue
     },
     created() {
       this.getPlaylists();
