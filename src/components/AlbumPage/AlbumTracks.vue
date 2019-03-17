@@ -26,20 +26,12 @@
         <td class="addSongIntoTracklist">
           <div class="selectPlayList">
             <b-dropdown id="ddown-dropleft" size="sm" dropleft text="Add in PlayList" >
-              <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
               <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addSongInPlaylist(track, playlist)">
                 {{playlist.name}}
                 <i v-if="songInPlaylist(track, playlist)" class="fa fa-check" aria-hidden="true"></i>
               </b-dropdown-item>
             </b-dropdown>
           </div>
-          <!-- Conserver pour plus tard peut-être? -->
-          <!--
-          <div class="addDeleteButtons">
-            <button type="button" class="btn btn-primary btn-sm" v-on:click="addInPlayList(track)">Add</button>
-            <button type="button" class="btn btn-danger btn-sm" v-on:click="deleteSongFromPlaylist()">Delete</button>
-          </div>
-          -->
         </td>
       </tr>
     </table>
@@ -143,5 +135,134 @@
 </script>
 
 <style scoped>
+  .bottomDiv {
+    margin: 20px 40px 60px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .songAlbumTable {
+    width: 70%;
+  }
+
+  .songAlbumTable th {
+    border: none;
+    background: white;
+    text-align: center;
+  }
+
+  .songAlbumTable td {
+    cursor: pointer;
+  }
+
+  .songAlbumTable td:nth-child(1) {
+    width: 60px;
+  }
+
+  .songAlbumTable th:nth-child(2) {
+    text-align: left;
+    width: 800px;
+  }
+
+  .songAlbumTable th:nth-child(3) {
+    width: 80px;
+  }
+
+  .songAlbumTable tr {
+    border: 2px solid white;
+    background: #e8e8e8;
+    height: 60px;
+  }
+
+  .songAlbumTable tr:hover {
+    background-color: whitesmoke;
+  }
+
+  .songAlbumTable tr:hover .playButton {
+    display: block;
+  }
+
+  .songAlbumTable tr:hover .trackNumber {
+    display: none;
+  }
+
+  .playButton {
+    display: none;
+  }
+
+  .addAlbumSongTable {
+    width: 30%;
+  }
+
+  .addAlbumSongTable th {
+    border: none;
+    background: white;
+    text-align: center;
+  }
+
+  .addAlbumSongTable tr {
+    border: 2px solid white;
+    background: #e8e8e8;
+    height: 60px;
+  }
+
+  .addAlbumSongTable td {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 5px
+  }
+
+  .addSongIntoTracklist {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .tableCenter {
+    text-align: center;
+  }
+
+  .selectPlayList {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Small devices (Portrait phones, 576px and up) */
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    .albumInfoDiv h1 {
+      font-size: 35px;
+    }
+
+    .songAlbumTable {
+      margin: auto;
+    }
+
+    .bottomDiv {
+      margin: 20px 20px 60px;
+    }
+
+    .songAlbumTable td:nth-child(1) {
+      width: 140px;
+    }
+  }
+
+  /* Medium devices (tablets, 768px and up) */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .albumInfoDiv h1 {
+      font-size: 35px;
+    }
+
+    .songAlbumTable {
+      margin: auto;
+    }
+
+    .bottomDiv {
+      margin: 20px;
+      margin-bottom: 60px;
+    }
+
+    .songAlbumTable td:nth-child(1) {
+      width: 140px;
+    }
+  }
 
 </style>

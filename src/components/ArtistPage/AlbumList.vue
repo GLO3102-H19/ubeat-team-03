@@ -87,5 +87,45 @@
   .someInfos {
     font-size: 12px;
   }
+  /* Small devices (Portrait phones, 576px and up) */
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    #bottomDiv {
+      margin-top: 10px;
+    }
 
+    .albumImg {
+      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .someInfos {
+      font-size: 12px;
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+  }
+
+  /* Medium devices (tablets, 768px and up) */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    #bottomDiv {
+      margin-top: 15px;
+    }
+
+    .albumImg {
+      margin-right: 20px;
+      width: 125px;
+      height: 125px;
+    }
+
+    .someInfos {
+      font-size: 14px;
+    }
+
+    h4 {
+      font-size: 18px;
+    }
+  }
 </style>
