@@ -24,8 +24,20 @@ export const insertIntoPlaylist = (track, playlistId) =>
 
 // Implémentation de la méthode GET
 // Permet d'update la liste des playlists
-export const getPlaylists = () => axios.get(baseURL)
-  .then(response => response.data)
+export const getPlaylists = id => axios.get(baseURL)
+  .then((response) => {
+    const posts = response.data;
+    const playlists = [];
+
+    for (let i = 0; i < posts.length; i += 1) {
+      if (Object.prototype.hasOwnProperty.call(posts[i], 'owner')) {
+        if (posts[i].owner.id === id) {
+          playlists.push(posts[i]);
+        }
+      }
+    }
+    return playlists;
+  })
   .catch((error) => {
     throw error;
   });

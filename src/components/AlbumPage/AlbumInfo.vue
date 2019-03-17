@@ -21,10 +21,9 @@
       </div>
       <div class="addDeleteButtons">
         <b-dropdown id="ddown-dropright" size="sm" dropright text="Add in PlayList" >
-          <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"> Create a new PlayList</b-dropdown-item>
-          <b-dropdown-item v-for="playlist in playlists" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
+          <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
+          <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
             {{playlist.name}}
-            <i v-if="songInPlaylist(track, playlist)" class="fa fa-check" aria-hidden="true"></i>
           </b-dropdown-item>
         </b-dropdown>
       </div>
@@ -35,10 +34,10 @@
 <script>
   import * as api from '@/AlbumAPI';
   import * as apiPlaylist from '@/PlaylistAPI';
-  // import AlbumTracks from './AlbumTracks';
+  import AlbumTracks from './AlbumTracks';
 
   export default {
-    props: ['artistId', 'albumId'],
+    props: ['artistId', 'albumId', 'id'],
     data: () => ({
       artist: 'Nickelback',
       title: '',
@@ -50,6 +49,7 @@
       appleLink: '',
       trackList: [],
       albumLength: '',
+      playlists: [],
     }),
     methods: {
       millisToMinutesAndSeconds(millis) {
@@ -123,6 +123,12 @@
           });
       },
       getPlaylists() {
+        apiPlaylist.getPlaylists(this.id).then((res) => {
+          this.playlists = res;
+        });
+      },
+      /**
+      getPlaylists() {
         apiPlaylist.getPlaylists().then((res) => {
           this.posts = res;
           this.playlists = [];
@@ -135,6 +141,7 @@
           }
         });
       },
+       */
       addAlbumInPlaylist(trackList, playlist) {
         for (let i = 0; i < trackList.length; i += 1) {
           apiPlaylist.insertIntoPlaylist(trackList[i], playlist.id)
@@ -144,6 +151,15 @@
               this.getPlaylists();
             });
         }
+      },
+      albumInPlaylist(albumId, playlist) {
+        const songList = this.getAlbumTracks();
+        for (let i = 0; i < songList.length; i += 1) {
+          if (!(AlbumTracks.songInPlaylist(songList[i], playlist))) {
+            return false;
+          }
+        }
+        return true;
       }
     },
     created() {

@@ -9,7 +9,9 @@
       <b-row>
         <b-col sm="5">
           <div class="playlistsDiv">
-            <input v-model="playlistsName" />
+            <label>
+              <input v-model="playlistsName" />
+            </label>
             <button v-on:click="insertNewPlaylist">Add</button>
             <ul>
               <PlaylistsUser
@@ -99,7 +101,7 @@
           this.errors.push(e);
         }
       }
-       */
+
       getPlaylists() {
         api.getPlaylists().then((res) => {
           this.posts = res;
@@ -112,6 +114,12 @@
               }
             }
           }
+        });
+      }
+       */
+      getPlaylists() {
+        api.getPlaylists(this.id).then((res) => {
+          this.playlists = res;
         });
       }
     },
