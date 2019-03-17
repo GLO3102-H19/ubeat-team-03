@@ -103,11 +103,6 @@
           this.errors.push(e);
         }
       }
-<<<<<<< HEAD:src/components/Playlists/Playlists.vue
-       */
-=======
-
->>>>>>> a6d109ee66712e07bd550896a8e2308d5245542b:src/components/Playlists/Playlists.vue
       getPlaylists() {
         api.getPlaylists().then((res) => {
           this.posts = res;
@@ -122,15 +117,12 @@
           }
         });
       }
-<<<<<<< HEAD:src/components/Playlists/Playlists.vue
-=======
        */
       getPlaylists() {
         api.getPlaylists(this.id).then((res) => {
           this.playlists = res;
         });
       }
->>>>>>> a6d109ee66712e07bd550896a8e2308d5245542b:src/components/Playlists/Playlists.vue
     },
     created() {
       this.getPlaylists();
