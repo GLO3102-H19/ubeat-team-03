@@ -58,7 +58,3 @@ export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
   .catch((error) => {
     throw error;
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> a6d109ee66712e07bd550896a8e2308d5245542b
