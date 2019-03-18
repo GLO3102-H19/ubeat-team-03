@@ -5,7 +5,7 @@
       <div class="col-md-8">
     <b-form-input size="sm" type="text" v-model="playlistUser.name" />
     </div>
-    <div>
+    <div id="modifButton">
     <b-button size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button>
     </div>
     <div >
@@ -57,5 +57,13 @@
     cursor: pointer;
     background-color: #80c6ef;
   }
-
+  /* Small devices (Portrait phones, 576px and up) */
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    #modifButton{
+      margin-left: 15px;
+    }
+  }
+  /* Medium devices (tablets, 768px and up) */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  }
 </style>

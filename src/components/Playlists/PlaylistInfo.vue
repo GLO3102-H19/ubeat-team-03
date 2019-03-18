@@ -7,11 +7,11 @@
     </ul>
     <table class="songAlbumTable">
       <tr>
-        <th>#</th>
+        <th id="songNumber">#</th>
         <th>Title</th>
-        <th>Album</th>
-        <th>Artist</th>
-        <th>Length</th>
+        <th id="songAlbum">Album</th>
+        <th id="songArtist">Artist</th>
+        <th id="songLength">Length</th>
         <th><font-awesome-icon icon="trash" /></th>
       </tr>
       <Track
@@ -117,7 +117,7 @@
   }
 
   /* Small devices (Portrait phones, 576px and up) */
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
     .albumInfoDiv h1 {
       font-size: 35px;
     }
@@ -128,6 +128,18 @@
 
     .songAlbumTable td:nth-child(1) {
       width: 140px;
+    }
+
+    #songAlbum{
+      display: none;
+    }
+
+    #songArtist{
+      display: none;
+    }
+
+    #songLength{
+      display: none;
     }
   }
 

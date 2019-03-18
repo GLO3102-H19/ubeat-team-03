@@ -6,14 +6,14 @@
       </b-row>
     </b-container>
     <b-container fluid class="content">
-      <b-row>
+      <b-row id="mainRow">
         <b-col sm="5">
           <div class="playlistsDiv">
             <div class="form-group row">
               <div class="col-md-8">
             <b-form-input v-model="playlistsName" />
             </div>
-            <b-button class="col-md-3" size="sm" v-on:click="insertNewPlaylist">Add</b-button>
+            <b-button  id="addButton" class="col-md-3" size="sm" v-on:click="insertNewPlaylist">Add</b-button>
             </div>
             <ul>
               <PlaylistsUser
@@ -25,8 +25,8 @@
             </ul>
           </div>
         </b-col>
-        <b-col sm="2"> </b-col>
-        <b-col sm="5">
+        <b-col sm="1"> </b-col>
+        <b-col sm="6">
           <div class="playlistDetailsDiv">
             <PlaylistInfo
               v-bind:info="playListInfo"
@@ -92,14 +92,20 @@
     padding: 10px 10px 10px 10px;
   }
 
+  #mainRow{
+    display: flex;
+  }
+
   .playlistsDiv {
     padding: 10px 10px 10px 10px;
     background-color: lightskyblue;
     border-radius: 15px;
+    margin-bottom: 50px;
   }
 
   .playlistDetailsDiv {
     padding: 10px 10px 10px 10px;
+    margin-bottom: 100px;
     background-color: lightskyblue;
     border-radius: 15px;
   }
@@ -113,14 +119,32 @@
   }
 
   /* Small devices (Portrait phones, 576px and up) */
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    #mainRow{
+      flex-direction: column;
+      justify-content: center;
+    }
+    .playlistsDiv {
+      width: 270px;
+    }
+    .playlistDetailsDiv {
+      width: 270px;
+    }
+    #addButton{
+      margin: 0 15px 0 15px;
+    }
   }
-
   /* Medium devices (tablets, 768px and up) */
   @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  }
-
-  /* Large devices (desktops, 992px and up) */
-  @media only screen and (min-device-width: 1281px) {
+    #mainRow{
+      flex-direction: column;
+      justify-content: center;
+    }
+    .playlistsDiv {
+      width: 500px;
+    }
+    .playlistDetailsDiv {
+      width: 500px;
+    }
   }
 </style>

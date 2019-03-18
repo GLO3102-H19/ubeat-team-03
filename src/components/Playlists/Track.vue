@@ -7,9 +7,9 @@
       </div>
     </td>
     <td>{{tracks.trackName}}</td>
-    <td>{{tracks.collectionName}}</td>
-    <td>{{tracks.artistName}}</td>
-    <td class="tableCenter">{{trackLength}}</td>
+    <td id="songAlbum">{{tracks.collectionName}}</td>
+    <td id="songArtist">{{tracks.artistName}}</td>
+    <td class="tableCenter" id="songLength">{{trackLength}}</td>
     <td><b-button class="offset-1"  size="sm" variant="danger" v-on:click="removeSong">Delete</b-button></td>
   </tr>
 </template>
@@ -63,10 +63,6 @@
     width: 100%;
   }
 
-  .playButton {
-    display: none;
-  }
-
   .songAlbumTable th {
     border: none;
     background: white;
@@ -101,13 +97,29 @@
   }
 
   /* Small devices (Portrait phones, 576px and up) */
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
     .albumInfoDiv h1 {
       font-size: 35px;
     }
 
     .songAlbumTable td:nth-child(1) {
       width: 140px;
+    }
+
+    .playButton {
+      display: none;
+    }
+
+    #songAlbum{
+      display: none;
+    }
+
+    #songArtist{
+      display: none;
+    }
+
+    #songLength{
+      display: none;
     }
   }
 
