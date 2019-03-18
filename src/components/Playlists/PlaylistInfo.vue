@@ -12,11 +12,15 @@
         <th>Album</th>
         <th>Artist</th>
         <th>Length</th>
+        <th><font-awesome-icon icon="trash" /></th>
       </tr>
       <Track
-        v-for="item in trackList"
+        v-for="(item, index) in trackList"
         v-bind:tracks="item"
-        v-bind:key="item.id"
+        v-bind:key="item._id"
+        v-on:removeSong="removeSong"
+        :songNumber="index+1"
+        :key='index'
       >
       </Track>
     </table>
@@ -33,7 +37,8 @@
     name: 'PlaylistInfo',
     props: ['info', 'srcTrack'],
     data: () => ({
-      srcTest: '#'
+      srcTest: '#',
+      posts: []
     }),
     computed: {
       totalLength() {
@@ -57,6 +62,9 @@
         const hrs = (timeTemp2 - mins) / 60;
 
         return `${hrs}:${mins}:${secs}.${ms}`;
+      },
+      removeSong(index) {
+        this.trackList.splice(index - 1, 1);
       }
     }
   };
@@ -148,7 +156,7 @@
       display: block;
     }
 
-    .songAlbumTable tr:hover .songNumber {
+    .songAlbumTable tr:hover .trackNumber {
       display: none;
     }
 

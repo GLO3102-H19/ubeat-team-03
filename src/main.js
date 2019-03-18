@@ -3,7 +3,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faSignOutAlt, faUser, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSignOutAlt, faUser, faWrench, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faItunes } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import BootstrapVue from 'bootstrap-vue';
@@ -18,6 +18,7 @@ library.add(faUser);
 library.add(faSignOutAlt);
 library.add(faSearch);
 library.add(faItunes);
+library.add(faTrash);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(BootstrapVue);

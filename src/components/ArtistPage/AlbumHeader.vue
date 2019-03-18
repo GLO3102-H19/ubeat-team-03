@@ -7,7 +7,6 @@
     ></a>
   </b-container>
 </template>
-
 <script>
   import * as api from '@/ArtistAPI';
 
@@ -30,7 +29,6 @@
     }
   };
 </script>
-
 <style scoped>
   #middleDiv {
     margin-top: 50px;
@@ -38,9 +36,25 @@
     display: flex;
     justify-content: space-between;
   }
-
   .albumSectionTitle {
     color: black;
   }
-
+  /* Small devices (Portrait phones, 576px and up) */
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    #middleDiv {
+      margin-top: 25px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+  }
+  /* Medium devices (tablets, 768px and up) */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    #middleDiv {
+      margin-top: 30px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+  }
 </style>

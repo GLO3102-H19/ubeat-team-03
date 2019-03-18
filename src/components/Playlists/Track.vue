@@ -10,16 +10,18 @@
     <td>{{tracks.collectionName}}</td>
     <td>{{tracks.artistName}}</td>
     <td class="tableCenter">{{trackLength}}</td>
+    <td><b-button class="offset-1"  size="sm" variant="danger" v-on:click="removeSong">Delete</b-button></td>
   </tr>
 </template>
 
 <script>
+  import * as api from '@/PlaylistAPI';
   import Player from '../Player';
 
   export default {
     components: { Player },
     name: 'Track',
-    props: ['tracks'],
+    props: ['tracks', 'songNumber'],
     computed: {
       trackLength() {
         const time = this.tracks.trackTimeMillis;
@@ -37,6 +39,16 @@
         this.$parent.$data.srcTest = this.tracks.previewUrl;
         document.getElementById('playerMP3').load();
         document.getElementById('playerMP3').play();
+      },
+      deleteSong() {
+        api.removeSongFromPlaylist(this.$parent.$vnode.key, this.tracks.trackId)
+          .then((res) => {
+            this.$parent.posts = res;
+          });
+      },
+      removeSong() {
+        this.deleteSong();
+        this.$emit('removeSong', this.songNumber);
       }
     },
   };
@@ -120,7 +132,7 @@
       display: block;
     }
 
-    .songAlbumTable tr:hover .songNumber {
+    .songAlbumTable tr:hover .trackNumber {
       display: none;
     }
 

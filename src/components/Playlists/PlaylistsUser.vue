@@ -1,5 +1,18 @@
 <template>
-  <li v-on:click="ChangeInfoPlaylist"><input v-model="playlistUser.name"><button v-on:click="putPlaylist">Modif</button><button v-on:click="deletePlaylist">Delete</button></li>
+<div>
+  <li v-on:click="ChangeInfoPlaylist">
+    <div class="form-group row">
+      <div class="col-md-8">
+    <b-form-input size="sm" type="text" v-model="playlistUser.name" />
+    </div>
+    <div>
+    <b-button size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button>
+    </div>
+    <div >
+    <b-button class="offset-1"  size="sm" variant="danger" v-on:click="deletePlaylist">Delete</b-button>
+    </div>
+    </div></li>
+    </div>
 </template>
 
 <script>
@@ -9,43 +22,12 @@
     name: 'PlaylistsUser',
     props: ['playlistUser'],
     methods: {
-      /**
-      async Modif() {
-        try {
-          const ownerKey = this.$vnode.key;
-          const response = await axios.put(`http://ubeat.herokuapp.com/unsecure/playlists/${ownerKey}`,
-            { name: this.playlistUser.name, owner: this.playlistUser.owner.email });
-          this.$parent.posts = response.data;
-        } catch (e) {
-          this.errors.push(e);
-        }
-      },
-       */
       putPlaylist() {
         api.putPlaylist(this.playlistUser.name, this.playlistUser.owner.email, this.$vnode.key)
           .then((res) => {
             this.$parent.posts = res;
           });
       },
-      /**
-      async Delete() {
-        try {
-          const ownerKey = this.$vnode.key;
-          const response = await axios.delete(`http://ubeat.herokuapp.com/unsecure/playlists/${ownerKey}`);
-          let tempPlaylist;
-          this.$parent.posts = response.data;
-
-          for (let i = 0; i < this.$parent.playlists.length; i += 1) {
-            tempPlaylist = this.$parent.playlists.pop();
-            if (tempPlaylist.id !== ownerKey) {
-              this.$parent.playlists.push(tempPlaylist);
-            }
-          }
-        } catch (e) {
-          this.errors.push(e);
-        }
-      },
-       */
       deletePlaylist() {
         api.deletePlaylist(this.$vnode.key)
           .then((res) => {
@@ -71,5 +53,9 @@
 </script>
 
 <style scoped>
+  li:hover{
+    cursor: pointer;
+    background-color: #80c6ef;
+  }
 
 </style>

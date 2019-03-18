@@ -29,7 +29,6 @@
         });
       }
     },
-
     created() {
       this.getArtistName();
       this.getArtistGenre();
@@ -44,14 +43,12 @@
     padding: 50px;
     border-radius: 100px;
     height : 250px;
-
     display: flex;
     justify-content: center;
   }
   #artistLabelNGenre{
     display: flex;
     flex-direction: column;
-
   }
   #artistLabel {
     font-size: 50px;
@@ -60,20 +57,6 @@
   #artistGenre {
     font-size: 25px;
     font-family: Helvetica, sans-serif;
+    text-align: center;
   }
 </style>
-
-<b-col md="6" id="artistPicCol"
-><b-img
-  center
-  src="https://is2-ssl.mzstatic.com/image/thumb/Purple128/v4/91/5e/d1/915ed1aa-eec9-56ae-83e4-2606242c4cb0/source/512x512bb.jpg"
-  id="artistPic"
-  rounded="circle"
-  width="400"
-  height="350"
-/></b-col>
-#artistPicCol {
-padding: 10px 0 10px 0;
-}
-
-
