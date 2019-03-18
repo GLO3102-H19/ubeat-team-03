@@ -1,16 +1,16 @@
 <template>
   <tr>
-    <td class="tableCenter">
+    <td class="col-sm-3">
       <div class="songNumber"> {{tracks.trackNumber}} </div>
       <div class="playButton" v-on:click="Play">
         <i class="far fa-play-circle fa-2x"></i>
       </div>
     </td>
-    <td>{{tracks.trackName}}</td>
-    <td id="songAlbum">{{tracks.collectionName}}</td>
-    <td id="songArtist">{{tracks.artistName}}</td>
-    <td class="tableCenter" id="songLength">{{trackLength}}</td>
-    <td><b-button class="offset-1"  size="sm" variant="danger" v-on:click="removeSong">Delete</b-button></td>
+    <td class="col-sm-3">{{tracks.trackName}}</td>
+    <td class="col-sm-1" id="songAlbum">{{tracks.collectionName}}</td>
+    <td class="col-sm-2" id="songArtist">{{tracks.artistName}}</td>
+    <td class="col-sm-2" id="songLength">{{trackLength}}</td>
+    <td class="col-sm-1"><b-button class="offset-1"  size="sm" variant="danger" v-on:click="removeSong">Delete</b-button></td>
   </tr>
 </template>
 
@@ -59,6 +59,13 @@
     display: none;
   }
 
+  tr:hover .playButton {
+    display: block;
+  }
+  tr:hover .songNumber {
+    display: none;
+  }
+
   audio {
     width: 100%;
   }
@@ -104,10 +111,6 @@
 
     .songAlbumTable td:nth-child(1) {
       width: 140px;
-    }
-
-    .playButton {
-      display: none;
     }
 
     #songAlbum{

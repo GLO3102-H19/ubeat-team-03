@@ -79,10 +79,6 @@
     margin: 0 10px;
   }
 
-  .playButton {
-    display: none;
-  }
-
   .songAlbumTable th {
     border: none;
     background: white;
@@ -110,10 +106,6 @@
     border: 2px solid white;
     background: #e8e8e8;
     height: 60px;
-  }
-
-  .tableCenter {
-    text-align: center;
   }
 
   /* Small devices (Portrait phones, 576px and up) */
