@@ -14,7 +14,7 @@
           </div>
         </td>
         <td v-on:click="Play(track)">{{track.trackName}}</td>
-        <td class="tableCenter" v-on:click="Play(track)">{{track.trackTimeMillis}}</td>
+        <td class="tableCenter" v-on:click="Play(track)">{{track.trackTime}}</td>
       </tr>
     </table>
 
@@ -41,7 +41,7 @@
 <script>
   import * as api from '@/AlbumAPI';
   import * as apiPlaylist from '@/PlaylistAPI';
-  // import Playlists from '../Playlists/Playlists';
+
   export default {
     props: ['email', 'id', 'albumId'],
     data: () => ({
@@ -67,10 +67,37 @@
               this.trackList.push({
                 trackNumber: tracks[i].trackNumber,
                 trackName: tracks[i].trackName,
-                trackTimeMillis: this.millisToMinutesAndSeconds(tracks[i].trackTimeMillis),
-                preview: tracks[i].previewUrl,
+                trackTimeMillis: tracks[i].trackTimeMillis,
+                trackTime: this.millisToMinutesAndSeconds(tracks[i].trackTimeMillis),
+                previewUrl: tracks[i].previewUrl,
                 icon: 'far fa-play-circle fa-2x',
-                trackId: tracks[i].trackId
+                wrapperType: tracks[i].wrapperType,
+                kind: tracks[i].kind,
+                artistId: tracks[i].artistId,
+                collectionId: tracks[i].collectionId,
+                trackId: tracks[i].trackId,
+                artistName: tracks[i].artistName,
+                collectionName: tracks[i].collectionName,
+                collectionCensoredName: tracks[i].collectionCensoredName,
+                trackCensoredName: tracks[i].trackCensoredName,
+                artistViewUrl: tracks[i].artistViewUrl,
+                collectionViewUrl: tracks[i].collectionViewUrl,
+                trackViewUrl: tracks[i].trackViewUrl,
+                artworkUrl30: tracks[i].artworkUrl30,
+                artworkUrl60: tracks[i].artworkUrl60,
+                artworkUrl100: tracks[i].artworkUrl100,
+                collectionPrice: tracks[i].collectionPrice,
+                releaseDate: tracks[i].releaseDate,
+                collectionExplicitness: tracks[i].collectionExplicitness,
+                trackExplicitness: tracks[i].trackPrice,
+                discCount: tracks[i].discCount,
+                discNumber: tracks[i].discNumber,
+                trackCount: tracks[i].trackCount,
+                country: tracks[i].country,
+                currency: tracks[i].currency,
+                primaryGenreName: tracks[i].primaryGenreName,
+                contentAdvisoryRating: tracks[i].contentAdvisoryRating,
+                isStreamable: tracks[i].isStreamable
               });
             }
           });
@@ -81,7 +108,6 @@
         });
       },
       songInPlaylist(track, playlist) {
-        debugger;
         for (let i = 0; i < playlist.tracks.length; i += 1) {
           if (track.trackId === playlist.tracks[i].trackId) {
             return true;
@@ -99,7 +125,7 @@
       },
       Play(track) {
         const player = document.getElementById('playerMP3');
-        if (this.$parent.$data.playingSong.url === track.preview) {
+        if (this.$parent.$data.playingSong.url === track.previewUrl) {
           if (this.$parent.$data.playingSong.paused === false) {
             player.pause();
             track.icon = 'far fa-play-circle fa-2x'; // eslint-disable-line no-param-reassign
@@ -113,7 +139,7 @@
           for (let i = 0; i < this.trackList.length; i += 1) {
             this.trackList[i].icon = 'far fa-play-circle fa-2x';
           }
-          this.$parent.$data.playingSong.url = track.preview;
+          this.$parent.$data.playingSong.url = track.previewUrl;
           track.icon = 'far fa-pause-circle fa-2x'; // eslint-disable-line no-param-reassign
           player.load();
           player.play();
