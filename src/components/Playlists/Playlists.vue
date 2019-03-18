@@ -64,60 +64,12 @@
     }),
     name: 'Playlists',
     methods: {
-      /**
-      async Insert() {
-        try {
-          const response = await axios.post(
-            'http://ubeat.herokuapp.com/unsecure/playlists',
-            { name: this.playlistsName, owner: this.email }
-          );
-          this.posts = response.data;
-          this.playlists.push(this.posts);
-        } catch (e) {
-          this.errors.push(e);
-        }
-      },
-       */
       insertNewPlaylist() {
         api.insertNewPlaylist(this.playlistsName, this.email).then((res) => {
           this.posts = res;
           this.playlists.push(this.posts);
         });
-      }, /**
-           async Update() {
-        try {
-          const response = await axios.get(
-            'http://ubeat.herokuapp.com/unsecure/playlists'
-          );
-          this.posts = response.data;
-          this.playlists = [];
-
-          for (let i = 0; i < this.posts.length; i += 1) {
-            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
-              if (this.posts[i].owner.id === this.id) {
-                this.playlists.push(this.posts[i]);
-              }
-            }
-          }
-        } catch (e) {
-          this.errors.push(e);
-        }
-      }
-      getPlaylists() {
-        api.getPlaylists().then((res) => {
-          this.posts = res;
-          this.playlists = [];
-
-          for (let i = 0; i < this.posts.length; i += 1) {
-            if (Object.prototype.hasOwnProperty.call(this.posts[i], 'owner')) {
-              if (this.posts[i].owner.id === this.id) {
-                this.playlists.push(this.posts[i]);
-              }
-            }
-          }
-        });
-      }
-       */
+      },
       getPlaylists() {
         api.getPlaylists(this.id).then((res) => {
           this.playlists = res;

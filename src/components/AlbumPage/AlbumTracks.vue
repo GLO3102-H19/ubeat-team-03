@@ -90,7 +90,6 @@
         });
       },
       songInPlaylist(track, playlist) {
-        debugger;
         for (let i = 0; i < playlist.tracks.length; i += 1) {
           if (track.trackId === playlist.tracks[i].trackId) {
             return true;

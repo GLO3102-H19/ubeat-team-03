@@ -58,3 +58,12 @@ export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
   .catch((error) => {
     throw error;
   });
+
+// Implémentation de la méthode DELETE
+// Permet de supprimer une chanson de la playlist à l'id demandé
+export const removeSongFromPlaylist = (playlistId, trackId) =>
+  axios.delete(`${baseURL}/${playlistId}/tracks/${trackId}`)
+    .then(response => response.data)
+    .catch((error) => {
+      throw error;
+    });
