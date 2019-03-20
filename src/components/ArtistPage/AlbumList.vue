@@ -18,8 +18,8 @@
 
 <script>
   import router from '@/router/index';
-  import * as api from '@/ArtistAPI';
-  import { store } from '@/Store';
+  import * as api from '@/services/ArtistAPI';
+  import { store } from '@/store/Store';
 
   export default {
     props: ['artistId'],

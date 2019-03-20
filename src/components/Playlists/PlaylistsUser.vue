@@ -1,5 +1,4 @@
 <template>
-<div>
   <li v-on:click="ChangeInfoPlaylist">
     <div class="form-group row">
       <div class="col-md-8">
@@ -12,11 +11,10 @@
     <b-button class="offset-1"  size="sm" variant="danger" v-on:click="deletePlaylist">Delete</b-button>
     </div>
     </div></li>
-    </div>
 </template>
 
 <script>
-  import * as api from '@/PlaylistAPI';
+  import * as api from '@/services/PlaylistAPI';
 
   export default {
     name: 'PlaylistsUser',

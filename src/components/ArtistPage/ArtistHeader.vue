@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import * as api from '@/ArtistAPI';
+  import * as api from '@/services/ArtistAPI';
 
   export default {
     props: ['artistId'],

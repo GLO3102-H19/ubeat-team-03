@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import * as api from '@/PlaylistAPI';
+  import * as api from '@/services/PlaylistAPI';
   import Player from '../Player';
 
   export default {

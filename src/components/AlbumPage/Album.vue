@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import { store } from '@/Store';
+  import { store } from '@/store/Store';
   import Player from '../Player';
   import AlbumInfo from './AlbumInfo';
   import AlbumTracks from './AlbumTracks';

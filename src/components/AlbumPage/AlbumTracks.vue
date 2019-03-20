@@ -39,8 +39,8 @@
 </template>
 
 <script>
-  import * as api from '@/AlbumAPI';
-  import * as apiPlaylist from '@/PlaylistAPI';
+  import * as api from '@/services/AlbumAPI';
+  import * as apiPlaylist from '@/services/PlaylistAPI';
 
   export default {
     props: ['email', 'id', 'albumId'],
