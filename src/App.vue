@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-menu></nav-menu>
-    <router-view v-bind:email="userEmail" v-bind:id="userId"></router-view>
+    <router-view v-bind:email="userEmail" v-bind:id="userId" v-bind:password="userpassword"></router-view>
   </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   },
   data: () => ({
     userId: '5c797c1fe3a71b00042adfc5',
-    userEmail: 'team3sfscmaedhmk@mail.com'
+    userEmail: 'team3sfscmaedhmk@mail.com',
+    userpassword: ''
   })
 };
 </script>
