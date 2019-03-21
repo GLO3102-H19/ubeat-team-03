@@ -18,7 +18,7 @@
             <ul>
               <PlaylistsUser
                 v-for="item in playlists"
-                v-bind:playlistUser="item"
+                v-bind:playlist="item"
                 v-bind:key="item.id"
               >
               </PlaylistsUser>

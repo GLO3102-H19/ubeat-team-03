@@ -44,8 +44,8 @@ export const getPlaylists = id => axios.get(baseURL)
 
 // Implémentation de la méthode PUT
 // Permet de modifier la playlist à l'id demandé
-export const putPlaylist = (playlistUser, email, key) =>
-  axios.put(`${baseURL}/${key}`, { name: playlistUser, owner: email })
+export const putPlaylist = (id, playlistUser, email, trackList) =>
+  axios.put(`${baseURL}/${id}`, { name: playlistUser, owner: email, tracks: trackList })
   .then(response => response.data)
   .catch((error) => {
     throw error;

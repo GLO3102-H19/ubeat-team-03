@@ -2,7 +2,7 @@
   <li v-on:click="ChangeInfoPlaylist">
     <div class="form-group row">
       <div class="col-md-8">
-    <b-form-input size="sm" type="text" v-model="playlistUser.name" />
+    <b-form-input size="sm" type="text" v-model="playlist.name" />
     </div>
     <div id="modifButton">
     <b-button size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button>
@@ -18,10 +18,13 @@
 
   export default {
     name: 'PlaylistsUser',
-    props: ['playlistUser'],
+    props: ['playlist'],
     methods: {
       putPlaylist() {
-        api.putPlaylist(this.playlistUser.name, this.playlistUser.owner.email, this.$vnode.key)
+        api.putPlaylist(this.$vnode.key,
+          this.playlist.name,
+          this.playlist.owner.email,
+          this.playlist.tracks)
           .then((res) => {
             this.$parent.posts = res;
           });
@@ -43,8 +46,8 @@
       },
       async ChangeInfoPlaylist() {
         this.$parent.playListInfo.id = this.$vnode.key;
-        this.$parent.playListInfo.name = this.playlistUser.name;
-        this.$parent.playListInfo.tracks = this.playlistUser.tracks;
+        this.$parent.playListInfo.name = this.playlist.name;
+        this.$parent.playListInfo.tracks = this.playlist.tracks;
       },
     }
   };
