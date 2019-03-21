@@ -14,17 +14,19 @@
       <h2 class="bandAlbumInfo">{{artist}}</h2>
       <h5 class="styleAlbumInfo">{{year}} - {{genre}}</h5>
       <h6 class="songsAlbumInfo">{{songCount}} songs, {{time}} minutes</h6>
-      <div class="playlistsDropDown">
-        <b-dropdown id="ddown-dropright" size="sm" dropright text="Add in PlayList" >
-          <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
-            {{playlist.name}}
-          </b-dropdown-item>
-        </b-dropdown>
-      </div>
       <div class="iTunesLink">
         <a v-bind:href="appleLink"
            target="_blank"
            style="display:inline-block;overflow:hidden;width:180px;height:40px;"></a>
+      </div>
+      <div class="addDeleteButtons">
+        <b-dropdown id="ddown-dropright" size="sm" dropright text="Add in PlayList" >
+          <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
+          <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
+            {{playlist.name}}
+            <i v-if="albumInPlaylist(playlist)" class="fa fa-check" aria-hidden="true"></i>
+          </b-dropdown-item>
+        </b-dropdown>
       </div>
     </div>
   </div>
@@ -33,7 +35,6 @@
 <script>
   import * as api from '@/services/AlbumAPI';
   import * as apiPlaylist from '@/services/PlaylistAPI';
-  import AlbumTracks from './AlbumTracks';
 
   export default {
     props: ['artistId', 'albumId', 'id'],
@@ -102,49 +103,13 @@
             this.time = this.millisToMinutesAndSeconds(albumTime);
           });
       },
-      /* Modif à partir d'ici */
       getAlbumTracks() {
         api.getAlbumTracks(this.albumId)
           .then((response) => {
-            const tracks = response;
+            this.trackList = response;
             this.albumLength = 0;
-            for (let i = 0; i < tracks.length; i += 1) {
-              this.albumLength += tracks[i].trackTimeMillis;
-              this.trackList.push({
-                trackNumber: tracks[i].trackNumber,
-                trackName: tracks[i].trackName,
-                trackTimeMillis: tracks[i].trackTimeMillis,
-                trackTime: this.millisToMinutesAndSeconds(tracks[i].trackTimeMillis),
-                previewUrl: tracks[i].previewUrl,
-                icon: 'far fa-play-circle fa-2x',
-                wrapperType: tracks[i].wrapperType,
-                kind: tracks[i].kind,
-                artistId: tracks[i].artistId,
-                collectionId: tracks[i].collectionId,
-                trackId: tracks[i].trackId,
-                artistName: tracks[i].artistName,
-                collectionName: tracks[i].collectionName,
-                collectionCensoredName: tracks[i].collectionCensoredName,
-                trackCensoredName: tracks[i].trackCensoredName,
-                artistViewUrl: tracks[i].artistViewUrl,
-                collectionViewUrl: tracks[i].collectionViewUrl,
-                trackViewUrl: tracks[i].trackViewUrl,
-                artworkUrl30: tracks[i].artworkUrl30,
-                artworkUrl60: tracks[i].artworkUrl60,
-                artworkUrl100: tracks[i].artworkUrl100,
-                collectionPrice: tracks[i].collectionPrice,
-                releaseDate: tracks[i].releaseDate,
-                collectionExplicitness: tracks[i].collectionExplicitness,
-                trackExplicitness: tracks[i].trackPrice,
-                discCount: tracks[i].discCount,
-                discNumber: tracks[i].discNumber,
-                trackCount: tracks[i].trackCount,
-                country: tracks[i].country,
-                currency: tracks[i].currency,
-                primaryGenreName: tracks[i].primaryGenreName,
-                contentAdvisoryRating: tracks[i].contentAdvisoryRating,
-                isStreamable: tracks[i].isStreamable
-              });
+            for (let i = 0; i < response.length; i += 1) {
+              this.albumLength += response[i].trackTimeMillis;
             }
           });
       },
@@ -163,14 +128,22 @@
             });
         }
       },
-      albumInPlaylist(albumId, playlist) {
-        const songList = this.getAlbumTracks();
-        for (let i = 0; i < songList.length; i += 1) {
-          if (!AlbumTracks.songInPlaylist(songList[i], playlist)) {
+      albumInPlaylist(playlist) {
+        for (let i = 0; i < this.trackList.length; i += 1) {
+          if (!(this.songInPlaylist(this.trackList[i], playlist))) {
             return false;
           }
         }
+        this.$root.$emit('albumIsInPlaylist');
         return true;
+      },
+      songInPlaylist(track, playlist) {
+        for (let i = 0; i < playlist.tracks.length; i += 1) {
+          if (track.trackId === playlist.tracks[i].trackId) {
+            return true;
+          }
+        }
+        return false;
       }
     },
     created() {
