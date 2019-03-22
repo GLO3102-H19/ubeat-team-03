@@ -22,11 +22,15 @@
 <style scoped>
   #infosHeader{
     display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
     margin-bottom: 10px;
-    justify-content: flex-start;
   }
   #followButton{
     color: black;
+    position: absolute;
+    left: 0;
   }
   #followButton:hover{
     background-color: aquamarine;
