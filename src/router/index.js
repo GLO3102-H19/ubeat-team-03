@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import Album from '../components/AlbumPage/Album';
 import Artist from '../components/ArtistPage/Artist';
 import Playlists from '../components/Playlists/Playlists';
+import Search from '../components/SearchPage/Search';
 
 Vue.use(Router);
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/playlists',
       name: 'Playlists',
       component: Playlists,
+      props: true
+    }, {
+      path: '/search',
+      name: 'Search',
+      component: Search,
       props: true
     }
   ],

@@ -14,7 +14,7 @@
           </div>
         </td>
         <td v-on:click="Play(track)">{{track.trackName}}</td>
-        <td class="tableCenter" v-on:click="Play(track)">{{track.trackTime}}</td>
+        <td class="tableCenter" v-on:click="Play(track)">{{millisToMinutesAndSeconds(track.trackTimeMillis)}}</td>
       </tr>
     </table>
 
@@ -43,7 +43,7 @@
   import * as apiPlaylist from '@/services/PlaylistAPI';
 
   export default {
-    props: ['email', 'id', 'albumId'],
+    props: ['email', 'id', 'albumId', 'searchTrackList', 'search'],
     data: () => ({
       trackList: [],
       albumLength: '',
@@ -68,7 +68,6 @@
                 trackNumber: tracks[i].trackNumber,
                 trackName: tracks[i].trackName,
                 trackTimeMillis: tracks[i].trackTimeMillis,
-                trackTime: this.millisToMinutesAndSeconds(tracks[i].trackTimeMillis),
                 previewUrl: tracks[i].previewUrl,
                 icon: 'far fa-play-circle fa-2x',
                 wrapperType: tracks[i].wrapperType,
@@ -148,7 +147,11 @@
       }
     },
     created() {
-      this.getAlbumTracks();
+      if (this.search) {
+        this.trackList = this.searchTrackList;
+      } else {
+        this.getAlbumTracks();
+      }
       this.getPlaylists();
     },
     mounted() {
