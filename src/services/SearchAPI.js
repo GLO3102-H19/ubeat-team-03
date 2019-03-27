@@ -6,12 +6,12 @@ const searchAlbumTermField = 'albums';
 const searchArtistTermField = 'artists';
 const searchTracksTermField = 'tracks';
 const searchTermField = '?q=';
-// const limitField = '&limit=';
+const limitField = '&limit=10';
 
 // Implémentation de la méthode GET
 // Permet de faire une recherche global (user,track,album,artist)
 export const getGlobalSearch = searchTerm => axios
-  .get(baseURL + searchTermField + encodeURIComponent(searchTerm))
+  .get(baseURL + searchTermField + encodeURIComponent(searchTerm) + limitField)
   .then(response => response.data)
   .catch((error) => {
     throw error;

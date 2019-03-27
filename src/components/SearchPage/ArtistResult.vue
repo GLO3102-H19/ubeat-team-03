@@ -44,7 +44,7 @@
     margin-top: 30px;
   }
   div.artist {
-    margin: 10px;
+    margin: 15px 15px 15px 20px;
     width: 150px;
     height: 190px;
     float:left;
