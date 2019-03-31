@@ -10,11 +10,12 @@
         <td class="tableCenter" v-on:click="Play(track)">
           <div class="trackNumber">{{track.trackNumber}}</div>
           <div class="playButton">
-            <i v-bind:class="track.icon"></i>
+            <i v-if="songIsPlaying(track)" class="far fa-pause-circle fa-2x" aria-hidden="true"></i>
+            <i v-else class="far fa-play-circle fa-2x" aria-hidden="true"></i>
           </div>
         </td>
         <td v-on:click="Play(track)">{{track.trackName}}</td>
-        <td class="tableCenter" v-on:click="Play(track)">{{track.trackTime}}</td>
+        <td class="tableCenter" v-on:click="Play(track)">{{millisToMinutesAndSeconds(track.trackTimeMillis)}}</td>
       </tr>
     </table>
 
@@ -60,45 +61,10 @@
       getAlbumTracks() {
         api.getAlbumTracks(this.albumId)
           .then((response) => {
-            const tracks = response;
+            this.trackList = response;
             this.albumLength = 0;
-            for (let i = 0; i < tracks.length; i += 1) {
-              this.albumLength += tracks[i].trackTimeMillis;
-              this.trackList.push({
-                trackNumber: tracks[i].trackNumber,
-                trackName: tracks[i].trackName,
-                trackTimeMillis: tracks[i].trackTimeMillis,
-                trackTime: this.millisToMinutesAndSeconds(tracks[i].trackTimeMillis),
-                previewUrl: tracks[i].previewUrl,
-                icon: 'far fa-play-circle fa-2x',
-                wrapperType: tracks[i].wrapperType,
-                kind: tracks[i].kind,
-                artistId: tracks[i].artistId,
-                collectionId: tracks[i].collectionId,
-                trackId: tracks[i].trackId,
-                artistName: tracks[i].artistName,
-                collectionName: tracks[i].collectionName,
-                collectionCensoredName: tracks[i].collectionCensoredName,
-                trackCensoredName: tracks[i].trackCensoredName,
-                artistViewUrl: tracks[i].artistViewUrl,
-                collectionViewUrl: tracks[i].collectionViewUrl,
-                trackViewUrl: tracks[i].trackViewUrl,
-                artworkUrl30: tracks[i].artworkUrl30,
-                artworkUrl60: tracks[i].artworkUrl60,
-                artworkUrl100: tracks[i].artworkUrl100,
-                collectionPrice: tracks[i].collectionPrice,
-                releaseDate: tracks[i].releaseDate,
-                collectionExplicitness: tracks[i].collectionExplicitness,
-                trackExplicitness: tracks[i].trackPrice,
-                discCount: tracks[i].discCount,
-                discNumber: tracks[i].discNumber,
-                trackCount: tracks[i].trackCount,
-                country: tracks[i].country,
-                currency: tracks[i].currency,
-                primaryGenreName: tracks[i].primaryGenreName,
-                contentAdvisoryRating: tracks[i].contentAdvisoryRating,
-                isStreamable: tracks[i].isStreamable
-              });
+            for (let i = 0; i < response.length; i += 1) {
+              this.albumLength += response[i].trackTimeMillis;
             }
           });
       },
@@ -123,24 +89,24 @@
             this.getPlaylists();
           });
       },
+      songIsPlaying(track) {
+        if (this.$parent.$data.playingSong.url === track.previewUrl) {
+          return !this.$parent.$data.playingSong.paused;
+        }
+        return false;
+      },
       Play(track) {
         const player = document.getElementById('playerMP3');
         if (this.$parent.$data.playingSong.url === track.previewUrl) {
           if (this.$parent.$data.playingSong.paused === false) {
             player.pause();
-            track.icon = 'far fa-play-circle fa-2x'; // eslint-disable-line no-param-reassign
             this.$parent.$data.playingSong.paused = true;
           } else {
             player.play();
-            track.icon = 'far fa-pause-circle fa-2x'; // eslint-disable-line no-param-reassign
             this.$parent.$data.playingSong.paused = false;
           }
         } else {
-          for (let i = 0; i < this.trackList.length; i += 1) {
-            this.trackList[i].icon = 'far fa-play-circle fa-2x';
-          }
           this.$parent.$data.playingSong.url = track.previewUrl;
-          track.icon = 'far fa-pause-circle fa-2x'; // eslint-disable-line no-param-reassign
           player.load();
           player.play();
           this.$parent.$data.playingSong.paused = false;
