@@ -7,15 +7,15 @@
         <th>Length</th>
       </tr>
       <tr v-for="track in trackList" >
-        <td class="tableCenter" v-on:click="Play(track)">
+        <td class="tableCenter" v-on:click="play(track)">
           <div class="trackNumber">{{track.trackNumber}}</div>
           <div class="playButton">
             <i v-if="songIsPlaying(track)" class="far fa-pause-circle fa-2x" aria-hidden="true"></i>
             <i v-else class="far fa-play-circle fa-2x" aria-hidden="true"></i>
           </div>
         </td>
-        <td v-on:click="Play(track)">{{track.trackName}}</td>
-        <td class="tableCenter" v-on:click="Play(track)">{{millisToMinutesAndSeconds(track.trackTimeMillis)}}</td>
+        <td v-on:click="play(track)">{{track.trackName}}</td>
+        <td class="tableCenter" v-on:click="play(track)">{{millisToMinutesAndSeconds(track.trackTimeMillis)}}</td>
       </tr>
     </table>
 
@@ -95,7 +95,7 @@
         }
         return false;
       },
-      Play(track) {
+      play(track) {
         const player = document.getElementById('playerMP3');
         if (this.$parent.$data.playingSong.url === track.previewUrl) {
           if (this.$parent.$data.playingSong.paused === false) {
@@ -127,7 +127,7 @@
 
 <style scoped>
   .bottomDiv {
-    margin: 20px 40px 60px;
+    margin: 20px 40px 160px;
     display: flex;
     justify-content: flex-start;
   }
@@ -206,9 +206,6 @@
     .songAlbumTable {
       margin: auto;
     }
-    .bottomDiv {
-      margin: 20px 20px 60px;
-    }
     .songAlbumTable td:nth-child(1) {
       width: 140px;
     }
@@ -220,10 +217,6 @@
     }
     .songAlbumTable {
       margin: auto;
-    }
-    .bottomDiv {
-      margin: 20px;
-      margin-bottom: 60px;
     }
     .songAlbumTable td:nth-child(1) {
       width: 140px;

@@ -35,7 +35,7 @@
       }
     },
     methods: {
-      async Play() {
+      async play() {
         this.$parent.$data.srcTest = this.tracks.previewUrl;
         document.getElementById('playerMP3').load();
         document.getElementById('playerMP3').play();
@@ -99,10 +99,6 @@
     height: 60px;
   }
 
-  .tableCenter {
-    text-align: center;
-  }
-
   /* Small devices (Portrait phones, 576px and up) */
   @media only screen and (min-width: 320px) and (max-width: 768px) {
     .albumInfoDiv h1 {
@@ -147,16 +143,5 @@
       display: block;
     }
 
-    .songAlbumTable tr:hover .trackNumber {
-      display: none;
-    }
-
-    .albumCoverDiv:hover .cover {
-      opacity: 0.5;
-    }
-
-    .albumCoverDiv:hover .middlePlayButton {
-      display: block;
-    }
   }
 </style>
