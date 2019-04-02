@@ -28,6 +28,7 @@
     float:left;
     margin-top: 30px;
     border-radius: 30px;
+    margin-bottom: 60px;
   }
 
   #trackResultTitle{
