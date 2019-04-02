@@ -42,33 +42,38 @@
     width:100%;
     float:left;
     margin-top: 30px;
+    border-radius: 30px;
   }
   div.artist {
-    margin: 15px 15px 15px 20px;
+    margin: 1% 0% 2% 2%;
     width: 150px;
-    height: 190px;
     float:left;
   }
 
-  div.artist:hover{
+  div.artist:hover {
     cursor: pointer;
     opacity: 0.5;
   }
 
-  .artistTitle{
-    width: 150px;
-    height: 40px;
+  .artistTitle {
     background-color: lightgreen;
     border: 1px solid black;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-align: center;
   }
-  #artistResultTitle{
-    margin-left: 10px;
+
+  #artistResultTitle {
+    margin: 2% 0% 0% 2%;
     width:100%;
     float:left;
   }
-  p{
+
+  p {
     margin: 1px;
+  }
+
+  .artistImg {
+    background-color: lightgray;
   }
 </style>

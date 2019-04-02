@@ -27,10 +27,12 @@
     width:100%;
     float:left;
     margin-top: 30px;
+    border-radius: 30px;
   }
 
   #trackResultTitle{
-    margin-left: 10px;
+    margin: 2% 0% 0% 2%;
+    /*margin-left: 10px;*/
     width:100%;
     float:left;
   }

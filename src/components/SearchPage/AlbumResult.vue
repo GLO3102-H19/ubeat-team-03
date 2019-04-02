@@ -43,29 +43,29 @@
     width:100%;
     float:left;
     margin-top: 30px;
+    border-radius: 30px;
   }
   div.album {
-    margin: 15px 15px 15px 20px;
-    width: 150px;
-    height: 190px;
+    margin: 1% 0% 2% 2%;
     float:left;
   }
 
-  div.album:hover{
+  div.album:hover {
     cursor: pointer;
     opacity: 0.5;
   }
 
-  .albumTitle{
+  .albumTitle {
     width: 150px;
-    height: 40px;
     background-color: lightgreen;
     border: 1px solid black;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-align: center;
   }
+
   #albumResultTitle{
-    margin-left: 10px;
+    margin: 2% 0% 0% 2%;
     width:100%;
     float:left;
   }
