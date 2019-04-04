@@ -1,14 +1,15 @@
 <template>
   <div>
+    <span id="closePopUp" v-on:click="$parent.defaultMode">&times;</span>
     <b-form @submit="onSubmit">
-      <b-form-group
+      <b-form-group id="test"
         label="Email address:"
         label-for="emailInput"
       >
         <b-form-input
           type="email"
           id="emailInput"
-          v-model="form.email"
+          v-model="email"
           required
           placeholder="Enter email" />
       </b-form-group>
@@ -20,41 +21,47 @@
         <b-form-input
           type="password"
           id="passwordInput"
-          v-model="form.password"
+          v-model="password"
           required
           placeholder="Enter password" />
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Log In</b-button>
+      <b-button type="submit" class="submitButton" variant="primary">Log In</b-button>
+      <b-button type="reset" v-on:click="reset" variant="danger">Reset</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
+  import * as api from '@/services/HomeAPI';
+  // import router from '@/router/router';
+
   export default {
-    props: ['login'],
-    data() {
-      return {
-        form: {
-          email: '',
-          name: '',
-          password: ''
-        },
-      };
-    },
+    data: () => ({
+      email: '',
+      password: ''
+    }),
     methods: {
       onSubmit(evt) {
         evt.preventDefault();
-        alert(JSON.stringify(this.form));
+        api.logUser(this.email, this.password).then((res) => {
+          console.log(res);
+        });
+        this.reset();
+        // router.push('User');
       },
-      onReset(evt) {
-        evt.preventDefault();
-        /* Reset our form values */
-        this.form.email = '';
-        this.form.name = '';
+      reset() {
+        this.email = '';
+        this.password = '';
       }
     },
   };
 </script>
 <style scoped>
+  #test{
+    font-size: medium;
+  }
+  .submitButton{
+    text-align: center;
+  }
 </style>

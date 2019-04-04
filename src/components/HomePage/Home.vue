@@ -10,8 +10,8 @@
         </b-col>
         <b-col class="row-2">
           <p class="right-content"></p>
-          <Login v-if="login" id="logInBox" v-bind:login="login"></Login>
-          <SignUp v-if="signup" id="signUpBox" v-bind:signup="signup"></SignUp>
+          <Login v-if="login" id="logInBox"></Login>
+          <SignUp v-if="signup" id="signUpBox"></SignUp>
           <p>Hear what the world's listening</p>
           <b-button class="login-button" variant="primary" v-on:click="logingIn">
             Log In
@@ -79,7 +79,8 @@
   position: absolute;
   left: 100px;
   right: 100px;
-  bottom: 75px;
+  font-size: medium;
+  text-align: start;
 
   border-radius: 15px;
   padding: 10px 20px 10px 20px;
@@ -93,11 +94,20 @@
   position: absolute;
   left: 100px;
   right: 100px;
-  bottom: 75px;
+  bottom: 170px;
+  font-size: medium;
+  text-align: start;
 
   border-radius: 15px;
   padding: 10px 20px 10px 20px;
   background-color: white;
+}
+#closePopUp{
+  font-size: 1.5em;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 0;
 }
 .footer {
   position: fixed;
@@ -108,7 +118,7 @@
 }
 
 /* Small devices (Portrait phones, 576px and up) */
-@media only screen and (min-width: 320px) and (max-width: 768px) {
+@media only screen and (min-width: 320px) and (max-width: 568px) {
   .footer {
     position: relative;
   }
@@ -130,11 +140,26 @@
   #signUpBox{
     left: 25px;
     right: 25px;
+    bottom: 50px;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .footer {
+    position: relative;
+  }
+
+  .row-1 {
+    display: none;
+  }
+  .signup-button {
+    width: 70%;
+  }
+
+  .login-button {
+    width: 70%;
+  }
   #logInBox{
     left: 75px;
     right: 75px;
@@ -142,6 +167,7 @@
   #signUpBox{
     left: 75px;
     right: 75px;
+    bottom: 260px;
   }
 }
 
