@@ -55,11 +55,6 @@
       password: ''
     }),
     methods: {
-      getArtistName() {
-        api.getArtistName(this.artistId).then((res) => {
-          this.artistName = res;
-        });
-      },
       onSubmit(evt) {
         evt.preventDefault();
         api.addUser(this.fullname, this.email, this.password).then((res) => {
