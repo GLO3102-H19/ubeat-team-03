@@ -7,7 +7,7 @@ const baseURL = 'http://ubeat.herokuapp.com/';
 
 const config = {
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
   }
 };
 
@@ -21,7 +21,7 @@ export const addUser = (name, email, password) => axios.post(`${baseURL}signup`,
 
 // Implémentation de la méthode POST
 // Permet de login un user
-export const logUser = (email, password) => axios.post(`${baseURL}login`, { body: qs.stringify({ email, password }) }, config)
+export const logUser = (email, password) => axios.post(`${baseURL}login`, qs.stringify({ email, password }), config)
   .then(response => console.log(response.data))
   .catch((error) => {
     throw error;
