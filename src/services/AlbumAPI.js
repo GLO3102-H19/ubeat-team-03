@@ -2,7 +2,17 @@ import axios from 'axios';
 
 const baseURL = 'http://ubeat.herokuapp.com/unsecure/albums/';
 
+const checkIfAlbumTpeIsAlbum = function (response) {
+  if (response.data.results[0].collectionType === 'Album') {
+    alert('Erreur');
+    throw Error(`${response.statusText} - ${response.baseURL}`);
+  }
+  console.log('Works');
+  return response;
+};
+
 export const getAlbumTitle = albumId => axios.get(baseURL + albumId)
+  .then(checkIfAlbumTpeIsAlbum)
   .then(response => response.data.results[0].collectionName)
   .catch((error) => {
     throw error;
