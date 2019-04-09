@@ -1,12 +1,32 @@
 <template>
   <b-col sm="5" id="friendsList">
     <h2 id="title">Friends</h2>
+    <table class="songAlbumTable">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Unfollow</th>
+      </tr>
+      <tr v-for="track in trackList" >
+        <td class="tableCenter" v-on:click="Play(track)">
+          <div class="trackNumber">{{track.trackNumber}}</div>
+          <div class="playButton">
+            <i v-bind:class="track.icon"></i>
+          </div>
+        </td>
+        <td v-on:click="Play(track)">{{track.trackName}}</td>
+        <td class="tableCenter" v-on:click="Play(track)">{{track.trackTime}}</td>
+      </tr>
+    </table>
   </b-col>
 </template>
 
 <script>
   export default {
-    name: 'UserFriends'
+    name: 'UserFriends',
+    data: () => ({
+      friends: [],
+    }),
   };
 </script>
 

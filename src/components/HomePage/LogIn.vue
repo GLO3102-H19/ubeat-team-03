@@ -34,7 +34,9 @@
 
 <script>
   import * as api from '@/services/HomeAPI';
-  // import router from '@/router/router';
+  import router from '@/router/router';
+  import { store } from '@/store/Store';
+  import Cookies from 'js-cookie';
 
   export default {
     data: () => ({
@@ -42,13 +44,21 @@
       password: ''
     }),
     methods: {
-      onSubmit(evt) {
+      async onSubmit(evt) {
         evt.preventDefault();
         api.logUser(this.email, this.password).then((res) => {
-          console.log(res);
+          store.setUserName(res.data.name);
+          store.setUserEmail(res.data.email);
+          store.setUserID(res.data.id);
+          store.setUserToken(res.data.token);
+
+          const date = new Date();
+          const minutes = 60;
+          date.setTime(date.getTime() + (minutes * 60 * 1000));
+          Cookies.set('token', res.data.token, { expires: date });
         });
         this.reset();
-        // router.push('User');
+        router.push('User');
       },
       reset() {
         this.email = '';

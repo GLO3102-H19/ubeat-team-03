@@ -8,31 +8,24 @@ const albumsPath = '/albums';
 // Implémentation de la méthode GET
 // Permet d'obtenir le nom de l'artiste'
 export const getArtistName = artistId => axios.get(baseURL + artistId)
-    .then(response => response.data.results[0].artistName)
-    .catch((error) => {
-      throw error;
-    });
+  .then(response => response.data.results[0].artistName)
+  .catch(error => error);
 
 // Implémentation de la méthode GET
 // Permet d'obtenir le genre de l'artiste'
 export const getArtistGenre = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].primaryGenreName)
-  .catch((error) => {
-    throw error;
-  });
+  .catch(error => error);
 
 // Implémentation de la méthode GET
 // Permet d'obtenir le lien URL de l'artiste'
 export const getArtistUrl = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].artistLinkUrl)
-  .catch((error) => {
-    throw error;
-  });
+  .catch(error => error);
 
 // Implémentation de la méthode GET
 // Permet d'obtenir le lien URL de l'artiste'
 export const getAlbumList = artistId => axios.get(baseURL + artistId + albumsPath)
   .then(response => response.data.results)
-  .catch((error) => {
-    throw error;
-  });
+  .catch(error => error);
+

@@ -1,4 +1,4 @@
-// Fichier contenant les communications avec l'API pour la page Artist
+// Fichier contenant les communications avec l'API pour la page Home
 import axios from 'axios';
 import qs from 'qs';
 
@@ -14,15 +14,23 @@ const config = {
 // Implémentation de la méthode POST
 // Permet d'ajouter un nouvel utilisateur
 export const addUser = (name, email, password) => axios.post(`${baseURL}signup`, { body: qs.stringify({ name, email, password }) }, config)
-  .then(response => console.log(response.data))
+  .then()
   .catch((error) => {
     throw error;
   });
 
 // Implémentation de la méthode POST
-// Permet de login un user
+// Permet de login un utilisateur
 export const logUser = (email, password) => axios.post(`${baseURL}login`, qs.stringify({ email, password }), config)
-  .then(response => console.log(response.data))
+  .then()
+  .catch((error) => {
+    throw error;
+  });
+
+// Implémentation de la méthode GET
+// Permet de logout
+export const logOut = () => axios.get(`${baseURL}logout`)
+  .then()
   .catch((error) => {
     throw error;
   });

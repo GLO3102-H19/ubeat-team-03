@@ -6,17 +6,39 @@
     </div>
     <div id="userInfos">
       <ul style="">
-        <li><h6>Username :</h6></li>
-        <li><h6>Email :</h6></li>
+        <li><h6>Username : <span>{{name}}</span></h6></li>
+        <li><h6>Email : <span>{{email}}</span></h6></li>
       </ul>
     </div>
   </b-col>
 </template>
 
 <script>
+  import * as api from '@/services/UserAPI';
+  import { store } from '@/store/Store';
+
   export default {
-    name: 'UserInfos'
-  };
+    data: () => ({
+      name: '',
+      email: ''
+    }),
+    methods: {
+      getUserName(id) {
+        api.getUserName(id).then((res) => {
+          this.name = res;
+        });
+      },
+      getUserEmail(id) {
+        api.getUserEmail(id).then((res) => {
+          this.email = res;
+        });
+      }
+    },
+    created() {
+      this.getUserName(store.state.userId);
+      this.getUserEmail(store.state.userId);
+    }
+};
 </script>
 
 <style scoped>

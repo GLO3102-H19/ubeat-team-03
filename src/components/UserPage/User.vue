@@ -1,5 +1,5 @@
 <template>
-  <div id="mainDiv">
+  <div class="mainDiv">
     <b-container fluid class="content">
       <b-row>
         <UserInfos></UserInfos>
@@ -13,14 +13,12 @@
 </template>
 
 <script>
-  // import * as api from '@/services/PlaylistAPI';
   import UserPlaylists from './UserPlaylists';
   import UserInfos from './UserInfos';
   import UserFriends from './UserFriends';
 
   export default {
     components: { UserPlaylists, UserInfos, UserFriends },
-    props: ['email', 'id', 'password'],
     data: () => ({
       playlists: [],
       friends: []
@@ -29,7 +27,7 @@
 </script>
 
 <style scoped>
-  #mainDiv {
+  .mainDiv {
     margin-top: 70px;
     padding: auto;
   }
