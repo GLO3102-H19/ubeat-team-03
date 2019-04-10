@@ -24,6 +24,7 @@ export const store = {
   },
   setSearchType(newValue) {
     this.state.typeSearch = newValue;
+  },
   setUserName(newValue) {
     this.state.userName = newValue;
   },
