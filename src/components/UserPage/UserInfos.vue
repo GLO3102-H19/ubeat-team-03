@@ -1,7 +1,8 @@
 <template>
   <b-col sm="7" id="infosDiv">
     <div id="infosHeader">
-      <b-button id="followButton" class="my-2 my-sm-0">Follow</b-button>
+      <b-button id="followButton" class="my-2 my-sm-0" v-if="!followedUser" v-on:click="newFollow">Follow</b-button>
+      <b-button id="unfollowButton" class="my-2 my-sm-0" v-if="followedUser" v-on:click="unFollow">Unfollow</b-button>
       <h2 id="title">Profile</h2>
     </div>
     <div id="userInfos">
@@ -15,12 +16,16 @@
 
 <script>
   import * as api from '@/services/UserAPI';
+  import { store } from '@/store/Store';
+  import friendsList from './UserFriends';
 
   export default {
     props: ['id'],
     data: () => ({
       name: '',
-      email: ''
+      email: '',
+      connectedUser: false,
+      followedUser: false,
     }),
     methods: {
       getUserName() {
@@ -32,11 +37,33 @@
         api.getUserEmail(this.id).then((res) => {
           this.email = res;
         });
+      },
+      isItConnectedUser() {
+        if (this.id === store.state.userIdConnected) {
+          this.connectedUser = true;
+        } else {
+          this.connectedUser = false;
+        }
+      },
+      newFollow() {
+        api.newFollow(this.id).then((res) => {
+          console.log(res);
+        });
+        this.followedUser = true;
+        friendsList.created();
+      },
+      unFollow() {
+        api.unFollow(this.id).then((res) => {
+          console.log(res);
+        });
+        this.followedUser = false;
+        friendsList.created();
       }
     },
     created() {
       this.getUserName();
       this.getUserEmail();
+      this.isItConnectedUser();
     }
 };
 </script>
@@ -56,6 +83,15 @@
   }
   #followButton:hover{
     background-color: aquamarine;
+  }
+  #unfollowButton{
+    color: black;
+    position: absolute;
+    left: 0;
+    background-color: red;
+  }
+  #unfollowButton:hover{
+    background-color: #ffa3ac;
   }
   #title{
   }

@@ -2,6 +2,7 @@
 import axios from 'axios';
 // import { store } from '@/store/Store';
 import Cookies from 'js-cookie';
+import qs from 'qs';
 
 // Adresse URL de base pour accéder à un artiste
 const baseURL = 'http://ubeat.herokuapp.com/';
@@ -50,3 +51,15 @@ export const getUserPlaylists = userId => axios.get('http://ubeat.herokuapp.com/
   .catch((error) => {
     throw error;
   });
+
+// Implémentation de la méthode POST
+// Permet de follow un user
+export const newFollow = userId => axios.post(`${baseURL}follow`, qs.stringify({ userId }), config)
+  .then(response => response.data)
+  .catch(error => error);
+
+// Implémentation de la méthode DELETE
+// Permet de unfollow un user
+export const unFollow = userId => axios.delete(`${baseURL}users/${userId}`, config)
+  .then(response => response.data)
+  .catch(error => error);

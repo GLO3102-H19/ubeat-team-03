@@ -22,8 +22,6 @@
     components: { UserPlaylists, UserInfos, UserFriends },
     data: () => ({
       userId: store.state.userIdToVisit,
-      playlists: [],
-      friends: []
     }),
   };
 </script>
