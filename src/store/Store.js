@@ -4,7 +4,8 @@ export const store = {
   state: {
     artistState: '',
     albumState: '',
-    searchTerm: ''
+    searchTerm: '',
+    typeSearch: ''
   },
   setAlbumState(newValue) {
     this.state.albumState = newValue;
@@ -14,6 +15,9 @@ export const store = {
   },
   setSearchState(newValue) {
     this.state.searchTerm = newValue;
+  },
+  setSearchType(newValue) {
+    this.state.typeSearch = newValue;
   }
 };
 

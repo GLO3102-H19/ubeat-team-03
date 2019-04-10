@@ -71,6 +71,7 @@
     methods: {
       loadSearchPage() {
         store.setSearchState(this.search);
+        store.setSearchType(this.select.selected);
         router.push('Search');
       }
     }
