@@ -11,7 +11,8 @@ export const store = {
     userEmail: '',
     userToken: '' || Cookies.get('token'),
     userIdConnected: '',
-    userIdToVisit: ''
+    userIdToVisit: '',
+    serverError: ''
   },
   setAlbumState(newValue) {
     this.state.albumState = newValue;
@@ -39,6 +40,9 @@ export const store = {
   },
   setUserIdToVisit(newValue) {
     this.state.userIdToVisit = newValue;
+  },
+  setServerError(newValue) {
+    this.state.serverError = newValue;
   },
   logOut() {
     this.state.userIdConnected = '';
