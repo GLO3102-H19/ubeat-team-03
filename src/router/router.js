@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '../components/Home';
+import Home from '../components/HomePage/Home';
 import Album from '../components/AlbumPage/Album';
 import Artist from '../components/ArtistPage/Artist';
 import Playlists from '../components/Playlists/Playlists';
+import Search from '../components/SearchPage/Search';
+import User from '../components/UserPage/User';
 
 Vue.use(Router);
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/playlists',
       name: 'Playlists',
       component: Playlists,
+      props: true
+    }, {
+      path: '/user',
+      name: 'User',
+      component: User,
+      props: true
+    }, {
+      path: '/search',
+      name: 'Search',
+      component: Search,
       props: true
     }
   ],

@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  import { store } from '@/store/Store';
   import Player from '../Player';
   import Header from './ArtistHeader';
   import AlbumHeader from './AlbumHeader';
@@ -20,8 +21,7 @@
   export default {
     components: { Player, Header, AlbumHeader, AlbumList, Notif },
     data: () => ({
-      // Nickelback par défaut
-      artistId: '5280361'
+      artistId: store.state.artistState
     }),
   };
 </script>

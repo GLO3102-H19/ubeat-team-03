@@ -6,35 +6,43 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item href="#/Album">Album</b-nav-item>
-        <b-nav-item href="#/Artist">Artist</b-nav-item>
+        <!--<b-nav-item href="#/Album">Album</b-nav-item>
+        <b-nav-item href="#/Artist">Artist</b-nav-item>-->
         <b-nav-item href="#/Playlists">Playlists</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input
+          <b-form-input v-model="search"
             size="sm"
             class="mr-sm-2"
             type="text"
             placeholder="Search"
           />
-          <b-button size="sm" class="my-2 my-sm-0"
-            ><font-awesome-icon icon="search"
-          /></b-button>
+          <b-form-select id="searchSelect" v-model="select.selected">
+            <option v-for="(selectOption, indexOpt) in select.options"
+            :key="indexOpt"
+            :value="selectOption"
+            >
+              {{ selectOption }}
+            </option>
+          </b-form-select>
+          <b-button size="sm" class="my-2 my-sm-0" v-on:click="loadSearchPage()"
+            ><font-awesome-icon icon="search"/>
+          </b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <template slot="button-content">
-            <em>Welcome user1</em>
+            <em>Welcome {{name}}</em>
           </template>
-          <b-dropdown-item href="#/"
-            ><font-awesome-icon icon="user" /> Profile</b-dropdown-item
+          <b-dropdown-item href="#/User"
+            ><font-awesome-icon icon="user"/> Profile</b-dropdown-item
           >
           <b-dropdown-item href="#/"
             ><font-awesome-icon icon="wrench" /> Settings</b-dropdown-item
           >
-          <b-dropdown-item href="#/"
-            ><font-awesome-icon icon="sign-out-alt" /> Signout</b-dropdown-item
+          <b-dropdown-item href="#/"  v-on:click="logOut"
+          ><font-awesome-icon icon="sign-out-alt"/> Signout</b-dropdown-item
           >
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -42,12 +50,45 @@
   </b-navbar>
 </template>
 
+<script>
+  import router from '@/router/router';
+  import { store } from '@/store/Store';
+  import * as api from '@/services/HomeAPI';
+
+  export default {
+    props: ['name'],
+    data: () => ({
+      search: '',
+      select: {
+        selected: 'Global',
+        options: [
+          'Global',
+          'Album',
+          'Artist',
+          'Track',
+          'User'
+        ]
+      }
+    }),
+    methods: {
+      loadSearchPage() {
+        store.setSearchState(this.search);
+        router.push('Search');
+      },
+      logOut() {
+        api.logOut();
+        store.logOut();
+      }
+    }
+  };
+</script>
+
 <style>
 .navbar {
   font-family: Montserrat, sans-serif;
   font-size: 12px !important;
   letter-spacing: 1px;
-  border-radius: 0px;
+  border-radius: 0;
   border-bottom: 4px solid #1d6aec;
   border-right: 1px solid #1d6aec;
 }
@@ -67,6 +108,11 @@
   color: #007ff7;
 }
 
+#searchSelect {
+  height: 31px;
+  font-size: 0.875rem;
+}
+
 .dropdown-item {
   color: black !important;
 }
@@ -81,6 +127,8 @@
 }
 
 .btn-secondary {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   background-color: lightgreen;
   border-color: lightgreen;
 }

@@ -44,7 +44,7 @@
   import * as apiPlaylist from '@/services/PlaylistAPI';
 
   export default {
-    props: ['email', 'id', 'albumId'],
+    props: ['email', 'id', 'albumId', 'searchTrackList', 'search'],
     data: () => ({
       trackList: [],
       albumLength: '',
@@ -114,7 +114,11 @@
       }
     },
     created() {
-      this.getAlbumTracks();
+      if (this.search) {
+        this.trackList = this.searchTrackList;
+      } else {
+        this.getAlbumTracks();
+      }
       this.getPlaylists();
     },
     mounted() {

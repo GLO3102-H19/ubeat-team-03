@@ -1,8 +1,8 @@
 <template>
   <div class="mainDiv">
-    <AlbumInfo v-bind:albumId="albumId" v-bind:id="id"></AlbumInfo>
+    <AlbumInfo v-bind:albumId="albumId" v-bind:artistId="artistId" v-bind:id="id"></AlbumInfo>
 
-    <AlbumTracks v-bind:email="email" v-bind:id="id" v-bind:albumId="albumId"></AlbumTracks>
+    <AlbumTracks v-bind:email="email" v-bind:id="id" v-bind:albumId="albumId" v-bind:search="search"></AlbumTracks>
 
     <Player v-bind:source="playingSong.url"/>
   </div>
@@ -19,9 +19,10 @@
     props: ['email', 'id'],
     data: () => ({
       albumId: store.state.albumState,
-      artistId: '5280361',
+      artistId: store.state.artistState,
       errors: [],
       playingSong: { url: '', paused: false },
+      search: false
     }),
   };
 </script>
