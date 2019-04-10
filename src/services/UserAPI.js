@@ -19,6 +19,14 @@ export const getUserName = userId => axios.get(`${baseURL}users/${userId}`, conf
   .then(response => response.data.name)
   .catch(error => error);
 
+// Implémentation de la méthode GET
+// Permet d'obtenir les informations de l'utilisateur
 export const getUserEmail = userId => axios.get(`${baseURL}users/${userId}`, config)
   .then(response => response.data.email)
+  .catch(error => error);
+
+// Implémentation de la méthode GET
+// Permet d'obtenir la liste des amis de l'utilisateur
+export const getUserFriends = userId => axios.get(`${baseURL}users/${userId}`, config)
+  .then(response => response.data.following)
   .catch(error => error);

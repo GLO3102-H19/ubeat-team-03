@@ -15,28 +15,29 @@
 
 <script>
   import * as api from '@/services/UserAPI';
-  import { store } from '@/store/Store';
+  // import { store } from '@/store/Store';
 
   export default {
+    props: ['id'],
     data: () => ({
       name: '',
       email: ''
     }),
     methods: {
-      getUserName(id) {
-        api.getUserName(id).then((res) => {
+      getUserName() {
+        api.getUserName(this.id).then((res) => {
           this.name = res;
         });
       },
-      getUserEmail(id) {
-        api.getUserEmail(id).then((res) => {
+      getUserEmail() {
+        api.getUserEmail(this.id).then((res) => {
           this.email = res;
         });
       }
     },
     created() {
-      this.getUserName(store.state.userId);
-      this.getUserEmail(store.state.userId);
+      this.getUserName();
+      this.getUserEmail();
     }
 };
 </script>

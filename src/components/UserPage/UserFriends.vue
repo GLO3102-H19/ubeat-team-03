@@ -1,37 +1,57 @@
 <template>
-  <b-col sm="5" id="friendsList">
-    <h2 id="title">Friends</h2>
-    <table class="songAlbumTable">
+  <b-col sm="5" class="friendsList">
+    <h2 id="title">Following</h2>
+    <table>
       <tr>
+        <th>Profile</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Unfollow</th>
       </tr>
-      <tr v-for="track in trackList" >
-        <td class="tableCenter" v-on:click="Play(track)">
-          <div class="trackNumber">{{track.trackNumber}}</div>
-          <div class="playButton">
-            <i v-bind:class="track.icon"></i>
-          </div>
+      <tr v-for="friend in friends" >
+        <td>
+          <div><i class="fas fa-address-book"></i></div>
         </td>
-        <td v-on:click="Play(track)">{{track.trackName}}</td>
-        <td class="tableCenter" v-on:click="Play(track)">{{track.trackTime}}</td>
+        <td>
+          <div>{{friend.name}}</div>
+        </td>
+        <td>
+          <div>{{friend.email}}</div>
+        </td>
       </tr>
     </table>
   </b-col>
 </template>
 
 <script>
+  import * as api from '@/services/UserAPI';
+
   export default {
     name: 'UserFriends',
+    props: ['id'],
     data: () => ({
       friends: [],
     }),
+    methods: {
+      getUserFriends() {
+        api.getUserFriends(this.id).then((res) => {
+          console.log(res);
+          const followingList = res;
+
+          for (let i = 0; i < followingList.length; i += 1) {
+            this.friends.push(followingList[i]);
+          }
+        });
+      }
+    },
+    created() {
+      this.getUserFriends();
+    }
   };
+
 </script>
 
 <style scoped>
-  #friendsList{
+  .friendsList{
     background-color: lightskyblue;
     border-radius: 15px;
     padding: 10px 10px 10px 10px;

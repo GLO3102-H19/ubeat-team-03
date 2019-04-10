@@ -3,15 +3,15 @@
     <span id="closePopUp" v-on:click="$parent.defaultMode">&times;</span>
     <b-form @submit="onSubmit">
       <b-form-group
-        label="Full name:"
+        label="Name:"
         label-for="firstNameInput"
       >
         <b-form-input
           type="text"
-          id="fullNameInput"
+          id="nameInput"
           v-model="fullname"
           required
-          placeholder="Enter full name" />
+          placeholder="Enter name" />
       </b-form-group>
 
       <b-form-group

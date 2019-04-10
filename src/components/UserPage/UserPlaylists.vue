@@ -1,5 +1,5 @@
 <template>
-  <b-col id="playlists">
+  <b-col class="playlists">
     <h2 id="title">Playlists</h2>
     <table class="songAlbumTable">
       <tr>
@@ -21,7 +21,7 @@
 </script>
 
 <style scoped>
-  #playlists{
+  .playlists{
     background-color: lightskyblue;
     border-radius: 15px;
     padding: 10px 10px 10px 10px;

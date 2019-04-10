@@ -34,7 +34,7 @@
 
 <script>
   import * as api from '@/services/HomeAPI';
-  import router from '@/router/router';
+  // import router from '@/router/router';
   import { store } from '@/store/Store';
   import Cookies from 'js-cookie';
 
@@ -58,7 +58,7 @@
           Cookies.set('token', res.data.token, { expires: date });
         });
         this.reset();
-        router.push('User');
+        // router.push('User');
       },
       reset() {
         this.email = '';

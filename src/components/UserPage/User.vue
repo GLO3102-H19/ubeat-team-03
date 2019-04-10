@@ -2,11 +2,11 @@
   <div class="mainDiv">
     <b-container fluid class="content">
       <b-row>
-        <UserInfos></UserInfos>
-        <UserFriends></UserFriends>
+        <UserInfos v-bind:id="userId"></UserInfos>
+        <UserFriends v-bind:id="userId"></UserFriends>
       </b-row>
       <b-row>
-        <UserPlaylists></UserPlaylists>
+        <UserPlaylists v-bind:id="userId"></UserPlaylists>
       </b-row>
     </b-container>
   </div>
@@ -20,6 +20,7 @@
   export default {
     components: { UserPlaylists, UserInfos, UserFriends },
     data: () => ({
+      userId: '5ca68d752ac4350004085bd4',
       playlists: [],
       friends: []
     }),

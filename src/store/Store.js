@@ -7,7 +7,8 @@ export const store = {
     userName: '',
     userEmail: '',
     userToken: '' || Cookies.get('token'),
-    userId: ''
+    userIdConnected: '',
+    userIdToVisit: ''
   },
   setAlbumState(newValue) {
     this.state.albumState = newValue;
@@ -22,7 +23,7 @@ export const store = {
     this.state.userToken = newValue;
   },
   setUserID(newValue) {
-    this.state.userId = newValue;
+    this.state.userIdConnected = newValue;
   },
   logOut() {
     this.state.userId = '';
