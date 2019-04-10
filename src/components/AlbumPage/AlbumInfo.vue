@@ -17,7 +17,7 @@
              style="display:inline-block;overflow:hidden;width:180px;height:40px;"></a>
         </b-container>
         <b-container class="addDeleteButtons">
-          <b-dropdown id="ddown-dropright" size="sm" dropright text="Add in PlayList" >
+          <b-dropdown id="addToPlaylist" size="sm" dropright text="Add in PlayList" >
             <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
             <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
               {{playlist.name}}
@@ -169,10 +169,10 @@
 <style scoped>
   .topDiv {
     height: 300px;
-    margin: 70px 40px;
+    margin: 110px 20px 50px;
   }
   .albumCoverDiv {
-    max-width: 800px;
+    max-width: 350px;
   }
   .albumDiv {
     display: flex;
@@ -183,6 +183,11 @@
     justify-content: flex-start;
     position: relative;
   }
+  #addToPlaylist {
+    margin-left: -1.4rem;
+    margin-top: 0.5rem;
+  }
+
   .bandAlbumInfo {
     margin-top: 15px;
   }

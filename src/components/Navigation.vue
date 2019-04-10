@@ -19,7 +19,7 @@
             type="text"
             placeholder="Search"
           />
-          <b-form-select v-model="select.selected">
+          <b-form-select id="searchSelect" v-model="select.selected">
             <option v-for="(selectOption, indexOpt) in select.options"
             :key="indexOpt"
             :value="selectOption"
@@ -100,6 +100,11 @@
 .navbar-default .navbar-toggle {
   border-color: transparent;
   color: #007ff7;
+}
+
+#searchSelect {
+  height: 31px;
+  font-size: 0.875rem;
 }
 
 .dropdown-item {
