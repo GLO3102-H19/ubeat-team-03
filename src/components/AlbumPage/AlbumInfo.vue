@@ -33,9 +33,10 @@
 <script>
   import * as api from '@/services/AlbumAPI';
   import * as apiPlaylist from '@/services/PlaylistAPI';
+  import { store } from '@/store/Store';
 
   export default {
-    props: ['artistId', 'albumId', 'id'],
+    props: ['artistId', 'albumId'],
     data: () => ({
       artist: '',
       title: '',
@@ -48,6 +49,7 @@
       trackList: [],
       albumLength: '',
       playlists: [],
+      idUser: store.state.userIdConnected
     }),
     methods: {
       millisToMinutesAndSeconds(millis) {
@@ -118,7 +120,7 @@
           });
       },
       getPlaylists() {
-        apiPlaylist.getPlaylists(this.id).then((res) => {
+        apiPlaylist.getPlaylists(this.idUser).then((res) => {
           this.playlists = res;
         });
       },

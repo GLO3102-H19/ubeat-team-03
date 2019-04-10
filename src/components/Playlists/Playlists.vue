@@ -40,13 +40,13 @@
 </template>
 
 <script>
+  import { store } from '@/store/Store';
   import * as api from '@/services/PlaylistAPI';
   import PlaylistsUser from './PlaylistsUser';
   import PlaylistInfo from './PlaylistInfo';
 
   export default {
     components: { PlaylistInfo, PlaylistsUser },
-    props: ['email', 'id'],
     data: () => ({
       playlistsName: '',
       playListInfo: {
@@ -60,18 +60,20 @@
       },
       playlists: [],
       posts: [],
-      errors: []
+      errors: [],
+      idUser: store.state.userIdConnected,
+      emailUser: store.state.userEmail
     }),
     name: 'Playlists',
     methods: {
       insertNewPlaylist() {
-        api.insertNewPlaylist(this.playlistsName, this.email).then((res) => {
+        api.insertNewPlaylist(this.playlistsName, this.emailUser).then((res) => {
           this.posts = res;
           this.playlists.push(this.posts);
         });
       },
       getPlaylists() {
-        api.getPlaylists(this.id).then((res) => {
+        api.getPlaylists(this.idUser).then((res) => {
           this.playlists = res;
         });
       }

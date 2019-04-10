@@ -1,7 +1,7 @@
 <template>
   <div id="userResultContainer">
     <div id="userResultTitle"><h2>User</h2></div>
-    <div class="user"  v-for="item in userResult" v-bind:key="item.id" v-on:click="loadUserPage()">
+    <div class="user"  v-for="item in userResult" v-bind:key="item.id" v-on:click="loadUserPage(item.id)">
       <div class="userImg">
         <b-img
           src="../static/user.png"
@@ -19,6 +19,7 @@
 
 <script>
   import router from '@/router/router';
+  import { store } from '@/store/Store';
 
   export default {
     name: 'UserResult',
@@ -27,7 +28,8 @@
       search: ''
     }),
     methods: {
-      loadUserPage() {
+      loadUserPage(id) {
+        store.setUserIdToVisit(id);
         router.push('User');
       }
     }

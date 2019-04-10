@@ -2,7 +2,7 @@
   <tr>
     <td class="col-sm-3">
       <div class="songNumber"> {{tracks.trackNumber}} </div>
-      <div class="playButton" v-on:click="Play">
+      <div class="playButton" v-on:click="play">
         <i class="far fa-play-circle fa-2x"></i>
       </div>
     </td>
