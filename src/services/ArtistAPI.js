@@ -10,6 +10,7 @@ const albumsPath = '/albums';
 export const getArtistName = artistId => axios.get(baseURL + artistId)
     .then(response => response.data.results[0].artistName)
     .catch((error) => {
+      alert(`${error.response.status} ${error.response.statusText}`);
       throw error;
     });
 
@@ -18,6 +19,7 @@ export const getArtistName = artistId => axios.get(baseURL + artistId)
 export const getArtistGenre = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].primaryGenreName)
   .catch((error) => {
+    alert(`${error.response.status} ${error.response.statusText}`);
     throw error;
   });
 
@@ -26,6 +28,7 @@ export const getArtistGenre = artistId => axios.get(baseURL + artistId)
 export const getArtistUrl = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].artistLinkUrl)
   .catch((error) => {
+    alert(`${error.response.status} ${error.response.statusText}`);
     throw error;
   });
 
@@ -34,5 +37,6 @@ export const getArtistUrl = artistId => axios.get(baseURL + artistId)
 export const getAlbumList = artistId => axios.get(baseURL + artistId + albumsPath)
   .then(response => response.data.results)
   .catch((error) => {
+    alert(`${error.response.status} ${error.response.statusText}`);
     throw error;
   });

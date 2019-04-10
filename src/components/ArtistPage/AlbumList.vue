@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import router from '@/router/index';
+  import router from '@/router/router';
   import * as api from '@/services/ArtistAPI';
   import { store } from '@/store/Store';
 

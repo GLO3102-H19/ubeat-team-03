@@ -1,35 +1,33 @@
 <template>
-  <div class="topDiv">
-    <div class="albumDiv">
-      <div class="albumCoverDiv">
+  <b-container class="topDiv">
+    <b-container class="albumDiv">
+      <b-container class="albumCoverDiv">
         <img class="cover" v-bind:alt="title" v-bind:src="cover"/>
-        <div class="middlePlayButton">
-          <i class="fas fa-play-circle fa-5x"></i>
-        </div>
-      </div>
-    </div>
+      </b-container>
 
-    <div class="albumInfoDiv">
-      <h1>{{title}}</h1>
-      <h2 class="bandAlbumInfo">{{artist}}</h2>
-      <h5 class="styleAlbumInfo">{{year}} - {{genre}}</h5>
-      <h6 class="songsAlbumInfo">{{songCount}} songs, {{time}} minutes</h6>
-      <div class="iTunesLink">
-        <a v-bind:href="appleLink"
-           target="_blank"
-           style="display:inline-block;overflow:hidden;width:180px;height:40px;"></a>
-      </div>
-      <div class="addDeleteButtons">
-        <b-dropdown id="ddown-dropright" size="sm" dropright text="Add in PlayList" >
-          <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
-          <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
-            {{playlist.name}}
-            <i v-if="albumInPlaylist(playlist)" class="fa fa-check" aria-hidden="true"></i>
-          </b-dropdown-item>
-        </b-dropdown>
-      </div>
-    </div>
-  </div>
+
+      <b-container class="albumInfoDiv">
+        <h1>{{title}}</h1>
+        <h2 class="bandAlbumInfo">{{artist}}</h2>
+        <h5 class="styleAlbumInfo">{{year}} - {{genre}}</h5>
+        <h6 class="songsAlbumInfo">{{songCount}} songs, {{time}} minutes</h6>
+        <b-container class="iTunesLink">
+          <a v-bind:href="appleLink"
+             target="_blank"
+             style="display:inline-block;overflow:hidden;width:180px;height:40px;"></a>
+        </b-container>
+        <b-container class="addDeleteButtons">
+          <b-dropdown id="addToPlaylist" size="sm" dropright text="Add in PlayList" >
+            <!-- <b-dropdown-item href="#" class="dropdownMenu" v-on:click="selectedPlaylist(item)"></b-dropdown-item> -->
+            <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(trackList, playlist)">
+              {{playlist.name}}
+              <i v-if="albumInPlaylist(playlist)" class="fa fa-check" aria-hidden="true"></i>
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-container>
+      </b-container>
+    </b-container>
+  </b-container>
 </template>
 
 <script>
@@ -61,6 +59,7 @@
         api.getAlbumTitle(this.albumId)
           .then((response) => {
             this.title = response;
+            console.log(response);
           });
       },
       getAlbumArtistName() {
@@ -170,34 +169,25 @@
 <style scoped>
   .topDiv {
     height: 300px;
-    margin: 70px 40px;
-    display: flex;
-  }
-  .albumDiv {
-    align-content: space-between;
+    margin: 110px 20px 50px;
   }
   .albumCoverDiv {
-    position: relative;
-    cursor: pointer;
+    max-width: 350px;
   }
-  .albumCoverDiv:hover .cover {
-    opacity: 0.5;
-  }
-  .albumCoverDiv:hover .middlePlayButton {
-    display: block;
-  }
-  .middlePlayButton {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -40px;
+  .albumDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
   }
   .albumInfoDiv {
     justify-content: flex-start;
-    margin-left: 30px;
     position: relative;
   }
+  #addToPlaylist {
+    margin-left: -1.4rem;
+    margin-top: 0.5rem;
+  }
+
   .bandAlbumInfo {
     margin-top: 15px;
   }
