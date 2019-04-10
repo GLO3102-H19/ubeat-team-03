@@ -51,7 +51,7 @@
 </template>
 
 <script>
-  import router from '@/router/index';
+  import router from '@/router/router';
   import { store } from '@/store/Store';
   import * as api from '@/services/HomeAPI';
 
