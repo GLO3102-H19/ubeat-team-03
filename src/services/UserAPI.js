@@ -30,3 +30,23 @@ export const getUserEmail = userId => axios.get(`${baseURL}users/${userId}`, con
 export const getUserFriends = userId => axios.get(`${baseURL}users/${userId}`, config)
   .then(response => response.data.following)
   .catch(error => error);
+
+// Implémentation de la méthode GET
+// Permet d'update la liste des playlists
+export const getUserPlaylists = userId => axios.get('http://ubeat.herokuapp.com/playlists', config)
+  .then((response) => {
+    const posts = response.data;
+    const playlists = [];
+
+    for (let i = 0; i < posts.length; i += 1) {
+      if (Object.prototype.hasOwnProperty.call(posts[i], 'owner')) {
+        if (posts[i].owner.id === userId) {
+          playlists.push(posts[i]);
+        }
+      }
+    }
+    return playlists;
+  })
+  .catch((error) => {
+    throw error;
+  });

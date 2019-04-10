@@ -49,7 +49,8 @@
         api.logUser(this.email, this.password).then((res) => {
           store.setUserName(res.data.name);
           store.setUserEmail(res.data.email);
-          store.setUserID(res.data.id);
+          store.setUserIdConnected(res.data.id);
+          store.setUserIdToVisit(res.data.id);
           store.setUserToken(res.data.token);
 
           const date = new Date();

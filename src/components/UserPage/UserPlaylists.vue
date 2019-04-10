@@ -3,20 +3,48 @@
     <h2 id="title">Playlists</h2>
     <table class="songAlbumTable">
       <tr>
-        <th>#</th>
         <th>Name</th>
-        <th>#Songs</th>
-        <th>Length</th>
         <th>Owner</th>
         <th><font-awesome-icon icon="trash" /></th>
+      </tr>
+      <tr v-for="playlist in playlists" >
+        <td>
+          <div><i class="fas fa-address-book"></i></div>
+        </td>
+        <td>
+          <div>{{playlist.name}}</div>
+        </td>
+        <td>
+          <div>{{playlist.owner.name}}</div>
+        </td>
       </tr>
     </table>
   </b-col>
 </template>
 
 <script>
+  import * as api from '@/services/UserAPI';
+
   export default {
-    name: 'UserPlaylists'
+    props: ['id'],
+    name: 'UserPlaylists',
+    data: () => ({
+      playlists: []
+    }),
+    methods: {
+      getUserPlaylists() {
+        api.getUserPlaylists(this.id).then((res) => {
+          const playlistsList = res;
+
+          for (let i = 0; i < playlistsList.length; i += 1) {
+            this.playlists.push(playlistsList[i]);
+          }
+        });
+      }
+    },
+    created() {
+      this.getUserPlaylists();
+    }
   };
 </script>
 

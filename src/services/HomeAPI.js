@@ -19,7 +19,7 @@ const config2 = {
 
 // Implémentation de la méthode POST
 // Permet d'ajouter un nouvel utilisateur
-export const addUser = (name, email, password) => axios.post(`${baseURL}signup`, { body: qs.stringify({ name, email, password }) }, config1)
+export const addUser = (name, email, password) => axios.post(`${baseURL}signup`, qs.stringify({ name, email, password }), config1)
   .then()
   .catch((error) => {
     throw error;

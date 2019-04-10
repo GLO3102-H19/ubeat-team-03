@@ -22,7 +22,10 @@ export const store = {
   setUserToken(newValue) {
     this.state.userToken = newValue;
   },
-  setUserID(newValue) {
+  setUserIdConnected(newValue) {
+    this.state.userIdConnected = newValue;
+  },
+  setUserIdToVisit(newValue) {
     this.state.userIdConnected = newValue;
   },
   logOut() {

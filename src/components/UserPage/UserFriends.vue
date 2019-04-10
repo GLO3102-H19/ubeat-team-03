@@ -1,7 +1,7 @@
 <template>
   <b-col sm="5" class="friendsList">
     <h2 id="title">Following</h2>
-    <table>
+    <table class="songAlbumTable">
       <tr>
         <th>Profile</th>
         <th>Name</th>
@@ -34,7 +34,6 @@
     methods: {
       getUserFriends() {
         api.getUserFriends(this.id).then((res) => {
-          console.log(res);
           const followingList = res;
 
           for (let i = 0; i < followingList.length; i += 1) {
@@ -58,6 +57,29 @@
   }
   #title{
     text-align: center;
+  }
+  .songAlbumTable th {
+    border: none;
+    background: white;
+    text-align: center;
+  }
+  .songAlbumTable td {
+    cursor: pointer;
+  }
+  .songAlbumTable td:nth-child(1) {
+    width: 60px;
+  }
+  .songAlbumTable th:nth-child(2) {
+    text-align: left;
+    width: 1500px;
+  }
+  .songAlbumTable th:nth-child(3) {
+    width: 80px;
+  }
+  .songAlbumTable tr {
+    border: 2px solid white;
+    background: #e8e8e8;
+    height: 50px;
   }
   /* Small devices (Portrait phones, 768px and down) */
   @media only screen and (min-width: 320px) and (max-width: 768px) {
