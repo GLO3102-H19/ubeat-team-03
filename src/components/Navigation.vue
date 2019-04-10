@@ -33,16 +33,16 @@
         </b-nav-form>
         <b-nav-item-dropdown right>
           <template slot="button-content">
-            <em>Welcome user1</em>
+            <em>Welcome {{name}}</em>
           </template>
-          <b-dropdown-item href="#/"
-            ><font-awesome-icon icon="user" /> Profile</b-dropdown-item
+          <b-dropdown-item href="#/User"
+            ><font-awesome-icon icon="user"/> Profile</b-dropdown-item
           >
           <b-dropdown-item href="#/"
             ><font-awesome-icon icon="wrench" /> Settings</b-dropdown-item
           >
-          <b-dropdown-item href="#/"
-            ><font-awesome-icon icon="sign-out-alt" /> Signout</b-dropdown-item
+          <b-dropdown-item href="#/"  v-on:click="logOut"
+          ><font-awesome-icon icon="sign-out-alt"/> Signout</b-dropdown-item
           >
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -53,8 +53,10 @@
 <script>
   import router from '@/router/index';
   import { store } from '@/store/Store';
+  import * as api from '@/services/HomeAPI';
 
   export default {
+    props: ['name'],
     data: () => ({
       search: '',
       select: {
@@ -72,6 +74,10 @@
       loadSearchPage() {
         store.setSearchState(this.search);
         router.push('Search');
+      },
+      logOut() {
+        api.logOut();
+        store.logOut();
       }
     }
   };
@@ -82,7 +88,7 @@
   font-family: Montserrat, sans-serif;
   font-size: 12px !important;
   letter-spacing: 1px;
-  border-radius: 0px;
+  border-radius: 0;
   border-bottom: 4px solid #1d6aec;
   border-right: 1px solid #1d6aec;
 }

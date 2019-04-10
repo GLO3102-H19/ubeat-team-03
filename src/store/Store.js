@@ -1,10 +1,16 @@
-// Fichier permettant de partager l'id de l'album à afficher sur la page Album
-// Permet la communication et la modification de l'id par AlbumList(Artist) et Album
+// Fichier permettant le partage d'informations à travers les components
+import Cookies from 'js-cookie';
+
 export const store = {
   state: {
     artistState: '',
     albumState: '',
-    searchTerm: ''
+    searchTerm: '',
+    userName: '',
+    userEmail: '',
+    userToken: '' || Cookies.get('token'),
+    userIdConnected: '',
+    userIdToVisit: ''
   },
   setAlbumState(newValue) {
     this.state.albumState = newValue;
@@ -14,6 +20,28 @@ export const store = {
   },
   setSearchState(newValue) {
     this.state.searchTerm = newValue;
+  },
+  setUserName(newValue) {
+    this.state.userName = newValue;
+  },
+  setUserEmail(newValue) {
+    this.state.userEmail = newValue;
+  },
+  setUserToken(newValue) {
+    this.state.userToken = newValue;
+  },
+  setUserIdConnected(newValue) {
+    this.state.userIdConnected = newValue;
+  },
+  setUserIdToVisit(newValue) {
+    this.state.userIdConnected = newValue;
+  },
+  logOut() {
+    this.state.userId = '';
+    this.state.userName = '';
+    this.state.userEmail = '';
+    this.state.userToken = '';
+    Cookies.remove('token');
   }
 };
 

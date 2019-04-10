@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <nav-menu></nav-menu>
-    <router-view v-bind:email="userEmail" v-bind:id="userId"></router-view>
+    <nav-menu v-bind:name="userName"></nav-menu>
+    <router-view v-bind:email="userEmail" v-bind:id="userId" v-bind:password="userpassword"></router-view>
   </div>
 </template>
 
 <script>
 import Navigation from '@/components/Navigation';
+import { store } from '@/store/Store';
 
 export default {
   name: 'app',
@@ -14,8 +15,10 @@ export default {
     'nav-menu': Navigation
   },
   data: () => ({
-    userId: '5c797c1fe3a71b00042adfc5',
-    userEmail: 'team3sfscmaedhmk@mail.com'
+    userId: store.state.userId,
+    userName: store.state.userName,
+    userEmail: store.state.userEmail,
+    userpassword: ''
   })
 };
 </script>
