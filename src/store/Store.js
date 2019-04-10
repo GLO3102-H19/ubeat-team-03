@@ -6,6 +6,7 @@ export const store = {
     artistState: '',
     albumState: '',
     searchTerm: '',
+    typeSearch: '',
     userName: '',
     userEmail: '',
     userToken: '' || Cookies.get('token'),
@@ -21,6 +22,8 @@ export const store = {
   setSearchState(newValue) {
     this.state.searchTerm = newValue;
   },
+  setSearchType(newValue) {
+    this.state.typeSearch = newValue;
   setUserName(newValue) {
     this.state.userName = newValue;
   },
