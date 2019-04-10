@@ -13,15 +13,23 @@
 
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input
+          <b-form-input v-model="search"
             size="sm"
             class="mr-sm-2"
             type="text"
             placeholder="Search"
           />
-          <b-button size="sm" class="my-2 my-sm-0"
-            ><font-awesome-icon icon="search"
-          /></b-button>
+          <b-form-select v-model="select.selected">
+            <option v-for="(selectOption, indexOpt) in select.options"
+            :key="indexOpt"
+            :value="selectOption"
+            >
+              {{ selectOption }}
+            </option>
+          </b-form-select>
+          <b-button size="sm" class="my-2 my-sm-0" v-on:click="loadSearchPage()"
+            ><font-awesome-icon icon="search"/>
+          </b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <template slot="button-content">
@@ -41,6 +49,33 @@
     </b-collapse>
   </b-navbar>
 </template>
+
+<script>
+  import router from '@/router/index';
+  import { store } from '@/store/Store';
+
+  export default {
+    data: () => ({
+      search: '',
+      select: {
+        selected: 'Global',
+        options: [
+          'Global',
+          'Album',
+          'Artist',
+          'Track',
+          'User'
+        ]
+      }
+    }),
+    methods: {
+      loadSearchPage() {
+        store.setSearchState(this.search);
+        router.push('Search');
+      }
+    }
+  };
+</script>
 
 <style>
 .navbar {
@@ -81,6 +116,8 @@
 }
 
 .btn-secondary {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   background-color: lightgreen;
   border-color: lightgreen;
 }

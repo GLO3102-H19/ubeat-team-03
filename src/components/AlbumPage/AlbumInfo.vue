@@ -37,7 +37,7 @@
   export default {
     props: ['artistId', 'albumId', 'id'],
     data: () => ({
-      artist: 'Nickelback',
+      artist: '',
       title: '',
       cover: '',
       year: '',
@@ -60,6 +60,12 @@
           .then((response) => {
             this.title = response;
             console.log(response);
+          });
+      },
+      getAlbumArtistName() {
+        api.getArtist(this.albumId)
+          .then((response) => {
+            this.artist = response;
           });
       },
       getAlbumCover() {
@@ -155,6 +161,7 @@
       this.getAlbumTime();
       this.getAlbumTracks();
       this.getPlaylists();
+      this.getAlbumArtistName();
     }
   };
 </script>

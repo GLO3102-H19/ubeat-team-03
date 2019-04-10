@@ -12,6 +12,12 @@ export const getAlbumTitle = albumId => axios.get(baseURL + albumId)
     throw error;
   });
 
+export const getArtist = albumId => axios.get(baseURL + albumId)
+  .then(response => response.data.results[0].artistName)
+  .catch((error) => {
+    throw error;
+  });
+
 export const getAlbumCover = albumId => axios.get(baseURL + albumId)
   // .then(checkStatus)
   .then(response => response.data.results[0].artworkUrl100)

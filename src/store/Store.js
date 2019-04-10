@@ -2,11 +2,19 @@
 // Permet la communication et la modification de l'id par AlbumList(Artist) et Album
 export const store = {
   state: {
-    albumState: '1234838372'
+    artistState: '',
+    albumState: '',
+    searchTerm: ''
   },
   setAlbumState(newValue) {
     this.state.albumState = newValue;
   },
+  setArtistState(newValue) {
+    this.state.artistState = newValue;
+  },
+  setSearchState(newValue) {
+    this.state.searchTerm = newValue;
+  }
 };
 
 export const help = {};
