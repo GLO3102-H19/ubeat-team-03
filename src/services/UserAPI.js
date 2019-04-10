@@ -13,7 +13,6 @@ const config = {
   }
 };
 
-
 // Implémentation de la méthode GET
 // Permet d'obtenir les informations de l'utilisateur
 export const getUserName = userId => axios.get(`${baseURL}users/${userId}`, config)

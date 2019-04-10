@@ -13,7 +13,7 @@
 
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input v-model="search"
+          <b-form-input v-model="search" @keyup.enter="onEnter"
             size="sm"
             class="mr-sm-2"
             type="text"
@@ -79,6 +79,9 @@
       logOut() {
         api.logOut();
         store.logOut();
+      },
+      onEnter() {
+        this.loadSearchPage();
       }
     }
   };
