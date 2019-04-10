@@ -6,6 +6,7 @@ export const store = {
     artistState: '',
     albumState: '',
     searchTerm: '',
+    typeSearch: '',
     userName: '',
     userEmail: '',
     userToken: '' || Cookies.get('token'),
@@ -21,6 +22,8 @@ export const store = {
   setSearchState(newValue) {
     this.state.searchTerm = newValue;
   },
+  setSearchType(newValue) {
+    this.state.typeSearch = newValue;
   setUserName(newValue) {
     this.state.userName = newValue;
   },
@@ -34,10 +37,11 @@ export const store = {
     this.state.userIdConnected = newValue;
   },
   setUserIdToVisit(newValue) {
-    this.state.userIdConnected = newValue;
+    this.state.userIdToVisit = newValue;
   },
   logOut() {
-    this.state.userId = '';
+    this.state.userIdConnected = '';
+    this.state.userIdToVisit = '';
     this.state.userName = '';
     this.state.userEmail = '';
     this.state.userToken = '';

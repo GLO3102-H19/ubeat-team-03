@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  import { store } from '@/store/Store';
   import UserPlaylists from './UserPlaylists';
   import UserInfos from './UserInfos';
   import UserFriends from './UserFriends';
@@ -20,7 +21,7 @@
   export default {
     components: { UserPlaylists, UserInfos, UserFriends },
     data: () => ({
-      userId: '5ca68d752ac4350004085bd4',
+      userId: store.state.userIdToVisit,
       playlists: [],
       friends: []
     }),

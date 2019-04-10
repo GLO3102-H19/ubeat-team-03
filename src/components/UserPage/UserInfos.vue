@@ -15,7 +15,6 @@
 
 <script>
   import * as api from '@/services/UserAPI';
-  // import { store } from '@/store/Store';
 
   export default {
     props: ['id'],
