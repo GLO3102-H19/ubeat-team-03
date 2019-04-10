@@ -1,5 +1,5 @@
 <template>
-  <b-card no-body class="footer text-center">
+  <b-card no-body id="player" class="footer text center">
     <canvas id="analyser_render"></canvas>
     <audio id="playerMP3" crossorigin="anonymous" controls>
       <source :src='this.source' type="audio/mp3"/>
@@ -74,22 +74,26 @@
 
 <style scoped>
 
-  .footer {
+  #player {
     width:50%;
     position: fixed;
     left: 25%;
     right: 0;
     bottom: 0;
     z-index: 10;
+    background: transparent;
+    border-color: transparent;
   }
 
   canvas {
     width: 100%;
+    background: transparent;
     height: 60px;
   }
 
   audio {
     width: 100%;
+    background-color: #F1F3F4;
   }
 
 </style>
