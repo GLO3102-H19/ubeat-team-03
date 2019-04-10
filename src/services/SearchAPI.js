@@ -19,15 +19,6 @@ export const getGlobalSearch = searchTerm => axios
 
 // Implémentation de la méthode GET
 // Permet de faire une recherche seulement sur les utilisateurs avec nom complet
-export const getUsersSearchByFullName = (nom, prenom) => axios
-  .get(baseURL + searchUserTermField + searchTermField + encodeURIComponent(`${prenom} ${nom}`))
-  .then(response => response.data)
-  .catch((error) => {
-    throw error;
-  });
-
-// Implémentation de la méthode GET
-// Permet de faire une recherche seulement sur les utilisateurs avec nom complet
 export const getUsersSearchByName = prenom => axios
   .get(baseURL + searchUserTermField + searchTermField + encodeURIComponent(`${prenom}`))
   .then(response => response.data)
