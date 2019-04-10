@@ -37,10 +37,11 @@ export const store = {
     this.state.userIdConnected = newValue;
   },
   setUserIdToVisit(newValue) {
-    this.state.userIdConnected = newValue;
+    this.state.userIdToVisit = newValue;
   },
   logOut() {
-    this.state.userId = '';
+    this.state.userIdConnected = '';
+    this.state.userIdToVisit = '';
     this.state.userName = '';
     this.state.userEmail = '';
     this.state.userToken = '';
