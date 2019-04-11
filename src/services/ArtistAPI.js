@@ -1,5 +1,6 @@
 // Fichier contenant les communications avec l'API pour la page Artist
 import axios from 'axios';
+import app from '@/App';
 
 // Adresse URL de base pour accéder à un artiste
 const baseURL = 'http://ubeat.herokuapp.com/unsecure/artists/';
@@ -10,7 +11,8 @@ const albumsPath = '/albums';
 export const getArtistName = artistId => axios.get(baseURL + artistId)
     .then(response => response.data.results[0].artistName)
     .catch((error) => {
-      alert(`${error.response.status} ${error.response.statusText}`);
+      app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to find artist's name. Please try again later.`);
       throw error;
     });
 
@@ -19,7 +21,8 @@ export const getArtistName = artistId => axios.get(baseURL + artistId)
 export const getArtistGenre = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].primaryGenreName)
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to find artist's genre. Please try again later.`);
     throw error;
   });
 
@@ -28,7 +31,8 @@ export const getArtistGenre = artistId => axios.get(baseURL + artistId)
 export const getArtistUrl = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].artistLinkUrl)
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to find artist's link. Please try again later.`);
     throw error;
   });
 
@@ -37,6 +41,7 @@ export const getArtistUrl = artistId => axios.get(baseURL + artistId)
 export const getAlbumList = artistId => axios.get(baseURL + artistId + albumsPath)
   .then(response => response.data.results)
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to find artist's album list. Please try again later.`);
     throw error;
   });

@@ -59,7 +59,6 @@
         api.getAlbumTitle(this.albumId)
           .then((response) => {
             this.title = response;
-            console.log(response);
           });
       },
       getAlbumArtistName() {

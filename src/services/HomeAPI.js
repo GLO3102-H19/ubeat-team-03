@@ -1,6 +1,7 @@
 // Fichier contenant les communications avec l'API pour la page Home
 import axios from 'axios';
 import qs from 'qs';
+import app from '@/App';
 
 // Adresse URL de base pour accéder à un artiste
 const baseURL = 'http://ubeat.herokuapp.com/';
@@ -22,6 +23,8 @@ const config2 = {
 export const addUser = (name, email, password) => axios.post(`${baseURL}signup`, qs.stringify({ name, email, password }), config1)
   .then()
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to create user.`);
     throw error;
   });
 
@@ -30,6 +33,8 @@ export const addUser = (name, email, password) => axios.post(`${baseURL}signup`,
 export const logUser = (email, password) => axios.post(`${baseURL}login`, qs.stringify({ email, password }), config2)
   .then()
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to log in. Please try a different username/password.`);
     throw error;
   });
 
@@ -38,5 +43,7 @@ export const logUser = (email, password) => axios.post(`${baseURL}login`, qs.str
 export const logOut = () => axios.get(`${baseURL}logout`)
   .then()
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to log out. Please try again later.`);
     throw error;
   });

@@ -9,11 +9,56 @@
 
   export default {
     props: ['message'],
-    name: 'NotifBox',
+    name: 'NotifBox'
   };
 
 </script>
 
 <style scoped>
-
+  .alert {
+    position: relative;
+    display: inline-block;
+    top: 70px;
+  }
+  .alert, #errorMessage {
+    -moz-animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    /* Opera */
+    animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+  @keyframes cssAnimation {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes cssNone {
+    to {
+      width:0;
+      height:0;
+      margin:0;
+      padding:0;
+      display: none;
+      overflow:hidden;
+    }
+  }
+  @-webkit-keyframes cssAnimation {
+    to {
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes cssNone {
+    to {
+      width:0;
+      height:0;
+      margin:0;
+      padding:0;
+      display: none;
+      overflow:hidden;
+    }
+  }
 </style>
