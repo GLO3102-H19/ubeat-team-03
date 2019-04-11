@@ -2,6 +2,7 @@
 import axios from 'axios';
 // import { store } from '@/store/Store';
 import Cookies from 'js-cookie';
+import app from '@/App';
 import qs from 'qs';
 
 // Adresse URL de base pour accéder à un artiste
@@ -17,19 +18,31 @@ const config = {
 // Permet d'obtenir les informations de l'utilisateur
 export const getUserName = userId => axios.get(`${baseURL}users/${userId}`, config)
   .then(response => response.data.name)
-  .catch(error => error);
+  .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to load username.`);
+    throw error;
+  });
 
 // Implémentation de la méthode GET
 // Permet d'obtenir les informations de l'utilisateur
 export const getUserEmail = userId => axios.get(`${baseURL}users/${userId}`, config)
   .then(response => response.data.email)
-  .catch(error => error);
+  .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to load user's email.`);
+    throw error;
+  });
 
 // Implémentation de la méthode GET
 // Permet d'obtenir la liste des amis de l'utilisateur
 export const getUserFriends = userId => axios.get(`${baseURL}users/${userId}`, config)
   .then(response => response.data.following)
-  .catch(error => error);
+  .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to load friend list.`);
+    throw error;
+  });
 
 // Implémentation de la méthode GET
 // Permet d'update la liste des playlists
@@ -48,6 +61,8 @@ export const getUserPlaylists = userId => axios.get('http://ubeat.herokuapp.com/
     return playlists;
   })
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to load user's playlists.`);
     throw error;
   });
 

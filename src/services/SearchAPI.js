@@ -1,4 +1,5 @@
 import axios from 'axios';
+import app from '@/App';
 
 const baseURL = 'http://ubeat.herokuapp.com/unsecure/search/';
 const searchUserTermField = 'users';
@@ -14,6 +15,8 @@ export const getGlobalSearch = searchTerm => axios
   .get(baseURL + searchTermField + encodeURIComponent(searchTerm) + limitField)
   .then(response => response.data)
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Search request has failed. Please try again later.`);
     throw error;
   });
 
@@ -23,6 +26,8 @@ export const getUsersSearchByName = prenom => axios
   .get(baseURL + searchUserTermField + searchTermField + encodeURIComponent(`${prenom}`))
   .then(response => response.data)
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Search request has failed. Please try again later.`);
     throw error;
   });
 
@@ -32,6 +37,8 @@ export const getAlbumsSearch = searchTerm => axios
   .get(baseURL + searchAlbumTermField + searchTermField + encodeURIComponent(`${searchTerm}`))
   .then(response => response.data)
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Search request has failed. Please try again later.`);
     throw error;
   });
 
@@ -41,6 +48,8 @@ export const getTracksSearch = searchTerm => axios
   .get(baseURL + searchTracksTermField + searchTermField + encodeURIComponent(`${searchTerm}`))
   .then(response => response.data)
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Search request has failed. Please try again later.`);
     throw error;
   });
 
@@ -50,5 +59,7 @@ export const getArtistsSearch = searchTerm => axios
   .get(baseURL + searchArtistTermField + searchTermField + encodeURIComponent(`${searchTerm}`))
   .then(response => response.data)
   .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Search request has failed. Please try again later.`);
     throw error;
   });

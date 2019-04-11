@@ -1,5 +1,6 @@
 // Fichier contenant les communications avec l'API pour la page Playlist
 import axios from 'axios';
+import app from '@/App';
 
 // Adresse URL de base pour accéder à un artiste
 const baseURL = 'http://ubeat.herokuapp.com/unsecure/playlists';
@@ -10,7 +11,8 @@ export const insertNewPlaylist = (playlistName, email) =>
   axios.post(baseURL, { name: playlistName, owner: email })
   .then(response => response.data)
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to create a new playlist.`);
     throw error;
   });
 
@@ -20,7 +22,8 @@ export const insertIntoPlaylist = (track, playlistId) =>
   axios.post(`${baseURL}/${playlistId}/tracks`, track)
     .then(response => response.data)
     .catch((error) => {
-      alert(`${error.response.status} ${error.response.statusText}`);
+      app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to add the song in the playlist. Please try again later.`);
       throw error;
     });
 
@@ -40,7 +43,8 @@ export const getPlaylists = id => axios.get(baseURL)
     return playlists;
   })
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to load the playlists.`);
     throw error;
   });
 
@@ -50,7 +54,8 @@ export const putPlaylist = (id, playlistUser, email, trackList) =>
   axios.put(`${baseURL}/${id}`, { name: playlistUser, owner: email, tracks: trackList })
   .then(response => response.data)
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to modify the playlist. Please try again later.`);
     throw error;
   });
 
@@ -59,7 +64,8 @@ export const putPlaylist = (id, playlistUser, email, trackList) =>
 export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
   .then(response => response.data)
   .catch((error) => {
-    alert(`${error.response.status} ${error.response.statusText}`);
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to delete the playlist. Please try again later.`);
     throw error;
   });
 
@@ -69,6 +75,7 @@ export const removeSongFromPlaylist = (playlistId, trackId) =>
   axios.delete(`${baseURL}/${playlistId}/tracks/${trackId}`)
     .then(response => response.data)
     .catch((error) => {
-      alert(`${error.response.status} ${error.response.statusText}`);
+      app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to remove the song from the playlist. Please try again later.`);
       throw error;
     });
