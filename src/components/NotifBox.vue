@@ -21,13 +21,13 @@
     top: 70px;
   }
   .alert, #errorMessage {
-    -moz-animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    -moz-animation: cssAnimation 1s ease-in 7s forwards, cssNone 0s ease-in 8s forwards;
     /* Firefox */
-    -webkit-animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    -webkit-animation: cssAnimation 1s ease-in 7s forwards, cssNone 0s ease-in 8s forwards;
     /* Safari and Chrome */
-    -o-animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    -o-animation: cssAnimation 1s ease-in 7s forwards, cssNone 0s ease-in 8s forwards;
     /* Opera */
-    animation: cssAnimation 1s ease-in 5s forwards, cssNone 0s ease-in 6s forwards;
+    animation: cssAnimation 1s ease-in 7s forwards, cssNone 0s ease-in 8s forwards;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }

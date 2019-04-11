@@ -4,21 +4,22 @@
       <b-row align-h="center">
         <b-col class="row-1">
           <p class="left-content"></p>
-          <p>Follow your artists</p>
-          <p>Listen to anything you like</p>
-          <p>Discover new artists</p>
         </b-col>
         <b-col class="row-2">
           <p class="right-content"></p>
           <Login v-if="login" id="logInBox"></Login>
           <SignUp v-if="signup" id="signUpBox"></SignUp>
-          <p>Hear what the world's listening</p>
-          <b-button class="login-button" variant="primary" v-on:click="logingIn">
-            Log In
-          </b-button>
-          <b-button class="signup-button" variant="primary" v-on:click="signingIn">
-            Sign Up
-          </b-button>
+          <div id="text">
+            <p>Discover new artists</p>
+            <p>Create playlists</p>
+            <p id="share">Share them with the world</p>
+            <b-button class="login-button" variant="primary" v-on:click="logingIn">
+              Log In
+            </b-button>
+            <b-button class="signup-button" variant="primary" v-on:click="signingIn">
+              Sign Up
+            </b-button>
+          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -51,124 +52,141 @@
     },
   };
 </script>
+
 <style>
-.row-1 {
-  font-size: large;
-  font-weight: bold;
-  color: lightcyan;
-  background-color: lightskyblue;
-  height: 100vh;
-}
-.row-2 {
-  font-size: large;
-  font-weight: bold;
-  background-color: lightgreen;
-  height: 100vh;;
-}
-.left-content {
-  height: 35%;
-}
-.right-content {
-  height: 33%;
-}
-.login-button {
-  width: 50%;
-  margin: 5px 0 5px 0;
-}
-#logInBox{
-  position: absolute;
-  left: 100px;
-  right: 100px;
-  font-size: medium;
-  text-align: start;
-
-  border-radius: 15px;
-  padding: 10px 20px 10px 20px;
-  background-color: white;
-}
-.signup-button {
-  width: 50%;
-  margin: 5px 0 5px 0;
-}
-#signUpBox{
-  position: absolute;
-  left: 100px;
-  right: 100px;
-  bottom: 170px;
-  font-size: medium;
-  text-align: start;
-
-  border-radius: 15px;
-  padding: 10px 20px 10px 20px;
-  background-color: white;
-}
-#closePopUp{
-  font-size: 1.5em;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 0;
-}
-.footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #2e70ff;
-}
-
-/* Small devices (Portrait phones, 576px and up) */
-@media only screen and (min-width: 320px) and (max-width: 568px) {
-  .footer {
-    position: relative;
+  .card-body {
+    font-size: large;
+    background-color: white;
+    border-color: red;
   }
-
+  #share {
+    color:black;
+  }
   .row-1 {
-    display: none;
+    background-color: white;
+    height: 100vh;
+    background-image: url("/static/homeImg.jpg");
+    background-size: cover;
+    background-position-y: 100%;
   }
-  .signup-button {
-    width: 70%;
+  .row-2 {
+    font-size: large;
+    font-weight: bold;
+    height: 100vh;
+    color: #2e70ff;
   }
 
+  .left-content {
+    height: 35%;
+  }
+  .right-content {
+    height: 33%;
+
+  }
   .login-button {
-    width: 70%;
+    width: 50%;
+    margin: 5px 0 5px 0;
   }
-  #logInBox{
-    left: 25px;
-    right: 25px;
-  }
-  #signUpBox{
-    left: 25px;
-    right: 25px;
-    bottom: 50px;
-  }
-}
 
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  #logInBox{
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    font-size: medium;
+    text-align: start;
+
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    background-color: white;
+  }
+
+  .signup-button {
+    width: 50%;
+    margin: 5px 0 5px 0;
+  }
+
+  #signUpBox{
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    bottom: 170px;
+    font-size: medium;
+    text-align: start;
+
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    background-color: white;
+  }
+
+  #closePopUp{
+    font-size: 1.5em;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
+
   .footer {
-    position: relative;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
-  .row-1 {
-    display: none;
-  }
-  .signup-button {
-    width: 70%;
-  }
+  /* Medium and small devices (Portrait phones, tablets, 320px and up) */
+  @media only screen and (min-width: 320px) and (max-width: 1024px) {
+    .footer {
+      position: relative;
+    }
 
-  .login-button {
-    width: 70%;
+    .row-1 {
+      display: none;
+    }
+
+    .row-2 {
+      font-size: large;
+      font-weight: bold;
+      color: white;
+      text-shadow: #2e70ff 1px 1px;
+      background-image: url("/static/homeImg.jpg");
+      background-size: cover;
+      background-position-y: 100%;
+    }
+
+    #share {
+      color:white;
+    }
+
+    #text {
+      background-color: rgba(0, 0, 0, 0.3);
+      margin: 0;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .signup-button {
+      width: 70%;
+    }
+
+    .login-button {
+      width: 70%;
+    }
+
+    .btn-primary {
+      background-color: white;
+      border: none;
+      color: black;
+    }
+
+    #logInBox{
+      left: 25px;
+      right: 25px;
+    }
+    #signUpBox{
+      left: 25px;
+      right: 25px;
+      bottom: 50px;
+    }
   }
-  #logInBox{
-    left: 75px;
-    right: 75px;
-  }
-  #signUpBox{
-    left: 75px;
-    right: 75px;
-    bottom: 260px;
-  }
-}
 
 </style>
