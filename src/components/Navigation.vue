@@ -33,7 +33,7 @@
           <template slot="button-content">
             <em>Welcome {{name}}</em>
           </template>
-          <b-dropdown-item href="#/User"
+          <b-dropdown-item href="#/User" v-on:click="goToProfile"
             ><font-awesome-icon icon="user"/> Profile</b-dropdown-item
           >
           <b-dropdown-item href="#/"
@@ -77,6 +77,9 @@
       logOut() {
         api.logOut();
         store.logOut();
+      },
+      goToProfile() {
+        store.setUserIdToVisit(store.state.userIdConnected);
       },
       onEnter() {
         this.loadSearchPage();

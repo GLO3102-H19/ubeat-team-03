@@ -1,8 +1,8 @@
 <template>
   <b-col sm="7" id="infosDiv">
     <div id="infosHeader">
-      <b-button id="followButton" class="my-2 my-sm-0" v-if="!followedUser" v-on:click="newFollow">Follow</b-button>
-      <b-button id="unfollowButton" class="my-2 my-sm-0" v-if="followedUser" v-on:click="unFollow">Unfollow</b-button>
+      <b-button id="followButton" class="my-2 my-sm-0" v-if="!connectedUser && !followedUser" v-on:click="newFollow">Follow</b-button>
+      <b-button id="unfollowButton" class="my-2 my-sm-0" v-if="!connectedUser && followedUser" v-on:click="unFollow">Unfollow</b-button>
       <h2 id="title">Profile</h2>
     </div>
     <div id="userInfos">
@@ -24,7 +24,7 @@
     data: () => ({
       name: '',
       email: '',
-      connectedUser: false,
+      connectedUser: '',
       followedUser: false,
     }),
     methods: {
