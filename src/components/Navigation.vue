@@ -31,7 +31,7 @@
         </b-nav-form>
         <b-nav-item-dropdown right>
           <template slot="button-content">
-            <em>Welcome {{name}}</em>
+            <em>Welcome {{connectedUser}}</em>
           </template>
           <b-dropdown-item href="#/User" v-on:click="goToProfile"
             ><font-awesome-icon icon="user"/> Profile</b-dropdown-item
@@ -56,6 +56,7 @@
   export default {
     props: ['name'],
     data: () => ({
+      connectedUser: store.state.userName,
       search: '',
       select: {
         selected: 'Global',

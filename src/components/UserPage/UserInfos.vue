@@ -26,6 +26,7 @@
       email: '',
       connectedUser: '',
       followedUser: '',
+      key: 0
     }),
     methods: {
       getUserName() {
@@ -53,19 +54,15 @@
         }
       },
       newFollow() {
-        api.newFollow(this.id).then((res) => {
-          console.log(res);
-        });
+        api.newFollow(this.id).then();
         this.followedUser = true;
         friendsList.created();
       },
       unFollow() {
-        api.unFollow(this.id).then((res) => {
-          console.log(res);
-        });
+        api.unFollow(this.id).then();
         this.followedUser = false;
         friendsList.created();
-      }
+      },
     },
     created() {
       this.getUserName();
