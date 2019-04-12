@@ -61,6 +61,7 @@
           Cookies.set('token', res.data.token, { expires: date });
         });
         this.reset();
+        // this.reset();
         router.push('User');
       },
       reset() {
