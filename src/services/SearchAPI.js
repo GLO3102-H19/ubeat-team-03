@@ -16,7 +16,7 @@ export const getGlobalSearch = searchTerm => axios
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Search request has failed. Please try again later.`);
+      Search request has failed.`);
     throw error;
   });
 
@@ -27,7 +27,7 @@ export const getUsersSearchByName = prenom => axios
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Search request has failed. Please try again later.`);
+      Search request has failed.`);
     throw error;
   });
 
@@ -38,7 +38,7 @@ export const getAlbumsSearch = searchTerm => axios
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Search request has failed. Please try again later.`);
+      Search request has failed.`);
     throw error;
   });
 
@@ -49,7 +49,7 @@ export const getTracksSearch = searchTerm => axios
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Search request has failed. Please try again later.`);
+      Search request has failed.`);
     throw error;
   });
 
@@ -60,6 +60,6 @@ export const getArtistsSearch = searchTerm => axios
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Search request has failed. Please try again later.`);
+      Search request has failed.`);
     throw error;
   });

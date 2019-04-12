@@ -65,7 +65,7 @@ export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to delete the playlist. Please try again later.`);
+      Failed to delete the playlist.`);
     throw error;
   });
 
@@ -76,6 +76,6 @@ export const removeSongFromPlaylist = (playlistId, trackId) =>
     .then(response => response.data)
     .catch((error) => {
       app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to remove the song from the playlist. Please try again later.`);
+      Failed to remove the song from the playlist.`);
       throw error;
     });

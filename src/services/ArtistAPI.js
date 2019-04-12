@@ -12,7 +12,7 @@ export const getArtistName = artistId => axios.get(baseURL + artistId)
     .then(response => response.data.results[0].artistName)
     .catch((error) => {
       app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to find artist's name. Please try again later.`);
+      Failed to find artist's name.`);
       throw error;
     });
 
@@ -22,7 +22,7 @@ export const getArtistGenre = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].primaryGenreName)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to find artist's genre. Please try again later.`);
+      Failed to find artist's genre.`);
     throw error;
   });
 
@@ -32,7 +32,7 @@ export const getArtistUrl = artistId => axios.get(baseURL + artistId)
   .then(response => response.data.results[0].artistLinkUrl)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to find artist's link. Please try again later.`);
+      Failed to find artist's link.`);
     throw error;
   });
 
@@ -42,6 +42,6 @@ export const getAlbumList = artistId => axios.get(baseURL + artistId + albumsPat
   .then(response => response.data.results)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to find artist's album list. Please try again later.`);
+      Failed to find artist's album list.`);
     throw error;
   });

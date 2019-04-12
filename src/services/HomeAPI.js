@@ -34,7 +34,7 @@ export const logUser = (email, password) => axios.post(`${baseURL}login`, qs.str
   .then()
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to log in. Please try a different username/password.`);
+      Failed to log in.`);
     throw error;
   });
 
@@ -44,6 +44,6 @@ export const logOut = () => axios.get(`${baseURL}logout`)
   .then()
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
-      Failed to log out. Please try again later.`);
+      Failed to log out.`);
     throw error;
   });
