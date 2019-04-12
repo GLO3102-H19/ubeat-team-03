@@ -11,6 +11,7 @@ export const store = {
     userEmail: '',
     userToken: '' || Cookies.get('token'),
     userIdConnected: '',
+    userConnectedFriends: [],
     userIdToVisit: '',
     serverError: ''
   },
@@ -37,6 +38,9 @@ export const store = {
   },
   setUserIdConnected(newValue) {
     this.state.userIdConnected = newValue;
+  },
+  setUserConnectedFriends(newValue) {
+    this.state.userConnectedFriends = newValue;
   },
   setUserIdToVisit(newValue) {
     this.state.userIdToVisit = newValue;

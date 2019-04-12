@@ -3,7 +3,6 @@ import axios from 'axios';
 // import { store } from '@/store/Store';
 import Cookies from 'js-cookie';
 import app from '@/App';
-import qs from 'qs';
 
 // Adresse URL de base pour accéder à un artiste
 const baseURL = 'http://ubeat.herokuapp.com/';
@@ -68,7 +67,7 @@ export const getUserPlaylists = userId => axios.get('http://ubeat.herokuapp.com/
 
 // Implémentation de la méthode POST
 // Permet de follow un user
-export const newFollow = userId => axios.post(`${baseURL}follow`, qs.stringify({ userId }), config)
+export const newFollow = id => axios.post(`${baseURL}follow`, { id }, config)
   .then(response => response.data)
   .catch(error => error);
 

@@ -25,7 +25,7 @@
       name: '',
       email: '',
       connectedUser: '',
-      followedUser: false,
+      followedUser: '',
     }),
     methods: {
       getUserName() {
@@ -43,6 +43,13 @@
           this.connectedUser = true;
         } else {
           this.connectedUser = false;
+        }
+      },
+      isThisUserFollowed() {
+        for (let i = 0; i < store.state.userConnectedFriends.length; i += 1) {
+          if (this.id === store.state.userConnectedFriends[i].id) {
+            this.followedUser = true;
+          }
         }
       },
       newFollow() {
@@ -64,6 +71,7 @@
       this.getUserName();
       this.getUserEmail();
       this.isItConnectedUser();
+      this.isThisUserFollowed();
     }
 };
 </script>
