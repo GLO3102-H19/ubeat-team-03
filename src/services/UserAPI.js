@@ -74,6 +74,6 @@ export const newFollow = userId => axios.post(`${baseURL}follow`, qs.stringify({
 
 // Implémentation de la méthode DELETE
 // Permet de unfollow un user
-export const unFollow = userId => axios.delete(`${baseURL}users/${userId}`, config)
+export const unFollow = userId => axios.delete(`${baseURL}follow/${userId}`, config)
   .then(response => response.data)
   .catch(error => error);
