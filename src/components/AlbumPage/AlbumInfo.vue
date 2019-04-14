@@ -179,6 +179,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    width: 100%;
   }
   .albumInfoDiv {
     justify-content: flex-start;

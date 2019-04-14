@@ -20,12 +20,14 @@
 
 <script>
   import * as api from '@/services/UserAPI';
+  import Cookies from 'js-cookie';
 
   export default {
-    props: ['id'],
+    props: [],
     name: 'UserPlaylists',
     data: () => ({
-      playlists: []
+      playlists: [],
+      id: Cookies.get('userId')
     }),
     methods: {
       async getUserPlaylists() {

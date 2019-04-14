@@ -17,6 +17,7 @@
     position: relative;
     display: inline-block;
     top: 70px;
+    z-index:1000
   }
   .alert, #errorMessage {
     -moz-animation: cssAnimation 1s ease-in 7s forwards, cssNone 0s ease-in 8s forwards;

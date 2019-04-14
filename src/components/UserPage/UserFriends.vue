@@ -21,12 +21,14 @@
 <script>
   import * as api from '@/services/UserAPI';
   import { store } from '@/store/Store';
+  import Cookies from 'js-cookie';
 
   export default {
     name: 'UserFriends',
-    props: ['id'],
+    props: [],
     data: () => ({
       friends: [],
+      id: Cookies.get('userId')
     }),
     methods: {
       async getUserFriends() {
@@ -40,7 +42,7 @@
         store.setUserConnectedFriends(this.friends);
       }
     },
-    created() {
+    mounted() {
       this.getUserFriends();
     }
   };

@@ -17,15 +17,17 @@
 <script>
   import * as api from '@/services/UserAPI';
   import { store } from '@/store/Store';
+  import Cookies from 'js-cookie';
 
   export default {
-    props: ['id'],
+    props: [],
     data: () => ({
       name: '',
       email: '',
       connectedUser: '',
       followedUser: '',
-      key: 0
+      key: 0,
+      id: Cookies.get('userId')
     }),
     methods: {
       async getUserName() {
@@ -61,7 +63,7 @@
         this.followedUser = false;
       },
     },
-    created() {
+    mounted() {
       this.getUserName();
       this.getUserEmail();
       this.isItConnectedUser();
@@ -71,6 +73,10 @@
 </script>
 
 <style scoped>
+  #infosDiv{
+    left: 25%;
+    display:block;
+  }
   #infosHeader{
     display: flex;
     flex-direction: row;

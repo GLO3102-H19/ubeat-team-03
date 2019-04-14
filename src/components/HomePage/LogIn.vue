@@ -37,8 +37,6 @@
   // import router from '@/router/router';
   import { store } from '@/store/Store';
   import Cookies from 'js-cookie';
-  // import navBar from '../Navigation';
-  // import userPage from '../UserPage/User';
 
   export default {
     data: () => ({
@@ -59,9 +57,9 @@
           const minutes = 60;
           date.setTime(date.getTime() + (minutes * 60 * 1000));
           Cookies.set('token', res.data.token, { expires: date });
+          Cookies.set('userId', res.data.id, { expires: date });
+          window.location.reload();
         });
-        this.reset();
-        // router.push('User');
       },
       reset() {
         this.email = '';

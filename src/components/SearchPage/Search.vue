@@ -11,6 +11,8 @@
 
 <script>
   import { store } from '@/store/Store';
+  import router from '@/router/router';
+  import Cookies from 'js-cookie';
   import * as api from '@/services/SearchAPI';
   import AlbumResult from './AlbumResult';
   import ArtistResult from './ArtistResult';
@@ -115,7 +117,10 @@
       }
     },
     created() {
-      if (this.searchType === 'Global') {
+      if (Cookies.get('token') === undefined) {
+        store.setRedirect('Home');
+        router.push('Redirect');
+      } else if (this.searchType === 'Global') {
         this.getSearchGlobal();
       } else if (this.searchType === 'Album') {
         this.getSearchAlbum();

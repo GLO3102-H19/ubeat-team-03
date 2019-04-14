@@ -59,6 +59,7 @@ export const store = {
     this.state.userEmail = '';
     this.state.userToken = '';
     Cookies.remove('token');
+    Cookies.remove('userId');
   }
 };
 

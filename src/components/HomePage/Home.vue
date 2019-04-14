@@ -27,6 +27,9 @@
   </div>
 </template>
 <script>
+  import { store } from '@/store/Store';
+  import router from '@/router/router';
+  import Cookies from 'js-cookie';
   import Login from './LogIn';
   import SignUp from './SignUp';
 
@@ -50,6 +53,12 @@
         this.signup = false;
       }
     },
+    created() {
+      if (Cookies.get('token').length > 0) {
+        store.setRedirect('User');
+        router.push('Redirect');
+      }
+    }
   };
 </script>
 
@@ -75,13 +84,8 @@
     height: 100vh;
     color: #2e70ff;
   }
-
-  .left-content {
-    height: 35%;
-  }
   .right-content {
-    height: 33%;
-
+    height: 25%;
   }
   .login-button {
     width: 50%;
@@ -100,7 +104,6 @@
     font-size: medium;
     text-align: start;
     top: 25vh;
-    border-radius: 15px;
     padding: 20px;
     background-color: white;
   }
@@ -111,8 +114,7 @@
     right: 100px;
     font-size: medium;
     text-align: start;
-    top: 25vh;
-    border-radius: 15px;
+    top: 20vh;
     padding: 20px;
     background-color: white;
   }

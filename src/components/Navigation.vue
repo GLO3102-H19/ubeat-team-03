@@ -1,8 +1,8 @@
 <template>
-  <b-navbar fixed="top" toggleable="md" type="dark" variant="primary">
+  <b-navbar id="navBar" v-if="loggedIn()" fixed="top" toggleable="md" type="dark" variant="primary">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-    <b-navbar-brand href="#/">UBEAT</b-navbar-brand>
+    <b-navbar-brand href="#/User">UBEAT</b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
@@ -49,6 +49,7 @@
   import router from '@/router/router';
   import { store } from '@/store/Store';
   import * as api from '@/services/HomeAPI';
+  import Cookies from 'js-cookie';
 
   export default {
     props: ['name'],
@@ -67,6 +68,9 @@
       }
     }),
     methods: {
+      loggedIn() {
+        return Cookies.get('token').length > 0;
+      },
       loadSearchPage() {
         store.setSearchState(this.search);
         store.setSearchType(this.select.selected);
@@ -76,8 +80,8 @@
       logOut() {
         api.logOut();
         store.logOut();
-        store.setRedirect('Home');
-        router.push('Redirect');
+        document.getElementById('navBar').style.display = 'none';
+        window.location.reload();
       },
       goToProfile() {
         store.setUserIdToVisit(store.state.userIdConnected);

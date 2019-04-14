@@ -14,6 +14,8 @@
 
 <script>
   import { store } from '@/store/Store';
+  import router from '@/router/router';
+  import Cookies from 'js-cookie';
   import UserPlaylists from './UserPlaylists';
   import UserInfos from './UserInfos';
   import UserFriends from './UserFriends';
@@ -23,6 +25,12 @@
     data: () => ({
       userId: store.state.userIdToVisit,
     }),
+    created() {
+      if (Cookies.get('token') === undefined) {
+        store.setRedirect('Home');
+        router.push('Redirect');
+      }
+    }
   };
 </script>
 
