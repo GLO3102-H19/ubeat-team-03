@@ -9,7 +9,7 @@
           <p class="right-content"></p>
           <Login v-if="login" id="logInBox"></Login>
           <SignUp v-if="signup" id="signUpBox"></SignUp>
-          <div id="text">
+          <div v-if="!login && !signup" id="text">
             <p>Discover new artists</p>
             <p>Create playlists</p>
             <p id="share">Share them with the world</p>
@@ -87,33 +87,36 @@
     width: 50%;
     margin: 5px 0 5px 0;
   }
+
+  .signup-button {
+    width: 50%;
+    margin: 5px 0 5px 0;
+  }
+
   #logInBox{
     position: absolute;
     left: 100px;
     right: 100px;
     font-size: medium;
     text-align: start;
-
+    top: 25vh;
     border-radius: 15px;
-    padding: 10px 20px 10px 20px;
+    padding: 20px;
     background-color: white;
   }
-  .signup-button {
-    width: 50%;
-    margin: 5px 0 5px 0;
-  }
+
   #signUpBox{
     position: absolute;
     left: 100px;
     right: 100px;
-    bottom: 170px;
     font-size: medium;
     text-align: start;
-
+    top: 25vh;
     border-radius: 15px;
-    padding: 10px 20px 10px 20px;
+    padding: 20px;
     background-color: white;
   }
+
   #closePopUp{
     font-size: 1.5em;
     cursor: pointer;
@@ -121,6 +124,7 @@
     right: 10px;
     top: 0;
   }
+
   .footer {
     position: fixed;
     left: 0;
@@ -133,9 +137,11 @@
     .footer {
       position: relative;
     }
+
     .row-1 {
       display: none;
     }
+
     .row-2 {
       font-size: large;
       font-weight: bold;
@@ -145,42 +151,50 @@
       background-size: cover;
       background-position-y: 100%;
     }
+
     #share {
       color:white;
     }
+
     #text {
       background-color: rgba(0, 0, 0, 0.3);
       margin: 0;
       padding: 30px;
       border-radius: 15px;
     }
+
     .signup-button {
       width: 70%;
     }
+
     .login-button {
       width: 70%;
     }
+
     .btn-primary {
       background-color: white;
       border: none;
       color: black;
     }
+
     #logInBox{
       left: 25px;
       right: 25px;
-      bottom: 240px;
-
-      color: #2e70ff;
+      top: 25vh;
+      color: black;
+      padding: 35px;
       text-shadow: none;
     }
+
     #signUpBox{
       left: 25px;
       right: 25px;
-      bottom: 180px;
-
-      color: #2e70ff;
+      top: 25vh;
+      color: black;
+      padding: 35px;
       text-shadow: none;
     }
   }
 
 </style>
+
