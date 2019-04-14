@@ -17,7 +17,6 @@
 <script>
   import * as api from '@/services/UserAPI';
   import { store } from '@/store/Store';
-  import friendsList from './UserFriends';
 
   export default {
     props: ['id'],
@@ -25,7 +24,8 @@
       name: '',
       email: '',
       connectedUser: '',
-      followedUser: false,
+      followedUser: '',
+      key: 0
     }),
     methods: {
       getUserName() {
@@ -45,25 +45,27 @@
           this.connectedUser = false;
         }
       },
+      isThisUserFollowed() {
+        for (let i = 0; i < store.state.userConnectedFriends.length; i += 1) {
+          if (this.id === store.state.userConnectedFriends[i].id) {
+            this.followedUser = true;
+          }
+        }
+      },
       newFollow() {
-        api.newFollow(this.id).then((res) => {
-          console.log(res);
-        });
+        api.newFollow(this.id).then();
         this.followedUser = true;
-        friendsList.created();
       },
       unFollow() {
-        api.unFollow(this.id).then((res) => {
-          console.log(res);
-        });
+        api.unFollow(this.id).then();
         this.followedUser = false;
-        friendsList.created();
-      }
+      },
     },
     created() {
       this.getUserName();
       this.getUserEmail();
       this.isItConnectedUser();
+      this.isThisUserFollowed();
     }
 };
 </script>

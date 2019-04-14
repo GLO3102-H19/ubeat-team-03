@@ -3,14 +3,10 @@
     <h2 id="title">Following</h2>
     <table class="songAlbumTable">
       <tr>
-        <th>Profile</th>
         <th>Name</th>
         <th>Email</th>
       </tr>
       <tr v-for="friend in friends" >
-        <td>
-          <div><i class="fas fa-address-book"></i></div>
-        </td>
         <td>
           <div>{{friend.name}}</div>
         </td>
@@ -24,6 +20,7 @@
 
 <script>
   import * as api from '@/services/UserAPI';
+  import { store } from '@/store/Store';
 
   export default {
     name: 'UserFriends',
@@ -40,6 +37,7 @@
             this.friends.push(followingList[i]);
           }
         });
+        store.setUserConnectedFriends(this.friends);
       }
     },
     created() {
@@ -61,20 +59,18 @@
   .songAlbumTable th {
     border: none;
     background: white;
-    text-align: center;
+    text-align: left;
   }
   .songAlbumTable td {
     cursor: pointer;
   }
   .songAlbumTable td:nth-child(1) {
-    width: 60px;
+    text-align: left;
+    width: 1000px;
   }
   .songAlbumTable th:nth-child(2) {
     text-align: left;
-    width: 1500px;
-  }
-  .songAlbumTable th:nth-child(3) {
-    width: 80px;
+    width: 1000px;
   }
   .songAlbumTable tr {
     border: 2px solid white;

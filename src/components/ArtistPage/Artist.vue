@@ -1,7 +1,5 @@
 <template>
   <div class="mainDiv">
-    <Notif v-bind:message="notifMessage" class="notifs"></Notif>
-
     <Header v-bind:artistId="artistId"></Header>
 
     <AlbumHeader v-bind:artistId="artistId"></AlbumHeader>
@@ -16,10 +14,9 @@
   import Header from './ArtistHeader';
   import AlbumHeader from './AlbumHeader';
   import AlbumList from './AlbumList';
-  import Notif from '../NotifBox';
 
   export default {
-    components: { Player, Header, AlbumHeader, AlbumList, Notif },
+    components: { Player, Header, AlbumHeader, AlbumList },
     data: () => ({
       artistId: store.state.artistState
     }),
@@ -37,6 +34,6 @@
   .notifs{
     position: absolute;
     top: 70px;
-    right: 0px;
+    right: 0;
   }
 </style>

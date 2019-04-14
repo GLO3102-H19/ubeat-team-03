@@ -46,6 +46,10 @@
 
 <script>
   import * as api from '@/services/HomeAPI';
+  import app from '@/App';
+  // import router from '@/router/router';
+  // import { store } from '@/store/Store';
+  // import Cookies from 'js-cookie';
   // import login from './LogIn';
 
   export default {
@@ -55,10 +59,10 @@
       password: ''
     }),
     methods: {
-      onSubmit(evt) {
+      async onSubmit(evt) {
         evt.preventDefault();
-        api.addUser(this.fullname, this.email, this.password).then((res) => {
-          console.log(res);
+        api.addUser(this.fullname, this.email, this.password).then(() => {
+          app.methods.showServerError('Your account has been created, please logIn.');
         });
         this.reset();
       },

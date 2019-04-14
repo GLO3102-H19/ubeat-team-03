@@ -5,12 +5,8 @@
       <tr>
         <th>Name</th>
         <th>Owner</th>
-        <th><font-awesome-icon icon="trash" /></th>
       </tr>
       <tr v-for="playlist in playlists" >
-        <td>
-          <div><i class="fas fa-address-book"></i></div>
-        </td>
         <td>
           <div>{{playlist.name}}</div>
         </td>
@@ -61,20 +57,18 @@
   .songAlbumTable th {
     border: none;
     background: white;
-    text-align: center;
+    text-align: left;
   }
   .songAlbumTable td {
     cursor: pointer;
   }
   .songAlbumTable td:nth-child(1) {
-    width: 60px;
+    text-align: left;
+    width: 1000px;
   }
   .songAlbumTable th:nth-child(2) {
     text-align: left;
-    width: 1500px;
-  }
-  .songAlbumTable th:nth-child(3) {
-    width: 80px;
+    width: 1000px;
   }
   .songAlbumTable tr {
     border: 2px solid white;

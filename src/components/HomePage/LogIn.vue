@@ -37,6 +37,8 @@
   // import router from '@/router/router';
   import { store } from '@/store/Store';
   import Cookies from 'js-cookie';
+  // import navBar from '../Navigation';
+  // import userPage from '../UserPage/User';
 
   export default {
     data: () => ({
