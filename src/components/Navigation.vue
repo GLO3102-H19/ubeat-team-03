@@ -6,7 +6,7 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item href="#/Playlists">Playlists</b-nav-item>
+        <b-nav-item v-on:click="goToPlaylist">Playlists</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
@@ -33,10 +33,10 @@
           <template slot="button-content">
             <em>Welcome {{connectedUser}}</em>
           </template>
-          <b-dropdown-item href="#/User" v-on:click="goToProfile"
+          <b-dropdown-item v-on:click="goToProfile"
             ><font-awesome-icon icon="user"/> Profile</b-dropdown-item
           >
-          <b-dropdown-item href="#/"  v-on:click="logOut"
+          <b-dropdown-item v-on:click="logOut"
           ><font-awesome-icon icon="sign-out-alt"/> Signout</b-dropdown-item
           >
         </b-nav-item-dropdown>
@@ -70,17 +70,26 @@
       loadSearchPage() {
         store.setSearchState(this.search);
         store.setSearchType(this.select.selected);
-        router.push('Search');
+        store.setRedirect('Search');
+        router.push('Redirect');
       },
       logOut() {
         api.logOut();
         store.logOut();
+        store.setRedirect('Home');
+        router.push('Redirect');
       },
       goToProfile() {
         store.setUserIdToVisit(store.state.userIdConnected);
+        store.setRedirect('User');
+        router.push('Redirect');
       },
       onEnter() {
         this.loadSearchPage();
+      },
+      goToPlaylist() {
+        store.setRedirect('Playlist');
+        router.push('Redirect');
       }
     }
   };

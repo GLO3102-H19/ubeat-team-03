@@ -28,8 +28,8 @@
       playlists: []
     }),
     methods: {
-      getUserPlaylists() {
-        api.getUserPlaylists(this.id).then((res) => {
+      async getUserPlaylists() {
+        await api.getUserPlaylists(this.id).then((res) => {
           const playlistsList = res;
 
           for (let i = 0; i < playlistsList.length; i += 1) {

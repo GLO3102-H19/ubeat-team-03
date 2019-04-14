@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 export const store = {
   state: {
+    redirect: '',
     artistState: '',
     albumState: '',
     searchTerm: '',
@@ -47,6 +48,9 @@ export const store = {
   },
   setServerError(newValue) {
     this.state.serverError = newValue;
+  },
+  setRedirect(newValue) {
+    this.state.redirect = newValue;
   },
   logOut() {
     this.state.userIdConnected = '';

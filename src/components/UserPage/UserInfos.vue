@@ -28,24 +28,24 @@
       key: 0
     }),
     methods: {
-      getUserName() {
-        api.getUserName(this.id).then((res) => {
+      async getUserName() {
+        await api.getUserName(this.id).then((res) => {
           this.name = res;
         });
       },
-      getUserEmail() {
-        api.getUserEmail(this.id).then((res) => {
+      async getUserEmail() {
+        await api.getUserEmail(this.id).then((res) => {
           this.email = res;
         });
       },
-      isItConnectedUser() {
+      async isItConnectedUser() {
         if (this.id === store.state.userIdConnected) {
           this.connectedUser = true;
         } else {
           this.connectedUser = false;
         }
       },
-      isThisUserFollowed() {
+      async isThisUserFollowed() {
         for (let i = 0; i < store.state.userConnectedFriends.length; i += 1) {
           if (this.id === store.state.userConnectedFriends[i].id) {
             this.followedUser = true;

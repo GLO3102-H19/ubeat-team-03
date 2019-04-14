@@ -6,6 +6,7 @@ import Artist from '../components/ArtistPage/Artist';
 import Playlists from '../components/Playlists/Playlists';
 import Search from '../components/SearchPage/Search';
 import User from '../components/UserPage/User';
+import Redirect from '../components/Redirect';
 
 Vue.use(Router);
 
@@ -41,6 +42,14 @@ export default new Router({
       name: 'Search',
       component: Search,
       props: true
+    },
+    {
+      path: '/redirect',
+      name: 'Redirect',
+      component: Redirect,
+      meta: {
+        requiresAuth: true
+      },
     }
   ],
 });

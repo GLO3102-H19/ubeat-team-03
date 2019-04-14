@@ -9,7 +9,7 @@ const searchAlbumTermField = 'albums';
 const searchArtistTermField = 'artists';
 const searchTracksTermField = 'tracks';
 const searchTermField = '?q=';
-const limitField = '&limit=10';
+const limitField = '&limit=30';
 
 const config = {
   headers: {
@@ -54,7 +54,7 @@ export const getAlbumsSearch = searchTerm => axios
 // Implémentation de la méthode GET
 // Permet de faire une recherche seulement sur les tracks
 export const getTracksSearch = searchTerm => axios
-  .get(baseURL + searchTracksTermField + searchTermField + encodeURIComponent(`${searchTerm}`), config)
+  .get(baseURL + searchTracksTermField + searchTermField + encodeURIComponent(`${searchTerm}`) + limitField, config)
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.

@@ -29,8 +29,8 @@
       friends: [],
     }),
     methods: {
-      getUserFriends() {
-        api.getUserFriends(this.id).then((res) => {
+      async getUserFriends() {
+        await api.getUserFriends(this.id).then((res) => {
           const followingList = res;
 
           for (let i = 0; i < followingList.length; i += 1) {
