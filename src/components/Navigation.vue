@@ -36,9 +36,6 @@
           <b-dropdown-item href="#/User" v-on:click="goToProfile"
             ><font-awesome-icon icon="user"/> Profile</b-dropdown-item
           >
-          <b-dropdown-item href="#/"
-            ><font-awesome-icon icon="wrench" /> Settings</b-dropdown-item
-          >
           <b-dropdown-item href="#/"  v-on:click="logOut"
           ><font-awesome-icon icon="sign-out-alt"/> Signout</b-dropdown-item
           >

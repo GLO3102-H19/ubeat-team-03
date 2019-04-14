@@ -1,14 +1,21 @@
 // Fichier contenant les communications avec l'API pour la page Playlist
 import axios from 'axios';
 import app from '@/App';
+import Cookies from 'js-cookie';
 
 // Adresse URL de base pour accéder à un artiste
-const baseURL = 'http://ubeat.herokuapp.com/unsecure/playlists';
+const baseURL = 'http://ubeat.herokuapp.com/playlists';
+
+const config = {
+  headers: {
+    Authorization: Cookies.get('token')
+  }
+};
 
 // Implémentation de la méthode POST
 // Permet de créer une nouvelle playlist
 export const insertNewPlaylist = (playlistName, email) =>
-  axios.post(baseURL, { name: playlistName, owner: email })
+  axios.post(baseURL, { name: playlistName, owner: email }, config)
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
@@ -18,8 +25,9 @@ export const insertNewPlaylist = (playlistName, email) =>
 
 // Implémentation de la méthode POST (à modifier)
 // Permet d'ajouter une chanson à une playlist
+
 export const insertIntoPlaylist = (track, playlistId) =>
-  axios.post(`${baseURL}/${playlistId}/tracks`, track)
+  axios.post(`${baseURL}/${playlistId}/tracks`, track, config)
     .then(response => response.data)
     .catch((error) => {
       app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
@@ -29,7 +37,7 @@ export const insertIntoPlaylist = (track, playlistId) =>
 
 // Implémentation de la méthode GET
 // Permet d'update la liste des playlists
-export const getPlaylists = id => axios.get(baseURL)
+export const getPlaylists = id => axios.get(baseURL, config)
   .then((response) => {
     const posts = response.data;
     const playlists = [];
@@ -51,7 +59,7 @@ export const getPlaylists = id => axios.get(baseURL)
 // Implémentation de la méthode PUT
 // Permet de modifier la playlist à l'id demandé
 export const putPlaylist = (id, playlistUser, email, trackList) =>
-  axios.put(`${baseURL}/${id}`, { name: playlistUser, owner: email, tracks: trackList })
+  axios.put(`${baseURL}/${id}`, { name: playlistUser, owner: email, tracks: trackList }, config)
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
@@ -61,7 +69,7 @@ export const putPlaylist = (id, playlistUser, email, trackList) =>
 
 // Implémentation de la méthode DELETE
 // Permet de supprimer la playlist à l'id demandé
-export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
+export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`, config)
   .then(response => response.data)
   .catch((error) => {
     app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
@@ -72,7 +80,7 @@ export const deletePlaylist = key => axios.delete(`${baseURL}/${key}`)
 // Implémentation de la méthode DELETE
 // Permet de supprimer une chanson de la playlist à l'id demandé
 export const removeSongFromPlaylist = (playlistId, trackId) =>
-  axios.delete(`${baseURL}/${playlistId}/tracks/${trackId}`)
+  axios.delete(`${baseURL}/${playlistId}/tracks/${trackId}`, config)
     .then(response => response.data)
     .catch((error) => {
       app.methods.showServerError(`${error.response.status} ${error.response.statusText}.

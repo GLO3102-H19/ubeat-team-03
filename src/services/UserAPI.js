@@ -69,10 +69,18 @@ export const getUserPlaylists = userId => axios.get('http://ubeat.herokuapp.com/
 // Permet de follow un user
 export const newFollow = id => axios.post(`${baseURL}follow`, { id }, config)
   .then(response => response.data)
-  .catch(error => error);
+  .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to follow this user.`);
+    throw error;
+  });
 
 // Implémentation de la méthode DELETE
 // Permet de unfollow un user
 export const unFollow = userId => axios.delete(`${baseURL}follow/${userId}`, config)
   .then(response => response.data)
-  .catch(error => error);
+  .catch((error) => {
+    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Failed to unfollow this user.`);
+    throw error;
+  });

@@ -24,7 +24,7 @@ export default {
       userName: store.state.userName,
       userEmail: store.state.userEmail,
       userpassword: '',
-      serverError: ''
+      serverError: '',
     }),
     methods: {
       showServerError(errorMessage) {

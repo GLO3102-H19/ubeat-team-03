@@ -46,9 +46,10 @@
 
 <script>
   import * as api from '@/services/HomeAPI';
-  import router from '@/router/router';
-  import { store } from '@/store/Store';
-  import Cookies from 'js-cookie';
+  import app from '@/App';
+  // import router from '@/router/router';
+  // import { store } from '@/store/Store';
+  // import Cookies from 'js-cookie';
   // import login from './LogIn';
 
   export default {
@@ -58,23 +59,12 @@
       password: ''
     }),
     methods: {
-      onSubmit(evt) {
+      async onSubmit(evt) {
         evt.preventDefault();
-        api.addUser(this.fullname, this.email, this.password).then((res) => {
-          store.setUserName(res.data.name);
-          store.setUserEmail(res.data.email);
-          store.setUserIdConnected(res.data.id);
-          store.setUserIdToVisit(res.data.id);
-          store.setUserToken(res.data.token);
-
-          const date = new Date();
-          const minutes = 60;
-          date.setTime(date.getTime() + (minutes * 60 * 1000));
-          Cookies.set('token', res.data.token, { expires: date });
-          console.log(res);
+        api.addUser(this.fullname, this.email, this.password).then(() => {
+          app.methods.showServerError('Your account has been created, please logIn.');
         });
         this.reset();
-        router.push('User');
       },
       reset() {
         this.fullname = '';

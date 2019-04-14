@@ -17,7 +17,6 @@
 <script>
   import * as api from '@/services/UserAPI';
   import { store } from '@/store/Store';
-  import friendsList from './UserFriends';
 
   export default {
     props: ['id'],
@@ -56,12 +55,10 @@
       newFollow() {
         api.newFollow(this.id).then();
         this.followedUser = true;
-        friendsList.created();
       },
       unFollow() {
         api.unFollow(this.id).then();
         this.followedUser = false;
-        friendsList.created();
       },
     },
     created() {
