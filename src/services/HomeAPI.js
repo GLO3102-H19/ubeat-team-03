@@ -4,7 +4,7 @@ import qs from 'qs';
 import app from '@/App';
 
 // Adresse URL de base pour accéder à un artiste
-const baseURL = 'http://localhost:3000/';
+const baseURL = 'https://ubeat.herokuapp.com/';
 
 const config1 = {
   headers: {
