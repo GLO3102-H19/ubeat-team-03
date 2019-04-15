@@ -31,6 +31,7 @@
   import { store } from '@/store/Store';
   import * as apiPlaylist from '@/services/PlaylistAPI';
   import * as api from '@/services/AlbumAPI';
+  import Cookies from 'js-cookie';
 
   export default {
     name: 'AlbumResult',
@@ -39,7 +40,7 @@
       search: '',
       playlists: [],
       trackList: [],
-      idUser: store.state.userIdConnected,
+      idUser: Cookies.get('userId'),
     }),
     methods: {
       loadAlbumPage(collectionId, artistId) {

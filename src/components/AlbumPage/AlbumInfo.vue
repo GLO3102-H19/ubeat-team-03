@@ -33,7 +33,7 @@
 <script>
   import * as api from '@/services/AlbumAPI';
   import * as apiPlaylist from '@/services/PlaylistAPI';
-  import { store } from '@/store/Store';
+  import Cookies from 'js-cookie';
 
   export default {
     props: ['artistId', 'albumId'],
@@ -49,7 +49,7 @@
       trackList: [],
       albumLength: '',
       playlists: [],
-      idUser: store.state.userIdConnected
+      idUser: Cookies.get('userId')
     }),
     methods: {
       millisToMinutesAndSeconds(millis) {

@@ -63,7 +63,7 @@
       playlists: [],
       posts: [],
       errors: [],
-      idUser: store.state.userIdConnected,
+      idUser: Cookies.get('userId'),
       emailUser: store.state.userEmail
     }),
     name: 'Playlists',
