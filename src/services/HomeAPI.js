@@ -33,9 +33,14 @@ export const addUser = (name, email, password) => axios.post(`${baseURL}signup`,
 export const logUser = (email, password) => axios.post(`${baseURL}login`, qs.stringify({ email, password }), config2)
   .then()
   .catch((error) => {
-    app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+    if ((error.response.status) === 401) {
+      app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
+      Try another email/password combination.`);
+    } else {
+      app.methods.showServerError(`${error.response.status} ${error.response.statusText}.
       Failed to log in.`);
-    throw error;
+      throw error;
+    }
   });
 
 // Implémentation de la méthode GET

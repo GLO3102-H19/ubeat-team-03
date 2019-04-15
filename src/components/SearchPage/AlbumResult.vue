@@ -3,7 +3,7 @@
   <div id="albumResultTitle"><h2>Album</h2></div>
       <div class="album"  v-for="item in albumResult" v-bind:key="item.collectionId">
         <div class="albumAdd">
-          <b-dropdown id="addToPlaylist" size="sm" dropright text="ADD" >
+          <b-dropdown id="addToPlaylist" size="sm" dropright text="Add to" >
             <b-dropdown-item v-for="playlist in playlists" v-bind:key="playlist.id" class="dropdownMenu" v-on:click="addAlbumInPlaylist(item.collectionId, playlist)">
               {{playlist.name}}
             </b-dropdown-item>
@@ -101,8 +101,7 @@
 
   .albumTitle {
     width: 150px;
-    background-color: lightgreen;
-    border: 1px solid black;
+    background-color: white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     text-align: center;

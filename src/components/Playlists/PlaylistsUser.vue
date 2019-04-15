@@ -5,7 +5,7 @@
     <b-form-input size="sm" type="text" v-model="playlist.name" />
     </div>
     <div id="modifButton">
-    <b-button size="sm" variant="primary" v-on:click="putPlaylist">Modif</b-button>
+    <b-button size="sm" variant="primary" v-on:click="putPlaylist">Change name</b-button>
     </div>
     <div >
     <b-button class="offset-1"  size="sm" variant="danger" v-on:click="deletePlaylist">Delete</b-button>

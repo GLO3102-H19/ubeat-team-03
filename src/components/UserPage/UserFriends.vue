@@ -6,7 +6,7 @@
         <th>Name</th>
         <th>Email</th>
       </tr>
-      <tr v-for="friend in friends" >
+      <tr v-for="friend in friends" v-on:click="loadUserPage(friend.id)" >
         <td>
           <div>{{friend.name}}</div>
         </td>
@@ -41,6 +41,11 @@
           }
         });
         store.setUserConnectedFriends(this.friends);
+      },
+      loadUserPage(id) {
+        store.setUserIdToVisit(id);
+        store.setRedirect('User');
+        router.push('Redirect');
       }
     },
     mounted() {

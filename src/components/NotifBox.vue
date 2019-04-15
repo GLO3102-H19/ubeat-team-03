@@ -15,8 +15,9 @@
 <style scoped>
   .alert {
     position: absolute;
-    display: inline-block;
+    display: run-in;
     top: 70px;
+    right: 0;
     z-index:1000
   }
   .alert, #errorMessage {

@@ -2,11 +2,11 @@
   <b-navbar id="navBar" v-if="loggedIn()" fixed="top" toggleable="md" type="dark" variant="primary">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-    <b-navbar-brand href="#/User">UBEAT</b-navbar-brand>
+    <b-navbar-brand>UBEAT</b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item v-on:click="goToPlaylist">Playlists</b-nav-item>
+        <b-nav-item v-on:click="showPlaylist">Playlists</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
@@ -91,10 +91,7 @@
       onEnter() {
         this.loadSearchPage();
       },
-      goToPlaylist() {
-        store.setRedirect('Playlist');
-        router.push('Redirect');
-      }
+
     }
   };
 </script>

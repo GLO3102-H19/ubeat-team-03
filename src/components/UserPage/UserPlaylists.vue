@@ -1,12 +1,12 @@
 <template>
-  <b-col class="playlists">
+  <b-col id="playlists" class="playlists">
     <h2 id="title">Playlists</h2>
     <table class="songAlbumTable">
       <tr>
         <th>Name</th>
         <th>Owner</th>
       </tr>
-      <tr v-on:click="goToPlaylist(this.id)" v-for="playlist in playlists" >
+      <tr v-for="playlist in playlists" v-on:click="showPlaylist(playlist)" >
         <td>
           <div>{{playlist.name}}</div>
         </td>
@@ -15,6 +15,7 @@
         </td>
       </tr>
     </table>
+    <PlaylistInfo></PlaylistInfo>
   </b-col>
 </template>
 
@@ -23,8 +24,10 @@
   import { store } from '@/store/Store';
   import router from '@/router/router';
   import Cookies from 'js-cookie';
+  import PlaylistInfo from '../Playlists/PlaylistInfo';
 
   export default {
+    components: { PlaylistInfo },
     props: [],
     name: 'UserPlaylists',
     data: () => ({
@@ -40,7 +43,7 @@
             this.playlists.push(playlistsList[i]);
           }
         });
-      },
+      }
     },
     created() {
       if (Cookies.get('token') === undefined) {
@@ -67,9 +70,6 @@
     border: none;
     background: white;
     text-align: left;
-  }
-  .songAlbumTable td {
-    cursor: pointer;
   }
   .songAlbumTable td:nth-child(1) {
     text-align: left;
