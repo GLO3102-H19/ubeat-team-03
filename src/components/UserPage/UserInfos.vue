@@ -17,6 +17,7 @@
 <script>
   import * as api from '@/services/UserAPI';
   import { store } from '@/store/Store';
+  import router from '@/router/router';
   import Cookies from 'js-cookie';
 
   export default {
@@ -27,7 +28,7 @@
       connectedUser: '',
       followedUser: '',
       key: 0,
-      id: Cookies.get('userId')
+      id: store.state.userIdToVisit
     }),
     methods: {
       async getUserName() {
@@ -64,10 +65,15 @@
       },
     },
     mounted() {
-      this.getUserName();
-      this.getUserEmail();
-      this.isItConnectedUser();
-      this.isThisUserFollowed();
+      if (Cookies.get('token') === undefined) {
+        store.setRedirect('Home');
+        router.push('Redirect');
+      } else {
+        this.getUserName();
+        this.getUserEmail();
+        this.isItConnectedUser();
+        this.isThisUserFollowed();
+      }
     }
 };
 </script>

@@ -84,7 +84,7 @@
         window.location.reload();
       },
       goToProfile() {
-        store.setUserIdToVisit(store.state.userIdConnected);
+        store.setUserIdToVisit(Cookies.get('userId'));
         store.setRedirect('User');
         router.push('Redirect');
       },

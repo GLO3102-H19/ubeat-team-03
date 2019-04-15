@@ -21,6 +21,7 @@
 <script>
   import * as api from '@/services/UserAPI';
   import { store } from '@/store/Store';
+  import router from '@/router/router';
   import Cookies from 'js-cookie';
 
   export default {
@@ -28,7 +29,7 @@
     props: [],
     data: () => ({
       friends: [],
-      id: Cookies.get('userId')
+      id: store.state.userIdToVisit
     }),
     methods: {
       async getUserFriends() {
@@ -43,7 +44,12 @@
       }
     },
     mounted() {
-      this.getUserFriends();
+      if (Cookies.get('token') === undefined) {
+        store.setRedirect('Home');
+        router.push('Redirect');
+      } else {
+        this.getUserFriends();
+      }
     }
   };
 

@@ -8,6 +8,7 @@
 
 <script>
   import Vue from 'vue';
+  import Cookies from 'js-cookie';
   import Navigation from '@/components/Navigation';
   import { store } from '@/store/Store';
   import NotifBox from './components/NotifBox';
@@ -36,8 +37,9 @@ export default {
         document.getElementById('container').appendChild(instance.$el);
       }
     },
-    mounted() {
-    }
+    created() {
+      store.setUserIdToVisit(Cookies.get('userId'));
+    },
 };
 </script>
 

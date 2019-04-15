@@ -6,7 +6,7 @@
         <th>Name</th>
         <th>Owner</th>
       </tr>
-      <tr v-for="playlist in playlists" >
+      <tr v-on:click="goToPlaylist(this.id)" v-for="playlist in playlists" >
         <td>
           <div>{{playlist.name}}</div>
         </td>
@@ -20,6 +20,8 @@
 
 <script>
   import * as api from '@/services/UserAPI';
+  import { store } from '@/store/Store';
+  import router from '@/router/router';
   import Cookies from 'js-cookie';
 
   export default {
@@ -27,7 +29,7 @@
     name: 'UserPlaylists',
     data: () => ({
       playlists: [],
-      id: Cookies.get('userId')
+      id: store.state.userIdToVisit
     }),
     methods: {
       async getUserPlaylists() {
@@ -38,10 +40,15 @@
             this.playlists.push(playlistsList[i]);
           }
         });
-      }
+      },
     },
     created() {
-      this.getUserPlaylists();
+      if (Cookies.get('token') === undefined) {
+        store.setRedirect('Home');
+        router.push('Redirect');
+      } else {
+        this.getUserPlaylists();
+      }
     }
   };
 </script>

@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import app from '@/App';
 
 // Adresse URL de base pour accéder à un artiste
-const baseURL = 'https://ubeat.herokuapp.com/';
+const baseURL = 'http://localhost:3000/';
 
 const config = {
   headers: {
@@ -45,7 +45,7 @@ export const getUserFriends = userId => axios.get(`${baseURL}users/${userId}`, c
 
 // Implémentation de la méthode GET
 // Permet d'update la liste des playlists
-export const getUserPlaylists = userId => axios.get('https://ubeat.herokuapp.com/playlists', config)
+export const getUserPlaylists = userId => axios.get('http://localhost:3000/playlists', config)
   .then((response) => {
     const posts = response.data;
     const playlists = [];

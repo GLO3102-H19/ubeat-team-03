@@ -14,7 +14,7 @@
 
 <style scoped>
   .alert {
-    position: relative;
+    position: absolute;
     display: inline-block;
     top: 70px;
     z-index:1000
