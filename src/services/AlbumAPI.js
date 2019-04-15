@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import app from '@/App';
 
-const baseURL = 'http://localhost:3000/albums/';
+const baseURL = 'https://ubeat.herokuapp.com/albums/';
 
 const config = {
   headers: {

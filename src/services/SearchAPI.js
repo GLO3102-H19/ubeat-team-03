@@ -3,7 +3,7 @@ import axios from 'axios';
 import app from '@/App';
 import Cookies from 'js-cookie';
 
-const baseURL = 'http://localhost:3000/search/';
+const baseURL = 'https://ubeat.herokuapp.com/search/';
 const searchUserTermField = 'users';
 const searchAlbumTermField = 'albums';
 const searchArtistTermField = 'artists';

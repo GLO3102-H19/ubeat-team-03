@@ -5,7 +5,7 @@ import app from '@/App';
 import Cookies from 'js-cookie';
 
 // Adresse URL de base pour accéder à un artiste
-const baseURL = 'http://localhost:3000/artists/';
+const baseURL = 'https://ubeat.herokuapp.com/artists/';
 const albumsPath = '/albums';
 
 const config = {
