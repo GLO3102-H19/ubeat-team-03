@@ -91,7 +91,10 @@
       onEnter() {
         this.loadSearchPage();
       },
-
+      showPlaylist() {
+        store.setRedirect('Playlist');
+        router.push('Redirect');
+      }
     }
   };
 </script>
